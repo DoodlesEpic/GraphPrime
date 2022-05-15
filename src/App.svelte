@@ -39,9 +39,11 @@
   <button on:click={calculate}>Calculate</button>
 
   {#if primes}
-    <p>
-      {primes.join(", ")}
-    </p>
+    <div id="primes">
+      <p>
+        {primes.join(", ")}
+      </p>
+    </div>
 
     <Chart {data} type="line" />
   {/if}
@@ -59,6 +61,11 @@
     color: #ff3e00;
     font-size: 4em;
     font-weight: 100;
+  }
+
+  #primes {
+    max-height: 400px;
+    overflow: scroll;
   }
 
   @media (min-width: 640px) {
