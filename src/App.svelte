@@ -1,7 +1,18 @@
 <script lang="ts">
+  import Chart from "svelte-frappe-charts";
+
   export let name: string;
   let finalValue: number;
   let primes: number[] = [];
+
+  $: data = {
+    labels: [...Array(primes.length).keys()],
+    datasets: [
+      {
+        values: primes,
+      },
+    ],
+  };
 
   function isPrime(x) {
     for (let i = 2; i < x; i++) {
@@ -19,6 +30,7 @@
         primes.push(i);
       }
     }
+
     primes = primes; // Force Svelte to trigger an update
   }
 </script>
@@ -41,6 +53,8 @@
     <p>
       {primes.join(", ")}
     </p>
+
+    <Chart {data} type="line" />
   {/if}
 </main>
 
