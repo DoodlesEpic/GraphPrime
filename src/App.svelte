@@ -16,15 +16,7 @@
   };
 
   async function calculate() {
-    primes = [2]; // 2 is the only even prime number, so we just hardcode it
-    for (let i = 3; i < finalValue; i += 2) {
-      const isPrime = await invoke("is_prime", { x: i });
-      if (isPrime) {
-        primes.push(i);
-      }
-    }
-
-    primes = primes; // Force Svelte to trigger an update
+    primes = await invoke("calculate", { x: finalValue });
   }
 </script>
 
