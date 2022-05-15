@@ -3,9 +3,21 @@
   let finalValue: number;
   let primes: number[] = [];
 
+  function isPrime(x) {
+    for (let i = 2; i < x; i++) {
+      if (x % i == 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   function calculate() {
-    for (let i = 0; i < finalValue; i++) {
-      primes.push(i);
+    primes = [];
+    for (let i = 2; i < finalValue; i++) {
+      if (isPrime(i)) {
+        primes.push(i);
+      }
     }
     primes = primes; // Force Svelte to trigger an update
   }
