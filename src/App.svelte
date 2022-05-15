@@ -6,7 +6,7 @@
   let primes: number[] = [];
 
   $: data = {
-    labels: [...Array(primes.length).keys()],
+    labels: [...Array(primes.length).keys()].map((i) => i + 1),
     datasets: [
       {
         values: primes,
