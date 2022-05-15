@@ -13,8 +13,8 @@
   }
 
   function calculate() {
-    primes = [];
-    for (let i = 2; i < finalValue; i++) {
+    primes = [2]; // 2 is the only even prime number, so we just hardcode it
+    for (let i = 3; i < finalValue; i += 2) {
       if (isPrime(i)) {
         primes.push(i);
       }
