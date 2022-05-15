@@ -1,5 +1,14 @@
 <script lang="ts">
   export let name: string;
+  let finalValue: number;
+  let primes: number[] = [];
+
+  function calculate() {
+    for (let i = 0; i < finalValue; i++) {
+      primes.push(i);
+    }
+    primes = primes; // Force Svelte to trigger an update
+  }
 </script>
 
 <main>
@@ -8,6 +17,19 @@
     Use this application to generate prime sequences and graph them all within
     the comfort of your desktop.
   </p>
+
+  <input type="number" bind:value={finalValue} min="0" max="100000" />
+  <button on:click={calculate}>Calculate</button>
+
+  {#if finalValue}
+    <p>{finalValue}</p>
+  {/if}
+
+  {#if primes}
+    <p>
+      {primes.join(", ")}
+    </p>
+  {/if}
 </main>
 
 <style>
