@@ -1,6 +1,7 @@
 # Graph Prime Calculator
 
 This is a cross-platform prime number calculator developed on Tauri to simultaneously allow for beautiful graphs, amazing performance, and code-sharing between platforms. The frontend "framework" of choice is Svelte since it's so simple.
+![Screenshot on Linux Fedora](https://user-images.githubusercontent.com/37254797/168457911-50231971-90e5-446f-880a-5e379304db09.png)
 
 ## Developing
 
