@@ -45,10 +45,6 @@
   <input type="number" bind:value={finalValue} min="0" max="100000" />
   <button on:click={calculate}>Calculate</button>
 
-  {#if finalValue}
-    <p>{finalValue}</p>
-  {/if}
-
   {#if primes}
     <p>
       {primes.join(", ")}
