@@ -12,12 +12,15 @@ fn main() {
 
 #[tauri::command]
 fn calculate(x: u64) -> Vec<u64> {
-    let mut result = Vec::new();
-    for i in 2..x {
+    let mut result = vec![2];
+
+    // Only iterate over odd numbers since 2 is the only even prime
+    for i in (3..x).step_by(2) {
         if is_prime(i) {
             result.push(i);
         }
     }
+
     result
 }
 
