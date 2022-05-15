@@ -3,9 +3,17 @@
   import { invoke } from "@tauri-apps/api/tauri";
 
   export let name: string;
-  let finalValue: number;
-  let primes: number[] = [];
 
+  // Primes will be calculated upto this number
+  let finalValue: number;
+
+  // Hardcoded data upto 100 for initializing the chart
+  let primes: number[] = [
+    2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
+    73, 79, 83, 89, 97,
+  ];
+
+  // Chart data, recalculated on every change of primes
   $: data = {
     labels: [...Array(primes.length).keys()].map((i) => i + 1),
     datasets: [
