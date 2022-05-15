@@ -1,5 +1,6 @@
 <script lang="ts">
   import Chart from "svelte-frappe-charts";
+  import { invoke } from "@tauri-apps/api/tauri";
 
   export let name: string;
   let finalValue: number;
@@ -14,19 +15,11 @@
     ],
   };
 
-  function isPrime(x) {
-    for (let i = 2; i < x; i++) {
-      if (x % i == 0) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  function calculate() {
+  async function calculate() {
     primes = [2]; // 2 is the only even prime number, so we just hardcode it
     for (let i = 3; i < finalValue; i += 2) {
-      if (isPrime(i)) {
+      const isPrime = await invoke("is_prime", { x: i });
+      if (isPrime) {
         primes.push(i);
       }
     }
