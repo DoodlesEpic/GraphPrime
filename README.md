@@ -25,3 +25,7 @@ npm run tauri dev
 
 You need to have Rust and NodeJS ready to run on your system before doing this
 https://tauri.studio/v1/guides/getting-started/prerequisites/
+
+## License
+
+This project is licensed under the GNU GPL v3 free software license, read the LICENSE file for more information.
