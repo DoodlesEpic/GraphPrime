@@ -57,6 +57,15 @@
   {/if}
 
   {#if primes}
+    <div class="card">
+      <h2>Stats</h2>
+      <p>
+        {primes.length} prime numbers calculated up to the number {primes.at(
+          -1
+        )}
+      </p>
+    </div>
+
     <div id="primes" class="card">
       <h2>Primes</h2>
       <p>
