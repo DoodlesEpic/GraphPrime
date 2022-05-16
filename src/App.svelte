@@ -34,7 +34,7 @@
 </script>
 
 <main>
-  <div>
+  <div class="card">
     <h1>Welcome to {name}!</h1>
     <p>
       Use this application to generate prime sequences and graph them all within
@@ -52,17 +52,17 @@
   </div>
 
   {#if calculating}
-    <div class="bar" />
+    <div class="bar card" />
   {/if}
 
   {#if primes}
-    <div id="primes">
+    <div id="primes" class="card">
       <p>
         {primes.join(", ")}
       </p>
     </div>
 
-    <div><Chart {data} type="line" /></div>
+    <div class="card"><Chart {data} type="line" /></div>
   {/if}
 </main>
 
@@ -80,7 +80,7 @@
     font-weight: 300;
   }
 
-  div {
+  .card {
     /* Cast a nice shadow */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
