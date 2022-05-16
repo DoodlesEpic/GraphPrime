@@ -1,6 +1,7 @@
 <script lang="ts">
   import Chart from "svelte-frappe-charts";
   import { invoke } from "@tauri-apps/api/tauri";
+  import { slide } from "svelte/transition";
   import "./progress.css";
 
   export let name: string;
@@ -52,7 +53,7 @@
   </div>
 
   {#if calculating}
-    <div class="bar card" />
+    <div class="bar card" in:slide out:slide />
   {/if}
 
   {#if primes}
