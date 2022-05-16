@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^1.0.0-rc.5",
+    "@typescript-eslint/parser": "^5.24.0",
     "svelte-frappe-charts": "^1.9.2"
   }
 }
