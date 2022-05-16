@@ -29,14 +29,16 @@
 </script>
 
 <main>
-  <h1>Welcome to {name}!</h1>
-  <p>
-    Use this application to generate prime sequences and graph them all within
-    the comfort of your desktop.
-  </p>
+  <div>
+    <h1>Welcome to {name}!</h1>
+    <p>
+      Use this application to generate prime sequences and graph them all within
+      the comfort of your desktop.
+    </p>
 
-  <input type="number" bind:value={finalValue} min="0" max="100000" />
-  <button on:click={calculate}>Calculate</button>
+    <input type="number" bind:value={finalValue} min="0" max="100000" />
+    <button on:click={calculate}>Calculate</button>
+  </div>
 
   {#if primes}
     <div id="primes">
@@ -45,7 +47,7 @@
       </p>
     </div>
 
-    <Chart {data} type="line" />
+    <div><Chart {data} type="line" /></div>
   {/if}
 </main>
 
@@ -61,6 +63,14 @@
     color: #ff3e00;
     font-size: 4em;
     font-weight: 100;
+  }
+
+  div {
+    /* Cast a nice shadow */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 1em;
+    margin: 1em;
   }
 
   #primes {
