@@ -36,7 +36,13 @@
       the comfort of your desktop.
     </p>
 
-    <input type="number" bind:value={finalValue} min="0" max="100000" />
+    <input
+      type="number"
+      bind:value={finalValue}
+      min="0"
+      max="100000"
+      placeholder="100"
+    />
     <button on:click={calculate}>Calculate</button>
   </div>
 
