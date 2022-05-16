@@ -66,6 +66,11 @@
   #primes {
     max-height: 400px;
     overflow: scroll;
+    /* Comfortable font for reading huge amounts of data */
+    font-size: 1.1em;
+    font-weight: 100;
+    font-family: monospace;
+    font-variant-numeric: tabular-nums;
   }
 
   @media (min-width: 640px) {
