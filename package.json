@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build:web": "rollup -c",
-    "build": "tauri build",
-    "dev": "rollup -c -w",
-    "start": "sirv public --no-clear",
-    "check": "svelte-check --tsconfig ./tsconfig.json",
     "tauri": "tauri",
+    "dev": "tauri dev",
+    "dev:web": "rollup -c -w",
+    "build": "tauri build",
+    "build:web": "rollup -c",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
     "lint": "prettier --check --plugin-search-dir=. src *.js && eslint src *.js && svelte-check",
     "format": "prettier --write --plugin-search-dir=. src *.js && eslint --fix src *.js",
     "test": "echo 'No tests'"
@@ -38,7 +38,6 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^1.0.0-rc.5",
-    "sirv-cli": "^2.0.0",
     "svelte-frappe-charts": "^1.9.2"
   }
 }
