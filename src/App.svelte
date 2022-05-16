@@ -54,20 +54,20 @@
 <style>
   main {
     text-align: center;
-    padding: 1em;
+    padding-bottom: 1em;
     max-width: 240px;
     margin: 0 auto;
   }
 
   h1 {
     color: #ff3e00;
-    font-size: 4em;
-    font-weight: 100;
+    font-size: 3em;
+    font-weight: 300;
   }
 
   div {
     /* Cast a nice shadow */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     padding: 1em;
     margin: 1em;
