@@ -13,6 +13,8 @@
     73, 79, 83, 89, 97,
   ];
 
+  let calculating: boolean = false;
+
   // Chart data, recalculated on every change of primes
   $: data = {
     labels: [...Array(primes.length).keys()].map((i) => i + 1),
@@ -24,7 +26,9 @@
   };
 
   async function calculate() {
+    calculating = true;
     primes = await invoke("calculate", { x: finalValue });
+    calculating = false;
   }
 </script>
 
@@ -45,6 +49,12 @@
     />
     <button on:click={calculate}>Calculate</button>
   </div>
+
+  {#if calculating}
+    <div>
+      <p>Calculating...</p>
+    </div>
+  {/if}
 
   {#if primes}
     <div id="primes">
