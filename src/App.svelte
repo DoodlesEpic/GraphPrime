@@ -1,6 +1,7 @@
 <script lang="ts">
   import Chart from "svelte-frappe-charts";
   import { invoke } from "@tauri-apps/api/tauri";
+  import "./progress.css";
 
   export let name: string;
 
@@ -51,9 +52,7 @@
   </div>
 
   {#if calculating}
-    <div>
-      <p>Calculating...</p>
-    </div>
+    <div class="bar" />
   {/if}
 
   {#if primes}
