@@ -58,12 +58,16 @@
 
   {#if primes}
     <div id="primes" class="card">
+      <h2>Primes</h2>
       <p>
         {primes.join(", ")}
       </p>
     </div>
 
-    <div class="card"><Chart {data} type="line" /></div>
+    <div class="card">
+      <h2>Graph</h2>
+      <Chart {data} type="line" />
+    </div>
   {/if}
 </main>
 
@@ -92,6 +96,9 @@
   #primes {
     max-height: 500px;
     overflow: scroll;
+  }
+
+  #primes p {
     /* Comfortable font for reading huge amounts of data */
     font-size: 1.1em;
     font-weight: 100;
