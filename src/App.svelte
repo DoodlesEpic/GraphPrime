@@ -16,6 +16,7 @@
   ];
 
   let calculating = false;
+  let calculationTime = 0;
 
   // Chart data, recalculated on every change of primes
   $: data = {
@@ -29,7 +30,9 @@
 
   async function calculate() {
     calculating = true;
+    const calculationStart = Date.now();
     primes = await invoke("calculate", { x: finalValue });
+    calculationTime = (Date.now() - calculationStart) / 1000;
     calculating = false;
   }
 </script>
@@ -64,6 +67,7 @@
           -1
         )}
       </p>
+      <p>The calculation took {calculationTime} seconds</p>
     </div>
 
     <div id="primes" class="card">
