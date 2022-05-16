@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "graph-prime",
-    "version": "0.4.4"
+    "version": "0.4.5"
   },
   "tauri": {
     "allowlist": {
@@ -30,7 +30,7 @@
         "icons/icon.ico"
       ],
       "identifier": "com.doodles.graphprime",
-      "longDescription": "Cross-platform prime number calculator developed on Tauri and Svelte with beautiful frappe graphs and amazing performance",
+      "longDescription": "Cross-platform prime number calculator developed on Tauri and Svelte with beautiful frappe graphs and excellent performance",
       "macOS": {
         "entitlements": null,
         "exceptionDomain": "",

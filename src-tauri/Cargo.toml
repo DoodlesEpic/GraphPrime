@@ -1,10 +1,12 @@
 [package]
 name = "app"
-version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
-license = ""
-repository = ""
+version = "0.4.5"
+description = "Cross-platform prime number calculator developed on Tauri and Svelte with beautiful frappe graphs and excellent performance"
+authors = ["Doodles"]
+license = "GPL-3.0-only"
+license-file = "../LICENSE"
+keywords = ["svelte", "prime", "sveltejs", "tauri", "taurijs"]
+repository = "https://github.com/DoodlesEpic/GraphPrime"
 default-run = "app"
 edition = "2021"
 rust-version = "1.57"
