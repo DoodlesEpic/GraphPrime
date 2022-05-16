@@ -6,7 +6,6 @@
 ![Lines of Code Badge](https://img.shields.io/tokei/lines/github/DoodlesEpic/GraphPrime)
 ![Release Version Badge](https://img.shields.io/github/v/release/DoodlesEpic/GraphPrime)
 ![Downloads Badge](https://img.shields.io/github/downloads/DoodlesEpic/GraphPrime/total)
-![GitHub Stars Badge](https://img.shields.io/github/stars/DoodlesEpic/GraphPrime?style=social)
 
 Graph Prime Calculator is a cross-platform prime number calculator developed on Tauri to simultaneously allow beautiful graphs, excellent performance, and code-sharing between platforms. The frontend "framework" of choice is Svelte for simplicity's sake.
 ![Screenshot on Linux Fedora](https://user-images.githubusercontent.com/37254797/168457911-50231971-90e5-446f-880a-5e379304db09.png)
