@@ -80,7 +80,7 @@
   }
 
   #primes {
-    max-height: 400px;
+    max-height: 500px;
     overflow: scroll;
     /* Comfortable font for reading huge amounts of data */
     font-size: 1.1em;
