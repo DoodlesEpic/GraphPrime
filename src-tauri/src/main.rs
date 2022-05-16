@@ -11,7 +11,7 @@ fn main() {
 }
 
 #[tauri::command]
-fn calculate(x: u64) -> Vec<u64> {
+async fn calculate(x: u64) -> Vec<u64> {
     let mut result = vec![2];
 
     // Only iterate over odd numbers since 2 is the only even prime
