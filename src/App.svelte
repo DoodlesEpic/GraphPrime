@@ -17,6 +17,7 @@
 
   let calculating = false;
   let calculationTime = 0;
+  let compositeNumbers = 74; // Hardcoded value for the default prime numbers
 
   // Chart data, recalculated on every change of primes
   $: data = {
@@ -29,10 +30,18 @@
   };
 
   async function calculate() {
+    // Start the timer and save the chosen final value
+    // Since finalValue updates on input and could change during the calculation
     calculating = true;
     const calculationStart = Date.now();
+    const chosenFinalValue = finalValue;
+
+    // Calculate primes upto finalValue
     primes = await invoke("calculate", { x: finalValue });
+
+    // Update stats
     calculationTime = (Date.now() - calculationStart) / 1000;
+    compositeNumbers = chosenFinalValue - primes.length - 1; // -1 because 2 doesn't count as a composite number
     calculating = false;
   }
 </script>
@@ -63,11 +72,12 @@
     <div class="card">
       <h2>Stats</h2>
       <p>
-        {primes.length} prime numbers calculated up to the number {primes.at(
-          -1
-        )}
+        {primes.length} prime numbers calculated up to {primes.at(-1)}
       </p>
       <p>The calculation took {calculationTime} seconds</p>
+      <p>
+        There are {compositeNumbers} composite numbers up to {primes.at(-1)}
+      </p>
     </div>
 
     <div id="primes" class="card">
