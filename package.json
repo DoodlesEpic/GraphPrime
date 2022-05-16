@@ -4,9 +4,7 @@
   "private": true,
   "scripts": {
     "tauri": "tauri",
-    "dev": "tauri dev",
-    "dev:web": "rollup -c -w",
-    "build:tauri": "tauri build",
+    "dev": "rollup -c -w",
     "build": "rollup -c",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "lint": "prettier --check --plugin-search-dir=. src *.js && eslint src *.js && svelte-check",

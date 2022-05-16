@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [macos-10.15, ubuntu-latest, windows-latest]
+        platform: [macos-latest, ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Checkout repository
@@ -32,23 +32,23 @@ jobs:
         with:
           working-directory: ./src-tauri
 
-      - name: Install webkit2gtk (ubuntu only)
+      - name: Install dependencies (ubuntu only)
         if: matrix.platform == 'ubuntu-latest'
         run: |
           sudo apt-get update
-          sudo apt-get install -y webkit2gtk-4.0
+          sudo apt-get install -y libgtk-3-dev webkit2gtk-4.0 libappindicator3-dev librsvg2-dev patchelf
 
-      - run: npm install
+      - name: Install app dependencies and build web
+        run: yarn && yarn build
 
-      - run: npm run build:web
+      - name: Lint
+        run: npm run lint
 
-      - run: npm run lint
-        if: matrix.platform == 'ubuntu-latest'
+      - name: Test
+        run: npm run test
 
-      - run: npm run test
+      - name: Build the app
+        uses: tauri-apps/tauri-action@v0
 
-      - name: Build
-        run: yarn && yarn build:tauri
-      - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
