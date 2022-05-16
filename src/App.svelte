@@ -15,7 +15,7 @@
     73, 79, 83, 89, 97,
   ];
 
-  let calculating: boolean = false;
+  let calculating = false;
 
   // Chart data, recalculated on every change of primes
   $: data = {
