@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "start": "sirv public --no-clear",
     "tauri": "tauri",
     "dev": "rollup -c -w",
     "build": "rollup -c",
@@ -37,6 +38,7 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^1.0.0-rc.5",
+    "sirv-cli": "^2.0.2",
     "svelte-frappe-charts": "^1.9.2"
   }
 }
