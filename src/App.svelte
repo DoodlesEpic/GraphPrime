@@ -99,6 +99,27 @@
     font-variant-numeric: tabular-nums;
   }
 
+  input {
+    width: 70%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: 100;
+    font-family: monospace;
+  }
+  button {
+    width: 20%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: 100;
+    font-family: monospace;
+  }
+
   @media (min-width: 640px) {
     main {
       max-width: none;
