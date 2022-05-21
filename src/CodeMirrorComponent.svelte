@@ -54,7 +54,7 @@
   :global(.CodeMirror) {
     /* Set height, width, borders, and global font properties here */
     font-family: monospace;
-    height: 300px;
+    height: auto;
     direction: ltr;
     color: var(--cm-text-color);
     background: var(--cm-background-color);
@@ -161,6 +161,8 @@
     height: 100%;
     outline: none; /* Prevent dragging from highlighting the element */
     position: relative;
+
+    max-height: 500px;
   }
   :global(.CodeMirror-sizer) {
     position: relative;
