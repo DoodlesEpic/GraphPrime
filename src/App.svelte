@@ -129,8 +129,8 @@
   }
 
   #primes {
-    max-height: 500px;
-    overflow: scroll;
+    /* Use the codemirror scroll for performance */
+    overflow: hidden;
   }
 
   #primes p {

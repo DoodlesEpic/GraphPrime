@@ -162,6 +162,7 @@
     outline: none; /* Prevent dragging from highlighting the element */
     position: relative;
 
+    min-height: 40px;
     max-height: 500px;
   }
   :global(.CodeMirror-sizer) {
