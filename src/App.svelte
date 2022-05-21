@@ -2,6 +2,7 @@
   import Chart from "svelte-frappe-charts";
   import { invoke } from "@tauri-apps/api/tauri";
   import { slide } from "svelte/transition";
+  import CodeMirror from "./CodeMirrorComponent.svelte";
   import "./progress.css";
 
   export let name: string;
@@ -28,6 +29,17 @@
       },
     ],
   };
+
+  // Codemirror options
+  $: options = {
+    mode: "markdown",
+    lineNumbers: false,
+    lineWrapping: true,
+    value: primes.join(", "),
+  };
+
+  // Reference to the CodeMirror instance
+  let editor;
 
   async function calculate() {
     // Start the timer and save the chosen final value
@@ -83,7 +95,7 @@
     <div id="primes" class="card">
       <h2>Primes</h2>
       <p>
-        {primes.join(", ")}
+        <CodeMirror bind:editor {options} class="editor" />
       </p>
     </div>
 
@@ -117,8 +129,8 @@
   }
 
   #primes {
-    max-height: 500px;
-    overflow: scroll;
+    /* Use the codemirror scroll for performance */
+    overflow: hidden;
   }
 
   #primes p {

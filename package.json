@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^1.0.0-rc.5",
+    "codemirror": "^5.65.3",
     "sirv-cli": "^2.0.2",
     "svelte-frappe-charts": "^1.9.2"
   }
