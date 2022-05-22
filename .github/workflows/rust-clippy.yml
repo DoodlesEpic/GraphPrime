@@ -34,7 +34,7 @@ jobs:
           override: true
 
       - name: Enter the src-tauri directory
-        run: cd src-stauri
+        run: cd src-tauri
 
       - name: Install required cargo
         run: cargo install clippy-sarif sarif-fmt
