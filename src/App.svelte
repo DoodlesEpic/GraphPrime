@@ -20,11 +20,22 @@
   let calculating = false;
   let calculationTime = 0;
   let compositeNumbers = 74; // Hardcoded value for the default prime numbers
+  let chartType = "frappe";
 
   // Chart data in csv format, recalculated on every change of primes
-  $: chartData = ["X,Y\n"]
+  $: csvChartData = ["X,Y\n"]
     .concat(primes.map((prime, i) => `${i},${prime}\n`))
     .join("");
+
+  // Chart data, recalculated on every change of primes
+  $: chartData = {
+    labels: [...Array(primes.length).keys()].map((i) => i + 1),
+    datasets: [
+      {
+        values: primes,
+      },
+    ],
+  };
 
   // Codemirror options
   $: options = {
@@ -97,10 +108,42 @@
       </p>
     </div>
 
-    <div class="card" style="height: 600px">
-      <h2>Graph</h2>
-      <DyGraphComponent bind:graph data={chartData} class="chart" />
-    </div>
+    {#if chartType === "frappe"}
+      <div class="card">
+        <select
+          name="Graph Types"
+          id="graphTypes"
+          style="position: absolute; left: 10px"
+          bind:value={chartType}
+        >
+          <option value="frappe">Basic</option>
+          <option value="dygraph">Scientific</option>
+        </select>
+        <h2>Graph</h2>
+        {#if primes.length < 10000}
+          <Chart data={chartData} type="line" />
+        {:else}
+          <p>
+            Basic chart is disabled for more than 10000 prime numbers for
+            performance reasons
+          </p>
+        {/if}
+      </div>
+    {:else}
+      <div class="card" style="height: 600px">
+        <select
+          name="Graph Types"
+          id="graphTypes"
+          style="position: absolute; left: 10px"
+          bind:value={chartType}
+        >
+          <option value="frappe">Basic</option>
+          <option value="dygraph">Scientific</option>
+        </select>
+        <h2>Graph</h2>
+        <DyGraphComponent bind:data={csvChartData} class="chart" />
+      </div>
+    {/if}
   {/if}
 </main>
 
