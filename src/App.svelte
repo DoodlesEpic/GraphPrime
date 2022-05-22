@@ -57,7 +57,7 @@
 
 <main>
   <div class="card">
-    <h1>Welcome to {name}!</h1>
+    <h1 class="title">Welcome to {name}!</h1>
     <p>
       Use this application to generate prime sequences and graph them all within
       the comfort of your desktop.
@@ -66,11 +66,12 @@
     <input
       type="number"
       bind:value={finalValue}
+      class="input"
       min="0"
       max="100000"
       placeholder="100"
     />
-    <button on:click={calculate}>Calculate</button>
+    <button on:click={calculate} class="button">Calculate</button>
   </div>
 
   {#if calculating}
@@ -104,14 +105,7 @@
 </main>
 
 <style>
-  main {
-    text-align: center;
-    padding-bottom: 1em;
-    max-width: 240px;
-    margin: 0 auto;
-  }
-
-  h1 {
+  .title {
     color: #ff3e00;
     font-size: 3em;
     font-weight: 300;
@@ -138,7 +132,7 @@
     font-variant-numeric: tabular-nums;
   }
 
-  input {
+  .input {
     width: 70%;
     padding: 0.5em;
     margin-bottom: 1em;
@@ -148,7 +142,7 @@
     font-weight: 100;
     font-family: monospace;
   }
-  button {
+  .button {
     width: 20%;
     padding: 0.5em;
     margin-bottom: 1em;
