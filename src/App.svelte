@@ -105,6 +105,13 @@
 </main>
 
 <style>
+  main {
+    text-align: center;
+    padding-bottom: 1em;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
   .title {
     color: #ff3e00;
     font-size: 3em;
