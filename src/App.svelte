@@ -3,6 +3,7 @@
   import { invoke } from "@tauri-apps/api/tauri";
   import { slide } from "svelte/transition";
   import CodeMirror from "./CodeMirrorComponent.svelte";
+  import DyGraphComponent from "./DyGraphComponent.svelte";
   import "./progress.css";
 
   export let name: string;
@@ -19,9 +20,15 @@
   let calculating = false;
   let calculationTime = 0;
   let compositeNumbers = 74; // Hardcoded value for the default prime numbers
+  let chartType = "frappe";
+
+  // Chart data in csv format, recalculated on every change of primes
+  $: csvChartData = ["X,Y\n"]
+    .concat(primes.map((prime, i) => `${i},${prime}\n`))
+    .join("");
 
   // Chart data, recalculated on every change of primes
-  $: data = {
+  $: chartData = {
     labels: [...Array(primes.length).keys()].map((i) => i + 1),
     datasets: [
       {
@@ -38,15 +45,21 @@
     value: primes.join(", "),
   };
 
-  // Reference to the CodeMirror instance
+  // References to the CodeMirror and DyGraph instances
   let editor;
+  let graph;
 
   async function calculate() {
-    // Start the timer and save the chosen final value
-    // Since finalValue updates on input and could change during the calculation
+    // Save because finalValue binds to input and may change during calculation
+    const chosenFinalValue = finalValue;
+
+    // Change chart to dygraph if we have too much data to prevent crashes
+    if (chosenFinalValue >= 10000) chartType = "dygraph";
+    else chartType = "frappe";
+
+    // Start the timer
     calculating = true;
     const calculationStart = Date.now();
-    const chosenFinalValue = finalValue;
 
     // Calculate primes upto finalValue
     primes = await invoke("calculate", { x: finalValue });
@@ -60,7 +73,7 @@
 
 <main>
   <div class="card">
-    <h1>Welcome to {name}!</h1>
+    <h1 class="title">Welcome to {name}!</h1>
     <p>
       Use this application to generate prime sequences and graph them all within
       the comfort of your desktop.
@@ -69,11 +82,12 @@
     <input
       type="number"
       bind:value={finalValue}
+      class="input"
       min="0"
       max="100000"
       placeholder="100"
     />
-    <button on:click={calculate}>Calculate</button>
+    <button on:click={calculate} class="button">Calculate</button>
   </div>
 
   {#if calculating}
@@ -99,17 +113,42 @@
       </p>
     </div>
 
-    <div class="card">
-      <h2>Graph</h2>
-      {#if primes.length < 10000}
-        <Chart {data} type="line" />
-      {:else}
-        <p>
-          Chart generation disabled for more than 10000 prime numbers for
-          performance reasons
-        </p>
-      {/if}
-    </div>
+    {#if chartType === "frappe"}
+      <div class="card">
+        <select
+          name="Graph Types"
+          id="graphTypes"
+          style="position: absolute; left: 10px"
+          bind:value={chartType}
+        >
+          <option value="frappe">Basic</option>
+          <option value="dygraph">Scientific</option>
+        </select>
+        <h2>Graph</h2>
+        {#if primes.length < 10000}
+          <Chart data={chartData} type="line" />
+        {:else}
+          <p>
+            Basic chart is disabled for more than 10000 prime numbers for
+            performance reasons
+          </p>
+        {/if}
+      </div>
+    {:else}
+      <div class="card" style="height: 600px">
+        <select
+          name="Graph Types"
+          id="graphTypes"
+          style="position: absolute; left: 10px"
+          bind:value={chartType}
+        >
+          <option value="frappe">Basic</option>
+          <option value="dygraph">Scientific</option>
+        </select>
+        <h2>Graph</h2>
+        <DyGraphComponent bind:data={csvChartData} class="chart" />
+      </div>
+    {/if}
   {/if}
 </main>
 
@@ -121,13 +160,14 @@
     margin: 0 auto;
   }
 
-  h1 {
+  .title {
     color: #ff3e00;
     font-size: 3em;
     font-weight: 300;
   }
 
   .card {
+    position: relative;
     /* Cast a nice shadow */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
@@ -148,7 +188,7 @@
     font-variant-numeric: tabular-nums;
   }
 
-  input {
+  .input {
     width: 70%;
     padding: 0.5em;
     margin-bottom: 1em;
@@ -158,7 +198,7 @@
     font-weight: 100;
     font-family: monospace;
   }
-  button {
+  .button {
     width: 20%;
     padding: 0.5em;
     margin-bottom: 1em;
