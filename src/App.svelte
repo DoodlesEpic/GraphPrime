@@ -101,7 +101,14 @@
 
     <div class="card">
       <h2>Graph</h2>
-      <Chart {data} type="line" />
+      {#if primes.length < 10000}
+        <Chart {data} type="line" />
+      {:else}
+        <p>
+          Chart generation disabled for more than 10000 prime numbers for
+          performance reasons
+        </p>
+      {/if}
     </div>
   {/if}
 </main>
