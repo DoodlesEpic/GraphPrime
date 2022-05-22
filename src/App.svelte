@@ -3,6 +3,7 @@
   import { invoke } from "@tauri-apps/api/tauri";
   import { slide } from "svelte/transition";
   import CodeMirror from "./CodeMirrorComponent.svelte";
+  import DyGraphComponent from "./DyGraphComponent.svelte";
   import "./progress.css";
 
   export let name: string;
@@ -20,15 +21,10 @@
   let calculationTime = 0;
   let compositeNumbers = 74; // Hardcoded value for the default prime numbers
 
-  // Chart data, recalculated on every change of primes
-  $: data = {
-    labels: [...Array(primes.length).keys()].map((i) => i + 1),
-    datasets: [
-      {
-        values: primes,
-      },
-    ],
-  };
+  // Chart data in csv format, recalculated on every change of primes
+  $: chartData = ["X,Y\n"]
+    .concat(primes.map((prime, i) => `${i},${prime}\n`))
+    .join("");
 
   // Codemirror options
   $: options = {
@@ -38,8 +34,9 @@
     value: primes.join(", "),
   };
 
-  // Reference to the CodeMirror instance
+  // References to the CodeMirror and DyGraph instances
   let editor;
+  let graph;
 
   async function calculate() {
     // Start the timer and save the chosen final value
@@ -101,14 +98,7 @@
 
     <div class="card">
       <h2>Graph</h2>
-      {#if primes.length < 10000}
-        <Chart {data} type="line" />
-      {:else}
-        <p>
-          Chart generation disabled for more than 10000 prime numbers for
-          performance reasons
-        </p>
-      {/if}
+      <DyGraphComponent bind:graph data={chartData} class="chart" />
     </div>
   {/if}
 </main>
