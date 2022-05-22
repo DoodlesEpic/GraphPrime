@@ -50,11 +50,16 @@
   let graph;
 
   async function calculate() {
-    // Start the timer and save the chosen final value
-    // Since finalValue updates on input and could change during the calculation
+    // Save because finalValue binds to input and may change during calculation
+    const chosenFinalValue = finalValue;
+
+    // Change chart to dygraph if we have too much data to prevent crashes
+    if (chosenFinalValue >= 10000) chartType = "dygraph";
+    else chartType = "frappe";
+
+    // Start the timer
     calculating = true;
     const calculationStart = Date.now();
-    const chosenFinalValue = finalValue;
 
     // Calculate primes upto finalValue
     primes = await invoke("calculate", { x: finalValue });
