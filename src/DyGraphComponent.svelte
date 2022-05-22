@@ -27,4 +27,9 @@
 
 <div bind:this={element} class={classes} />
 
-<style unscoped></style>
+<style unscoped>
+  .chart {
+    position: absolute;
+    inset: 100px 10px 10px 10px;
+  }
+</style>

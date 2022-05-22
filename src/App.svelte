@@ -97,7 +97,7 @@
       </p>
     </div>
 
-    <div class="card">
+    <div class="card" style="height: 600px">
       <h2>Graph</h2>
       <DyGraphComponent bind:graph data={chartData} class="chart" />
     </div>
@@ -119,6 +119,7 @@
   }
 
   .card {
+    position: relative;
     /* Cast a nice shadow */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
