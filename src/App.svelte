@@ -117,12 +117,7 @@
 
     {#if chartType === "frappe"}
       <div class="card">
-        <select
-          name="Graph Types"
-          id="graphTypes"
-          style="position: absolute; left: 10px"
-          bind:value={chartType}
-        >
+        <select name="Graph Types" class="graphTypes" bind:value={chartType}>
           <option value="frappe">Basic</option>
           <option value="dygraph">Scientific</option>
         </select>
@@ -138,12 +133,7 @@
       </div>
     {:else}
       <div class="card" style="height: 600px">
-        <select
-          name="Graph Types"
-          id="graphTypes"
-          style="position: absolute; left: 10px"
-          bind:value={chartType}
-        >
+        <select name="Graph Types" class="graphTypes" bind:value={chartType}>
           <option value="frappe">Basic</option>
           <option value="dygraph">Scientific</option>
         </select>
@@ -225,6 +215,13 @@
     font-weight: 100;
     background-color: #00a8ff;
     color: white;
+  }
+
+  .graphTypes {
+    position: absolute;
+    left: 10px;
+    color: var(--body-color);
+    background: var(--card-bg);
   }
 
   /* Light mode */
