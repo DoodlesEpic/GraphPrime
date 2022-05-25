@@ -212,7 +212,7 @@
     border: none;
     border-radius: 5px;
     font-size: 1.2em;
-    font-weight: 100;
+    font-weight: 500;
     background-color: #00a8ff;
     color: white;
   }
