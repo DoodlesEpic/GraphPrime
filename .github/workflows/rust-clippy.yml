@@ -18,6 +18,9 @@ jobs:
   rust-clippy-analyze:
     name: Run rust-clippy analyzing
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src-tauri
     permissions:
       contents: read
       security-events: write
@@ -42,7 +45,6 @@ jobs:
           --all-features
           --message-format=json | clippy-sarif | tee rust-clippy-results.sarif | sarif-fmt
         continue-on-error: true
-        working-directory: src-tauri
 
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v1
