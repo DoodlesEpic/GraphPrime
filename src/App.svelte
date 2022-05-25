@@ -155,8 +155,14 @@
     max-width: none;
     margin: 0 auto;
     color: var(--body-color);
-  }
 
+    /* Prevent text selection to make the application feel more native */
+    /* The prime number list can still be copied because it's under CodeMirror's textarea */
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* Edge */
+    user-select: none;
+    cursor: default;
+  }
   .title {
     color: #ff3e00;
     font-size: 3em;
