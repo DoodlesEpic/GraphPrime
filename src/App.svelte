@@ -79,15 +79,17 @@
       the comfort of your desktop.
     </p>
 
-    <input
-      type="number"
-      bind:value={finalValue}
-      class="input"
-      min="0"
-      max="100000"
-      placeholder="100"
-    />
-    <button on:click={calculate} class="button">Calculate</button>
+    <div class="input-group">
+      <input
+        type="number"
+        bind:value={finalValue}
+        class="input"
+        min="0"
+        max="100000"
+        placeholder="100"
+      />
+      <button on:click={calculate} class="button">Calculate</button>
+    </div>
   </div>
 
   {#if calculating}
@@ -115,12 +117,7 @@
 
     {#if chartType === "frappe"}
       <div class="card">
-        <select
-          name="Graph Types"
-          id="graphTypes"
-          style="position: absolute; left: 10px"
-          bind:value={chartType}
-        >
+        <select name="Graph Types" class="graphTypes" bind:value={chartType}>
           <option value="frappe">Basic</option>
           <option value="dygraph">Scientific</option>
         </select>
@@ -136,12 +133,7 @@
       </div>
     {:else}
       <div class="card" style="height: 600px">
-        <select
-          name="Graph Types"
-          id="graphTypes"
-          style="position: absolute; left: 10px"
-          bind:value={chartType}
-        >
+        <select name="Graph Types" class="graphTypes" bind:value={chartType}>
           <option value="frappe">Basic</option>
           <option value="dygraph">Scientific</option>
         </select>
@@ -153,11 +145,16 @@
 </main>
 
 <style>
+  :root {
+    background: var(--main-bg);
+  }
+
   main {
     text-align: center;
     padding-bottom: 1em;
-    max-width: 240px;
+    max-width: none;
     margin: 0 auto;
+    color: var(--body-color);
   }
 
   .title {
@@ -168,6 +165,7 @@
 
   .card {
     position: relative;
+    background: var(--card-bg);
     /* Cast a nice shadow */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
@@ -188,30 +186,59 @@
     font-variant-numeric: tabular-nums;
   }
 
-  .input {
-    width: 70%;
-    padding: 0.5em;
-    margin-bottom: 1em;
-    border: 1px solid #eee;
-    border-radius: 5px;
-    font-size: 1.2em;
-    font-weight: 100;
-    font-family: monospace;
-  }
-  .button {
-    width: 20%;
-    padding: 0.5em;
-    margin-bottom: 1em;
-    border: 1px solid #eee;
-    border-radius: 5px;
-    font-size: 1.2em;
-    font-weight: 100;
-    font-family: monospace;
+  .input-group {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 10px;
   }
 
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
+  .input {
+    max-width: 60%;
+    flex-grow: 5;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: 100;
+    font-family: monospace;
+    background: var(--card-bg);
+    color: var(--body-color);
+  }
+
+  .button {
+    min-width: 100px;
+    max-width: 20%;
+    flex-grow: 1;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: 100;
+    background-color: #00a8ff;
+    color: white;
+  }
+
+  .graphTypes {
+    position: absolute;
+    left: 10px;
+    color: var(--body-color);
+    background: var(--card-bg);
+  }
+
+  /* Light mode */
+  :root {
+    --border-color: #ccc;
+    --card-bg: white;
+    --main-bg: white;
+    --body-color: #222;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --border-color: #ccc;
+      --card-bg: #222;
+      --main-bg: #111;
+      --body-color: #ffffff;
     }
   }
 </style>

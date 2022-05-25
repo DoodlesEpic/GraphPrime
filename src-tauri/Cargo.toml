@@ -1,6 +1,6 @@
 [package]
 name = "app"
-version = "0.11.0"
+version = "0.12.0"
 description = "Cross-platform prime number calculator developed on Tauri and Svelte with beautiful frappe graphs and excellent performance"
 authors = ["Doodles"]
 license = "GPL-3.0-only"
@@ -8,17 +8,17 @@ keywords = ["svelte", "prime", "sveltejs", "tauri", "taurijs"]
 repository = "https://github.com/DoodlesEpic/GraphPrime"
 default-run = "app"
 edition = "2021"
-rust-version = "1.57"
+rust-version = "1.61"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
-tauri-build = { version = "1.0.0-rc.9", features = [] }
+tauri-build = { version = "1.0.0-rc.10", features = [] }
 
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.0.0-rc.11", features = [] }
+tauri = { version = "1.0.0-rc.12", features = [] }
 slow_primes = "0.1.14"
 
 [features]
