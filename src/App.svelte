@@ -79,15 +79,17 @@
       the comfort of your desktop.
     </p>
 
-    <input
-      type="number"
-      bind:value={finalValue}
-      class="input"
-      min="0"
-      max="100000"
-      placeholder="100"
-    />
-    <button on:click={calculate} class="button">Calculate</button>
+    <div class="input-group">
+      <input
+        type="number"
+        bind:value={finalValue}
+        class="input"
+        min="0"
+        max="100000"
+        placeholder="100"
+      />
+      <button on:click={calculate} class="button">Calculate</button>
+    </div>
   </div>
 
   {#if calculating}
@@ -188,21 +190,24 @@
     font-variant-numeric: tabular-nums;
   }
 
+  .input-group {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: stretch;
+    gap: 10px;
+  }
+
   .input {
-    width: 70%;
-    padding: 0.5em;
-    margin-bottom: 1em;
+    flex-grow: 5;
     border: 1px solid #eee;
     border-radius: 5px;
     font-size: 1.2em;
     font-weight: 100;
     font-family: monospace;
   }
+
   .button {
-    width: 20%;
-    padding: 0.5em;
-    margin-bottom: 1em;
-    border: 1px solid #eee;
+    flex-grow: 1;
     border-radius: 5px;
     font-size: 1.2em;
     font-weight: 100;
