@@ -155,12 +155,15 @@
 </main>
 
 <style>
+  :root {
+    background: var(--main-bg);
+  }
+
   main {
     text-align: center;
     padding-bottom: 1em;
     max-width: none;
     margin: 0 auto;
-    background: var(--main-bg);
     color: var(--body-color);
   }
 
