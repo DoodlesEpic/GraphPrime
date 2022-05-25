@@ -160,6 +160,8 @@
     padding-bottom: 1em;
     max-width: none;
     margin: 0 auto;
+    background: var(--main-bg);
+    color: var(--body-color);
   }
 
   .title {
@@ -170,6 +172,7 @@
 
   .card {
     position: relative;
+    background: var(--card-bg);
     /* Cast a nice shadow */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
@@ -199,18 +202,40 @@
 
   .input {
     flex-grow: 5;
-    border: 1px solid #eee;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     font-size: 1.2em;
     font-weight: 100;
     font-family: monospace;
+    background: var(--card-bg);
+    color: var(--body-color);
   }
 
   .button {
     flex-grow: 1;
+    border: none;
     border-radius: 5px;
     font-size: 1.2em;
     font-weight: 100;
-    font-family: monospace;
+    background-color: #00a8ff;
+    color: white;
+  }
+
+  /* Light mode */
+  :root {
+    --border-color: #ccc;
+    --card-bg: white;
+    --main-bg: white;
+    --body-color: #222;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --border-color: #ccc;
+      --card-bg: #222;
+      --main-bg: #111;
+      --body-color: #ffffff;
+    }
   }
 </style>
