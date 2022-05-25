@@ -156,7 +156,7 @@
   main {
     text-align: center;
     padding-bottom: 1em;
-    max-width: 240px;
+    max-width: none;
     margin: 0 auto;
   }
 
@@ -207,11 +207,5 @@
     font-size: 1.2em;
     font-weight: 100;
     font-family: monospace;
-  }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
   }
 </style>
