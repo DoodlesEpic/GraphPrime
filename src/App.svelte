@@ -195,12 +195,13 @@
 
   .input-group {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: stretch;
     gap: 10px;
   }
 
   .input {
+    max-width: 60%;
     flex-grow: 5;
     border: 1px solid var(--border-color);
     border-radius: 5px;
@@ -212,6 +213,8 @@
   }
 
   .button {
+    min-width: 100px;
+    max-width: 20%;
     flex-grow: 1;
     border: none;
     border-radius: 5px;
