@@ -1,6 +1,7 @@
 <script lang="ts">
   import Chart from "svelte-frappe-charts";
   import { invoke } from "@tauri-apps/api/tauri";
+  import { writeText } from "@tauri-apps/api/clipboard";
   import { slide } from "svelte/transition";
   import CodeMirror from "./CodeMirrorComponent.svelte";
   import DyGraphComponent from "./DyGraphComponent.svelte";
@@ -109,6 +110,9 @@
     </div>
 
     <div id="primes" class="card">
+      <div class="copyfullButtons">
+        <button on:click={() => writeText(primes.join(", "))}>Copy</button>
+      </div>
       <h2>Primes</h2>
       <p>
         <CodeMirror bind:editor {options} class="editor" />
@@ -226,6 +230,13 @@
   .graphTypes {
     position: absolute;
     left: 10px;
+    color: var(--body-color);
+    background: var(--card-bg);
+  }
+
+  .copyfullButtons {
+    position: absolute;
+    right: 10px;
     color: var(--body-color);
     background: var(--card-bg);
   }
