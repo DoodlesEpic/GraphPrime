@@ -37,6 +37,7 @@
       },
     ],
   };
+  let chartFullscreen = false;
 
   // Codemirror options
   $: options = {
@@ -45,7 +46,7 @@
     lineWrapping: true,
     value: primes.join(", "),
   };
-  let fullscreen = false;
+  let editorFullscreen = false;
 
   // References to the CodeMirror and DyGraph instances
   let editor;
@@ -110,10 +111,12 @@
       </p>
     </div>
 
-    <div id="primes" class={"card"} class:fullscreen>
+    <div id="primes" class={"card"} class:fullscreen={editorFullscreen}>
       <div class="copyfullButtons">
         <button on:click={() => writeText(primes.join(", "))}>Copy</button>
-        <button on:click={() => (fullscreen = !fullscreen)}>Fullscreen</button>
+        <button on:click={() => (editorFullscreen = !editorFullscreen)}
+          >Fullscreen</button
+        >
       </div>
       <h2>Primes</h2>
       <p>
@@ -122,11 +125,17 @@
     </div>
 
     {#if chartType === "frappe"}
-      <div class="card">
+      <div class="card" class:fullscreen={chartFullscreen}>
         <select name="Graph Types" class="graphTypes" bind:value={chartType}>
           <option value="frappe">Basic</option>
           <option value="dygraph">Scientific</option>
         </select>
+        <div class="copyfullButtons">
+          <button on:click={() => (chartFullscreen = !chartFullscreen)}
+            >Fullscreen</button
+          >
+        </div>
+
         <h2>Graph</h2>
         {#if primes.length < 10000}
           <Chart data={chartData} type="line" />
@@ -138,11 +147,21 @@
         {/if}
       </div>
     {:else}
-      <div class="card" style="height: 600px">
+      <div
+        class="card"
+        class:fullscreen={chartFullscreen}
+        style="height: var(--graphHeight)"
+      >
         <select name="Graph Types" class="graphTypes" bind:value={chartType}>
           <option value="frappe">Basic</option>
           <option value="dygraph">Scientific</option>
         </select>
+        <div class="copyfullButtons">
+          <button on:click={() => (chartFullscreen = !chartFullscreen)}
+            >Fullscreen</button
+          >
+        </div>
+
         <h2>Graph</h2>
         <DyGraphComponent bind:data={csvChartData} class="chart" />
       </div>
@@ -150,9 +169,10 @@
   {/if}
 </main>
 
-<style>
+<style unscoped>
   :root {
     background: var(--main-bg);
+    --graphHeight: 600px;
   }
 
   main {
@@ -191,8 +211,9 @@
     left: 10px;
     right: 10px;
     bottom: 10px;
-    z-index: 1;
+    z-index: 3;
     --maximumHeight: calc(100vh - 150px);
+    --graphHeight: calc(100vh - 100px);
   }
 
   #primes {
