@@ -45,6 +45,7 @@
     lineWrapping: true,
     value: primes.join(", "),
   };
+  let fullscreen = false;
 
   // References to the CodeMirror and DyGraph instances
   let editor;
@@ -109,9 +110,10 @@
       </p>
     </div>
 
-    <div id="primes" class="card">
+    <div id="primes" class={"card"} class:fullscreen>
       <div class="copyfullButtons">
         <button on:click={() => writeText(primes.join(", "))}>Copy</button>
+        <button on:click={() => (fullscreen = !fullscreen)}>Fullscreen</button>
       </div>
       <h2>Primes</h2>
       <p>
@@ -181,6 +183,16 @@
     border-radius: 5px;
     padding: 1em;
     margin: 1em;
+  }
+
+  .fullscreen {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    z-index: 1;
+    --maximumHeight: calc(100vh - 150px);
   }
 
   #primes {

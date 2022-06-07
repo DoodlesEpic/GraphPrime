@@ -32,6 +32,10 @@
 <div bind:this={element} class={classes} />
 
 <style unscoped>
+  :root {
+    --maximumHeight: 400px;
+  }
+
   @media (prefers-color-scheme: light) {
     :root {
       --cm-border-color: #ccc;
@@ -163,7 +167,7 @@
     position: relative;
 
     min-height: 40px;
-    max-height: 500px;
+    max-height: var(--maximumHeight);
   }
   :global(.CodeMirror-sizer) {
     position: relative;
