@@ -278,6 +278,20 @@
     background: var(--card-bg);
   }
 
+  .copyfullButtons button {
+    border: none;
+    background: none;
+    font-size: 1.2em;
+  }
+
+  .copyfullButtons button:hover {
+    color: #00a8ff;
+  }
+
+  .copyfullButtons button:active {
+    color: #1fb4ff;
+  }
+
   /* Light mode */
   :root {
     --border-color: #ccc;
