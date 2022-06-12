@@ -1,9 +1,12 @@
 <script lang="ts">
   import Chart from "svelte-frappe-charts";
   import { invoke } from "@tauri-apps/api/tauri";
+  import { writeText } from "@tauri-apps/api/clipboard";
   import { slide } from "svelte/transition";
   import CodeMirror from "./CodeMirrorComponent.svelte";
   import DyGraphComponent from "./DyGraphComponent.svelte";
+  import Fa from "svelte-fa";
+  import { faExpand, faClipboard } from "@fortawesome/free-solid-svg-icons";
   import "./progress.css";
 
   export let name: string;
@@ -36,6 +39,7 @@
       },
     ],
   };
+  let chartFullscreen = false;
 
   // Codemirror options
   $: options = {
@@ -44,6 +48,7 @@
     lineWrapping: true,
     value: primes.join(", "),
   };
+  let editorFullscreen = false;
 
   // References to the CodeMirror and DyGraph instances
   let editor;
@@ -108,7 +113,15 @@
       </p>
     </div>
 
-    <div id="primes" class="card">
+    <div id="primes" class={"card"} class:fullscreen={editorFullscreen}>
+      <div class="copyfullButtons">
+        <button on:click={() => writeText(primes.join(", "))}
+          ><Fa icon={faClipboard} fw /></button
+        >
+        <button on:click={() => (editorFullscreen = !editorFullscreen)}
+          ><Fa icon={faExpand} fw /></button
+        >
+      </div>
       <h2>Primes</h2>
       <p>
         <CodeMirror bind:editor {options} class="editor" />
@@ -116,11 +129,17 @@
     </div>
 
     {#if chartType === "frappe"}
-      <div class="card">
+      <div class="card" class:fullscreen={chartFullscreen}>
         <select name="Graph Types" class="graphTypes" bind:value={chartType}>
           <option value="frappe">Basic</option>
           <option value="dygraph">Scientific</option>
         </select>
+        <div class="copyfullButtons">
+          <button on:click={() => (chartFullscreen = !chartFullscreen)}
+            ><Fa icon={faExpand} fw /></button
+          >
+        </div>
+
         <h2>Graph</h2>
         {#if primes.length < 10000}
           <Chart data={chartData} type="line" />
@@ -132,11 +151,21 @@
         {/if}
       </div>
     {:else}
-      <div class="card" style="height: 600px">
+      <div
+        class="card"
+        class:fullscreen={chartFullscreen}
+        style="height: var(--graphHeight)"
+      >
         <select name="Graph Types" class="graphTypes" bind:value={chartType}>
           <option value="frappe">Basic</option>
           <option value="dygraph">Scientific</option>
         </select>
+        <div class="copyfullButtons">
+          <button on:click={() => (chartFullscreen = !chartFullscreen)}
+            ><Fa icon={faExpand} fw /></button
+          >
+        </div>
+
         <h2>Graph</h2>
         <DyGraphComponent bind:data={csvChartData} class="chart" />
       </div>
@@ -144,9 +173,10 @@
   {/if}
 </main>
 
-<style>
+<style unscoped>
   :root {
     background: var(--main-bg);
+    --graphHeight: 600px;
   }
 
   main {
@@ -177,6 +207,17 @@
     border-radius: 5px;
     padding: 1em;
     margin: 1em;
+  }
+
+  .fullscreen {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    z-index: 3;
+    --maximumHeight: calc(100vh - 150px);
+    --graphHeight: calc(100vh - 100px);
   }
 
   #primes {
@@ -228,6 +269,27 @@
     left: 10px;
     color: var(--body-color);
     background: var(--card-bg);
+  }
+
+  .copyfullButtons {
+    position: absolute;
+    right: 10px;
+    color: var(--body-color);
+    background: var(--card-bg);
+  }
+
+  .copyfullButtons button {
+    border: none;
+    background: none;
+    font-size: 1.2em;
+  }
+
+  .copyfullButtons button:hover {
+    color: #00a8ff;
+  }
+
+  .copyfullButtons button:active {
+    color: #1fb4ff;
   }
 
   /* Light mode */

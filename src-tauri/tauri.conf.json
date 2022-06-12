@@ -8,11 +8,15 @@
   },
   "package": {
     "productName": "graph-prime",
-    "version": "0.12.1"
+    "version": "0.13.0"
   },
   "tauri": {
     "allowlist": {
-      "all": false
+      "clipboard": {
+        "all": false,
+        "readText": false,
+        "writeText": true
+      }
     },
     "bundle": {
       "active": true,
