@@ -5,6 +5,8 @@
   import { slide } from "svelte/transition";
   import CodeMirror from "./CodeMirrorComponent.svelte";
   import DyGraphComponent from "./DyGraphComponent.svelte";
+  import Fa from "svelte-fa";
+  import { faExpand, faClipboard } from "@fortawesome/free-solid-svg-icons";
   import "./progress.css";
 
   export let name: string;
@@ -113,9 +115,11 @@
 
     <div id="primes" class={"card"} class:fullscreen={editorFullscreen}>
       <div class="copyfullButtons">
-        <button on:click={() => writeText(primes.join(", "))}>Copy</button>
+        <button on:click={() => writeText(primes.join(", "))}
+          ><Fa icon={faClipboard} /></button
+        >
         <button on:click={() => (editorFullscreen = !editorFullscreen)}
-          >Fullscreen</button
+          ><Fa icon={faExpand} /></button
         >
       </div>
       <h2>Primes</h2>
@@ -132,7 +136,7 @@
         </select>
         <div class="copyfullButtons">
           <button on:click={() => (chartFullscreen = !chartFullscreen)}
-            >Fullscreen</button
+            ><Fa icon={faExpand} /></button
           >
         </div>
 
@@ -158,7 +162,7 @@
         </select>
         <div class="copyfullButtons">
           <button on:click={() => (chartFullscreen = !chartFullscreen)}
-            >Fullscreen</button
+            ><Fa icon={faExpand} /></button
           >
         </div>
 
