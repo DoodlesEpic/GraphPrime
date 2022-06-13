@@ -31,7 +31,7 @@
 
 <div bind:this={element} class={classes} />
 
-<style unscoped>
+<style>
   :root {
     --maximumHeight: 400px;
   }

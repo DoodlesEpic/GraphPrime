@@ -178,7 +178,7 @@
   {/if}
 </main>
 
-<style unscoped>
+<style>
   :root {
     background: var(--main-bg);
     --graphHeight: 600px;
