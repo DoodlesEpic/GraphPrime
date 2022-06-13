@@ -1,13 +1,18 @@
 <script lang="ts">
-  import Chart from "svelte-frappe-charts";
+  // Svelte and TAuri
   import { invoke } from "@tauri-apps/api/tauri";
   import { writeText } from "@tauri-apps/api/clipboard";
   import { slide } from "svelte/transition";
+
+  // Components
   import CodeMirror from "./Components/CodeMirror.svelte";
   import DyGraphComponent from "./Components/DyGraphs.svelte";
+  import "./progress.css";
+
+  // Libs
+  import Chart from "svelte-frappe-charts";
   import Fa from "svelte-fa";
   import { faExpand, faClipboard } from "@fortawesome/free-solid-svg-icons";
-  import "./progress.css";
 
   export let name: string;
 
