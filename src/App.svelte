@@ -2,12 +2,11 @@
   // Svelte and TAuri
   import { invoke } from "@tauri-apps/api/tauri";
   import { writeText } from "@tauri-apps/api/clipboard";
-  import { slide } from "svelte/transition";
 
   // Components
+  import ProgressBar from "./Components/ProgressBar.svelte";
   import CodeMirror from "./Components/CodeMirror.svelte";
   import DyGraphComponent from "./Components/DyGraphs.svelte";
-  import "./progress.css";
 
   // Libs
   import Chart from "svelte-frappe-charts";
@@ -103,7 +102,7 @@
   </div>
 
   {#if calculating}
-    <div class="bar" in:slide out:slide />
+    <ProgressBar />
   {/if}
 
   {#if primes}
