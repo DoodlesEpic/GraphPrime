@@ -3,8 +3,8 @@
   import { invoke } from "@tauri-apps/api/tauri";
   import { writeText } from "@tauri-apps/api/clipboard";
   import { slide } from "svelte/transition";
-  import CodeMirror from "./CodeMirrorComponent.svelte";
-  import DyGraphComponent from "./DyGraphComponent.svelte";
+  import CodeMirror from "./Components/CodeMirror.svelte";
+  import DyGraphComponent from "./Components/DyGraphs.svelte";
   import Fa from "svelte-fa";
   import { faExpand, faClipboard } from "@fortawesome/free-solid-svg-icons";
   import "./progress.css";
