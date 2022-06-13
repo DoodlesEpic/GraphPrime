@@ -103,7 +103,7 @@
   </div>
 
   {#if calculating}
-    <div class="bar card" in:slide out:slide />
+    <div class="bar" in:slide out:slide />
   {/if}
 
   {#if primes}
