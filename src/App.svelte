@@ -158,30 +158,6 @@
     font-weight: 300;
   }
 
-  .fullscreen {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    z-index: 3;
-    --maximumHeight: calc(100vh - 150px);
-    --graphHeight: calc(100vh - 100px);
-  }
-
-  #primes {
-    /* Use the codemirror scroll for performance */
-    overflow: hidden;
-  }
-
-  #primes p {
-    /* Comfortable font for reading huge amounts of data */
-    font-size: 1.1em;
-    font-weight: 100;
-    font-family: monospace;
-    font-variant-numeric: tabular-nums;
-  }
-
   .input-group {
     display: flex;
     justify-content: center;

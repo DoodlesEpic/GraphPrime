@@ -44,3 +44,14 @@ textarea {
 .copyfullButtons button:active {
   color: #1fb4ff;
 }
+
+.fullscreen {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  z-index: 3;
+  --maximumHeight: calc(100vh - 150px);
+  --graphHeight: calc(100vh - 100px);
+}
