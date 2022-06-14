@@ -303,9 +303,6 @@
     padding: 0.1px; /* Force widget margins to stay inside of the container */
   }
 
-  :global(.CodeMirror-widget) {
-  }
-
   :global(.CodeMirror-rtl pre) {
     direction: rtl;
   }
