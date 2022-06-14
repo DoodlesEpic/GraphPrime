@@ -6,7 +6,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { EditorView, minimalSetup } from "codemirror";
-  import { EditorState } from "@codemirror/state";
 
   export let primes: number[];
 
@@ -31,14 +30,16 @@
     }
   }
 
+  const maximumHeightEditor = EditorView.theme({
+    "&": { maxHeight: "400px" },
+    ".cm-scroller": { overflow: "auto" },
+  });
+
   function createEditor() {
     if (view) element.innerHTML = "";
     view = new EditorView({
       parent: element,
-      extensions: [minimalSetup],
-      state: EditorState.create({
-        doc: primes.join(", "),
-      }),
+      extensions: [minimalSetup, maximumHeightEditor, EditorView.lineWrapping],
     });
   }
 </script>
