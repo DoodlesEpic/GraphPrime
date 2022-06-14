@@ -17,8 +17,8 @@
     createEditor();
   });
 
-  $: if (element && primes) {
-    createEditor();
+  $: if (primes) {
+    if (view) view.setState(EditorState.create({ doc: primes.join(", ") }));
   }
 
   function createEditor() {
