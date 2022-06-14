@@ -19,7 +19,7 @@
   </div>
   <h2>Primes</h2>
   <p>
-    <CodeMirror bind:primes />
+    <CodeMirror bind:primes bind:editorFullscreen />
   </p>
 </div>
 

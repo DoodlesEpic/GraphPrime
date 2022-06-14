@@ -1,15 +1,11 @@
-<!-- 
-    Adapted from https://svelte.dev/repl/a199ca2d451e4b0b92a8abd2d0e71ec6?version=3.35.0
-    As an alternative to @joshnuss/svelte-codemirror
-    Removed a lot of unnecessary code from the original example, specifically the styling
- -->
 <script lang="ts">
   import { onMount } from "svelte";
   import { EditorView, minimalSetup } from "codemirror";
 
   export let primes: number[];
+  export let editorFullscreen: boolean;
 
-  let view;
+  let view: EditorView;
   let element: HTMLElement;
 
   onMount(() => {
@@ -17,6 +13,28 @@
   });
 
   $: if (primes) {
+    setEditorText();
+  }
+
+  $: maximumHeightEditor = EditorView.theme({
+    "&": { maxHeight: editorFullscreen ? "calc(100vh - 150px)" : "300px" },
+    ".cm-scroller": { overflow: "auto" },
+  });
+
+  $: if (editorFullscreen) {
+    createEditor();
+    setEditorText();
+  }
+
+  function createEditor() {
+    if (view) element.innerHTML = "";
+    view = new EditorView({
+      parent: element,
+      extensions: [minimalSetup, maximumHeightEditor, EditorView.lineWrapping],
+    });
+  }
+
+  function setEditorText() {
     if (view) {
       view.dispatch(
         view.state.update({
@@ -28,19 +46,6 @@
         })
       );
     }
-  }
-
-  const maximumHeightEditor = EditorView.theme({
-    "&": { maxHeight: "400px" },
-    ".cm-scroller": { overflow: "auto" },
-  });
-
-  function createEditor() {
-    if (view) element.innerHTML = "";
-    view = new EditorView({
-      parent: element,
-      extensions: [minimalSetup, maximumHeightEditor, EditorView.lineWrapping],
-    });
   }
 </script>
 

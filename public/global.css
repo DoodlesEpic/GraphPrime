@@ -52,6 +52,5 @@ textarea {
   right: 10px;
   bottom: 10px;
   z-index: 3;
-  --maximumHeight: calc(100vh - 150px);
   --graphHeight: calc(100vh - 100px);
 }
