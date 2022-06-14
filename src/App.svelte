@@ -1,14 +1,13 @@
 <script lang="ts">
-  import Chart from "svelte-frappe-charts";
+  // Svelte and TAuri
   import { invoke } from "@tauri-apps/api/tauri";
-  import { writeText } from "@tauri-apps/api/clipboard";
-  import { slide } from "svelte/transition";
-  import CodeMirror from "./CodeMirrorComponent.svelte";
-  import DyGraphComponent from "./DyGraphComponent.svelte";
-  import Fa from "svelte-fa";
-  import { faExpand, faClipboard } from "@fortawesome/free-solid-svg-icons";
-  import "./progress.css";
 
+  // Components
+  import ProgressBar from "./Components/Cards/ProgressBar.svelte";
+  import Stats from "./Components/Cards/Stats.svelte";
+  import ScientificGraph from "./Components/Cards/ScientificGraph.svelte";
+  import FrappeGraph from "./Components/Cards/FrappeGraph.svelte";
+  import Primes from "./Components/Cards/Primes.svelte";
   export let name: string;
 
   // Primes will be calculated upto this number
@@ -25,34 +24,9 @@
   let compositeNumbers = 74; // Hardcoded value for the default prime numbers
   let chartType = "frappe";
 
-  // Chart data in csv format, recalculated on every change of primes
-  $: csvChartData = ["X,Y\n"]
-    .concat(primes.map((prime, i) => `${i},${prime}\n`))
-    .join("");
-
-  // Chart data, recalculated on every change of primes
-  $: chartData = {
-    labels: [...Array(primes.length).keys()].map((i) => i + 1),
-    datasets: [
-      {
-        values: primes,
-      },
-    ],
-  };
+  // Track which cards are fullscreen
   let chartFullscreen = false;
-
-  // Codemirror options
-  $: options = {
-    mode: "markdown",
-    lineNumbers: false,
-    lineWrapping: true,
-    value: primes.join(", "),
-  };
   let editorFullscreen = false;
-
-  // References to the CodeMirror and DyGraph instances
-  let editor;
-  let graph;
 
   async function calculate() {
     // Save because finalValue binds to input and may change during calculation
@@ -98,85 +72,40 @@
   </div>
 
   {#if calculating}
-    <div class="bar card" in:slide out:slide />
+    <ProgressBar />
   {/if}
 
   {#if primes}
-    <div class="card">
-      <h2>Stats</h2>
-      <p>
-        {primes.length} prime numbers calculated up to {primes.at(-1)}
-      </p>
-      <p>The calculation took {calculationTime} seconds</p>
-      <p>
-        There are {compositeNumbers} composite numbers up to {primes.at(-1)}
-      </p>
-    </div>
+    <Stats {primes} {calculationTime} {compositeNumbers} />
 
-    <div id="primes" class={"card"} class:fullscreen={editorFullscreen}>
-      <div class="copyfullButtons">
-        <button on:click={() => writeText(primes.join(", "))}
-          ><Fa icon={faClipboard} fw /></button
-        >
-        <button on:click={() => (editorFullscreen = !editorFullscreen)}
-          ><Fa icon={faExpand} fw /></button
-        >
-      </div>
-      <h2>Primes</h2>
-      <p>
-        <CodeMirror bind:editor {options} class="editor" />
-      </p>
-    </div>
+    <Primes {editorFullscreen} {primes} />
 
     {#if chartType === "frappe"}
-      <div class="card" class:fullscreen={chartFullscreen}>
-        <select name="Graph Types" class="graphTypes" bind:value={chartType}>
-          <option value="frappe">Basic</option>
-          <option value="dygraph">Scientific</option>
-        </select>
-        <div class="copyfullButtons">
-          <button on:click={() => (chartFullscreen = !chartFullscreen)}
-            ><Fa icon={faExpand} fw /></button
-          >
-        </div>
-
-        <h2>Graph</h2>
-        {#if primes.length < 10000}
-          <Chart data={chartData} type="line" />
-        {:else}
-          <p>
-            Basic chart is disabled for more than 10000 prime numbers for
-            performance reasons
-          </p>
-        {/if}
-      </div>
+      <FrappeGraph bind:chartType bind:chartFullscreen {primes} />
     {:else}
-      <div
-        class="card"
-        class:fullscreen={chartFullscreen}
-        style="height: var(--graphHeight)"
-      >
-        <select name="Graph Types" class="graphTypes" bind:value={chartType}>
-          <option value="frappe">Basic</option>
-          <option value="dygraph">Scientific</option>
-        </select>
-        <div class="copyfullButtons">
-          <button on:click={() => (chartFullscreen = !chartFullscreen)}
-            ><Fa icon={faExpand} fw /></button
-          >
-        </div>
-
-        <h2>Graph</h2>
-        <DyGraphComponent bind:data={csvChartData} class="chart" />
-      </div>
+      <ScientificGraph bind:chartType bind:chartFullscreen {primes} />
     {/if}
   {/if}
 </main>
 
-<style unscoped>
+<style>
   :root {
     background: var(--main-bg);
     --graphHeight: 600px;
+    --border-color: #ccc;
+    --card-bg: white;
+    --main-bg: white;
+    --body-color: #222;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --border-color: #ccc;
+      --card-bg: #222;
+      --main-bg: #111;
+      --body-color: #ffffff;
+    }
   }
 
   main {
@@ -197,40 +126,6 @@
     color: #ff3e00;
     font-size: 3em;
     font-weight: 300;
-  }
-
-  .card {
-    position: relative;
-    background: var(--card-bg);
-    /* Cast a nice shadow */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    padding: 1em;
-    margin: 1em;
-  }
-
-  .fullscreen {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    z-index: 3;
-    --maximumHeight: calc(100vh - 150px);
-    --graphHeight: calc(100vh - 100px);
-  }
-
-  #primes {
-    /* Use the codemirror scroll for performance */
-    overflow: hidden;
-  }
-
-  #primes p {
-    /* Comfortable font for reading huge amounts of data */
-    font-size: 1.1em;
-    font-weight: 100;
-    font-family: monospace;
-    font-variant-numeric: tabular-nums;
   }
 
   .input-group {
@@ -262,51 +157,5 @@
     font-weight: 500;
     background-color: #00a8ff;
     color: white;
-  }
-
-  .graphTypes {
-    position: absolute;
-    left: 10px;
-    color: var(--body-color);
-    background: var(--card-bg);
-  }
-
-  .copyfullButtons {
-    position: absolute;
-    right: 10px;
-    color: var(--body-color);
-    background: var(--card-bg);
-  }
-
-  .copyfullButtons button {
-    border: none;
-    background: none;
-    font-size: 1.2em;
-  }
-
-  .copyfullButtons button:hover {
-    color: #00a8ff;
-  }
-
-  .copyfullButtons button:active {
-    color: #1fb4ff;
-  }
-
-  /* Light mode */
-  :root {
-    --border-color: #ccc;
-    --card-bg: white;
-    --main-bg: white;
-    --body-color: #222;
-  }
-
-  /* Dark mode */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --border-color: #ccc;
-      --card-bg: #222;
-      --main-bg: #111;
-      --body-color: #ffffff;
-    }
   }
 </style>

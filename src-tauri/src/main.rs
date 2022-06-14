@@ -3,8 +3,6 @@
     windows_subsystem = "windows"
 )]
 
-use slow_primes;
-
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![calculate])

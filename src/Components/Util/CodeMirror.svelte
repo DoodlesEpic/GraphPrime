@@ -3,35 +3,32 @@
     As an alternative to @joshnuss/svelte-codemirror
     Removed a lot of unnecessary code from the original example, specifically the styling
  -->
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
   import CodeMirror from "codemirror";
 
-  let classes = "";
-
-  export let editor = null;
   export let options = {};
-  export { classes as class };
+  export let editor: CodeMirror.Editor;
 
-  let element;
+  let element: HTMLElement;
 
   onMount(() => {
-    createEditor();
+    createEditor(options);
   });
 
   $: if (element) {
     createEditor(options);
   }
 
-  function createEditor(options) {
+  function createEditor(options: CodeMirror.EditorConfiguration) {
     if (editor) element.innerHTML = "";
     editor = CodeMirror(element, options);
   }
 </script>
 
-<div bind:this={element} class={classes} />
+<div bind:this={element} />
 
-<style unscoped>
+<style>
   :root {
     --maximumHeight: 400px;
   }
@@ -304,9 +301,6 @@
     position: relative;
     z-index: 2;
     padding: 0.1px; /* Force widget margins to stay inside of the container */
-  }
-
-  :global(.CodeMirror-widget) {
   }
 
   :global(.CodeMirror-rtl pre) {
