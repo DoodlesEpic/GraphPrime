@@ -13,3 +13,13 @@ textarea {
   padding: 0.4em;
   margin: 0 0 0.5em 0;
 }
+
+.card {
+  position: relative;
+  background: var(--card-bg);
+  /* Cast a nice shadow */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 1em;
+  margin: 1em;
+}
