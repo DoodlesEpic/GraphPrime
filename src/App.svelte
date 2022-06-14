@@ -25,16 +25,6 @@
   let compositeNumbers = 74; // Hardcoded value for the default prime numbers
   let chartType = "frappe";
 
-  // Chart data, recalculated on every change of primes
-  $: chartData = {
-    labels: [...Array(primes.length).keys()].map((i) => i + 1),
-    datasets: [
-      {
-        values: primes,
-      },
-    ],
-  };
-
   // Track which cards are fullscreen
   let chartFullscreen = false;
   let editorFullscreen = false;
@@ -96,7 +86,7 @@
     <Primes {editorFullscreen} {primes} {editor} />
 
     {#if chartType === "frappe"}
-      <FrappeGraph bind:chartType {chartFullscreen} {chartData} />
+      <FrappeGraph bind:chartType {primes} {chartFullscreen} />
     {:else}
       <ScientificGraph bind:chartType {primes} {chartFullscreen} />
     {/if}

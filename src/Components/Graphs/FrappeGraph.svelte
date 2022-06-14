@@ -4,11 +4,22 @@
   import GraphTypes from "./GraphTypes.svelte";
   import Chart from "svelte-frappe-charts";
 
+  export let primes: number[];
   export let chartType: string;
   export let chartFullscreen: boolean;
   export let chartData: {
     labels: number[];
     datasets: { values: number[] }[];
+  };
+
+  // Chart data, recalculated on every change of primes
+  $: chartData = {
+    labels: [...Array(primes.length).keys()].map((i) => i + 1),
+    datasets: [
+      {
+        values: primes,
+      },
+    ],
   };
 </script>
 
