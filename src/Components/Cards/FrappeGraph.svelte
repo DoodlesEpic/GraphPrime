@@ -1,7 +1,7 @@
 <script lang="ts">
   import Fa from "svelte-fa";
   import { faExpand } from "@fortawesome/free-solid-svg-icons";
-  import GraphTypes from "./GraphTypes.svelte";
+  import GraphTypes from "../Util/GraphTypes.svelte";
   import Chart from "svelte-frappe-charts";
 
   export let primes: number[];

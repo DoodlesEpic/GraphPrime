@@ -3,12 +3,11 @@
   import { invoke } from "@tauri-apps/api/tauri";
 
   // Components
-  import ProgressBar from "./Components/ProgressBar.svelte";
-  import Stats from "./Components/Stats.svelte";
-  import ScientificGraph from "./Components/Graphs/ScientificGraph.svelte";
-  import FrappeGraph from "./Components/Graphs/FrappeGraph.svelte";
-  import Primes from "./Components/Primes.svelte";
-
+  import ProgressBar from "./Components/Cards/ProgressBar.svelte";
+  import Stats from "./Components/Cards/Stats.svelte";
+  import ScientificGraph from "./Components/Cards/ScientificGraph.svelte";
+  import FrappeGraph from "./Components/Cards/FrappeGraph.svelte";
+  import Primes from "./Components/Cards/Primes.svelte";
   export let name: string;
 
   // Primes will be calculated upto this number

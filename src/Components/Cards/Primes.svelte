@@ -1,6 +1,6 @@
 <script lang="ts">
   import { writeText } from "@tauri-apps/api/clipboard";
-  import CodeMirror from "./CodeMirror.svelte";
+  import CodeMirror from "../Util/CodeMirror.svelte";
   import Fa from "svelte-fa";
   import { faExpand, faClipboard } from "@fortawesome/free-solid-svg-icons";
 

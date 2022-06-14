@@ -1,6 +1,6 @@
 <script lang="ts">
-  import GraphTypes from "./GraphTypes.svelte";
-  import DyGraphs from "../DyGraphs.svelte";
+  import GraphTypes from "../Util/GraphTypes.svelte";
+  import DyGraphs from "../Util/DyGraphs.svelte";
   import Fa from "svelte-fa";
   import { faExpand } from "@fortawesome/free-solid-svg-icons";
 
