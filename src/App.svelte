@@ -44,6 +44,7 @@
   // Codemirror options
   $: options = {
     mode: "markdown",
+    readOnly: true,
     lineNumbers: false,
     lineWrapping: true,
     value: primes.join(", "),
