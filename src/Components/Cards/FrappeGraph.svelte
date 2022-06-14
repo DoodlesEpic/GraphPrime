@@ -7,10 +7,6 @@
   export let primes: number[];
   export let chartType: string;
   export let chartFullscreen: boolean;
-  export let chartData: {
-    labels: number[];
-    datasets: { values: number[] }[];
-  };
 
   // Chart data, recalculated on every change of primes
   $: chartData = {
