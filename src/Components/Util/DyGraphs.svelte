@@ -6,7 +6,10 @@
   let classes = "";
 
   export let graph = null;
-  export let data;
+  export let options = {
+    data: "",
+    fullscreen: false,
+  };
   export { classes as class };
 
   let element;
@@ -15,13 +18,13 @@
     createGraph();
   });
 
-  $: if (element && data) {
+  $: if (element && options) {
     createGraph();
   }
 
   function createGraph() {
     if (graph) element.innerHTML = "";
-    graph = new Dygraph(element, data, {});
+    graph = new Dygraph(element, options.data, {});
   }
 </script>
 

@@ -12,6 +12,11 @@
   $: csvChartData = ["X,Y\n"]
     .concat(primes.map((prime, i) => `${i},${prime}\n`))
     .join("");
+
+  $: options = {
+    data: csvChartData,
+    fullscreen: chartFullscreen,
+  };
 </script>
 
 <div
@@ -27,5 +32,5 @@
   </div>
 
   <h2>Graph</h2>
-  <DyGraphs bind:data={csvChartData} class="chart" />
+  <DyGraphs bind:options class="chart" />
 </div>
