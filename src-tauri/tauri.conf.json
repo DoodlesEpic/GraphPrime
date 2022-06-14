@@ -33,7 +33,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.doodles.graphprime",
+      "identifier": "dev.doodles.graphprime",
       "longDescription": "Cross-platform prime number calculator developed on Tauri and Svelte with beautiful frappe graphs and excellent performance",
       "macOS": {
         "entitlements": null,
