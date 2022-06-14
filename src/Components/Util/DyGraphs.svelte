@@ -1,7 +1,6 @@
 <script>
   import { onMount } from "svelte";
   import Dygraph from "dygraphs";
-  import "dygraph.css";
 
   let classes = "";
 
