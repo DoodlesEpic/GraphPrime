@@ -12,6 +12,7 @@
   import Chart from "svelte-frappe-charts";
   import Fa from "svelte-fa";
   import { faExpand, faClipboard } from "@fortawesome/free-solid-svg-icons";
+  import Stats from "./Components/Stats.svelte";
 
   export let name: string;
 
@@ -106,16 +107,7 @@
   {/if}
 
   {#if primes}
-    <div class="card">
-      <h2>Stats</h2>
-      <p>
-        {primes.length} prime numbers calculated up to {primes.at(-1)}
-      </p>
-      <p>The calculation took {calculationTime} seconds</p>
-      <p>
-        There are {compositeNumbers} composite numbers up to {primes.at(-1)}
-      </p>
-    </div>
+    <Stats {primes} {calculationTime} {compositeNumbers} />
 
     <div id="primes" class={"card"} class:fullscreen={editorFullscreen}>
       <div class="copyfullButtons">
@@ -201,16 +193,6 @@
     color: #ff3e00;
     font-size: 3em;
     font-weight: 300;
-  }
-
-  .card {
-    position: relative;
-    background: var(--card-bg);
-    /* Cast a nice shadow */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    padding: 1em;
-    margin: 1em;
   }
 
   .fullscreen {
