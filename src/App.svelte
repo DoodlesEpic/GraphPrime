@@ -111,7 +111,7 @@
   main {
     text-align: center;
     padding-bottom: 1em;
-    max-width: none;
+    max-width: 1400px;
     margin: 0 auto;
     color: var(--body-color);
 
