@@ -6,14 +6,13 @@
   // Components
   import ProgressBar from "./Components/ProgressBar.svelte";
   import Stats from "./Components/Stats.svelte";
-  import GraphTypes from "./Components/Graphs/GraphTypes.svelte";
   import CodeMirror from "./Components/CodeMirror.svelte";
-  import DyGraphComponent from "./Components/DyGraphs.svelte";
 
   // Libs
-  import Chart from "svelte-frappe-charts";
   import Fa from "svelte-fa";
   import { faExpand, faClipboard } from "@fortawesome/free-solid-svg-icons";
+  import ScientificGraph from "./Components/Graphs/ScientificGraph.svelte";
+  import FrappeGraph from "./Components/Graphs/FrappeGraph.svelte";
 
   export let name: string;
 
@@ -126,40 +125,9 @@
     </div>
 
     {#if chartType === "frappe"}
-      <div class="card" class:fullscreen={chartFullscreen}>
-        <GraphTypes bind:chartType />
-        <div class="copyfullButtons">
-          <button on:click={() => (chartFullscreen = !chartFullscreen)}
-            ><Fa icon={faExpand} fw /></button
-          >
-        </div>
-
-        <h2>Graph</h2>
-        {#if primes.length < 10000}
-          <Chart data={chartData} type="line" />
-        {:else}
-          <p>
-            Basic chart is disabled for more than 10000 prime numbers for
-            performance reasons
-          </p>
-        {/if}
-      </div>
+      <FrappeGraph {chartType} {chartFullscreen} {chartData} />
     {:else}
-      <div
-        class="card"
-        class:fullscreen={chartFullscreen}
-        style="height: var(--graphHeight)"
-      >
-        <GraphTypes bind:chartType />
-        <div class="copyfullButtons">
-          <button on:click={() => (chartFullscreen = !chartFullscreen)}
-            ><Fa icon={faExpand} fw /></button
-          >
-        </div>
-
-        <h2>Graph</h2>
-        <DyGraphComponent bind:data={csvChartData} class="chart" />
-      </div>
+      <ScientificGraph {chartType} {chartFullscreen} {csvChartData} />
     {/if}
   {/if}
 </main>
