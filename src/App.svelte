@@ -5,6 +5,8 @@
 
   // Components
   import ProgressBar from "./Components/ProgressBar.svelte";
+  import Stats from "./Components/Stats.svelte";
+  import GraphTypes from "./Components/Graphs/GraphTypes.svelte";
   import CodeMirror from "./Components/CodeMirror.svelte";
   import DyGraphComponent from "./Components/DyGraphs.svelte";
 
@@ -12,7 +14,6 @@
   import Chart from "svelte-frappe-charts";
   import Fa from "svelte-fa";
   import { faExpand, faClipboard } from "@fortawesome/free-solid-svg-icons";
-  import Stats from "./Components/Stats.svelte";
 
   export let name: string;
 
@@ -126,10 +127,7 @@
 
     {#if chartType === "frappe"}
       <div class="card" class:fullscreen={chartFullscreen}>
-        <select name="Graph Types" class="graphTypes" bind:value={chartType}>
-          <option value="frappe">Basic</option>
-          <option value="dygraph">Scientific</option>
-        </select>
+        <GraphTypes bind:chartType />
         <div class="copyfullButtons">
           <button on:click={() => (chartFullscreen = !chartFullscreen)}
             ><Fa icon={faExpand} fw /></button
@@ -152,10 +150,7 @@
         class:fullscreen={chartFullscreen}
         style="height: var(--graphHeight)"
       >
-        <select name="Graph Types" class="graphTypes" bind:value={chartType}>
-          <option value="frappe">Basic</option>
-          <option value="dygraph">Scientific</option>
-        </select>
+        <GraphTypes bind:chartType />
         <div class="copyfullButtons">
           <button on:click={() => (chartFullscreen = !chartFullscreen)}
             ><Fa icon={faExpand} fw /></button
@@ -248,13 +243,6 @@
     font-weight: 500;
     background-color: #00a8ff;
     color: white;
-  }
-
-  .graphTypes {
-    position: absolute;
-    left: 10px;
-    color: var(--body-color);
-    background: var(--card-bg);
   }
 
   .copyfullButtons {
