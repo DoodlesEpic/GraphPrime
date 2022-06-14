@@ -23,7 +23,7 @@
 
   // This is a hack to get the editor to resize itself when fullscreen
   // It would be nicer if we could just change the theme, but I couldn't find a way to do that
-  $: if (editorFullscreen) {
+  $: if (editorFullscreen || !editorFullscreen) {
     createEditor();
     setEditorText();
   }
