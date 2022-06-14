@@ -34,16 +34,9 @@
       },
     ],
   };
-  let chartFullscreen = false;
 
-  // Codemirror options
-  $: options = {
-    mode: "markdown",
-    readOnly: true,
-    lineNumbers: false,
-    lineWrapping: true,
-    value: primes.join(", "),
-  };
+  // Track which cards are fullscreen
+  let chartFullscreen = false;
   let editorFullscreen = false;
 
   // References to the CodeMirror and DyGraph instances
@@ -100,7 +93,7 @@
   {#if primes}
     <Stats {primes} {calculationTime} {compositeNumbers} />
 
-    <Primes {editorFullscreen} {primes} {options} {editor} />
+    <Primes {editorFullscreen} {primes} {editor} />
 
     {#if chartType === "frappe"}
       <FrappeGraph bind:chartType {chartFullscreen} {chartData} />

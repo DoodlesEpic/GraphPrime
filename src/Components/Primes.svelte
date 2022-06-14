@@ -6,12 +6,16 @@
 
   export let editorFullscreen: boolean;
   export let primes: number[];
-  export let options: {
-    readOnly: boolean;
-    lineNumbers: boolean;
-    mode: string;
-  };
   export let editor: CodeMirror;
+
+  // Codemirror options
+  $: options = {
+    mode: "markdown",
+    readOnly: true,
+    lineNumbers: false,
+    lineWrapping: true,
+    value: primes.join(", "),
+  };
 </script>
 
 <div id="primes" class={"card"} class:fullscreen={editorFullscreen}>
@@ -25,7 +29,7 @@
   </div>
   <h2>Primes</h2>
   <p>
-    <CodeMirror bind:editor {options} class="editor" />
+    <CodeMirror bind:editor {options} />
   </p>
 </div>
 

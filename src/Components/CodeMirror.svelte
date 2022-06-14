@@ -3,20 +3,17 @@
     As an alternative to @joshnuss/svelte-codemirror
     Removed a lot of unnecessary code from the original example, specifically the styling
  -->
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
   import CodeMirror from "codemirror";
 
-  let classes = "";
-
   export let editor = null;
   export let options = {};
-  export { classes as class };
 
-  let element;
+  let element: HTMLElement;
 
   onMount(() => {
-    createEditor();
+    createEditor(options);
   });
 
   $: if (element) {
@@ -29,7 +26,7 @@
   }
 </script>
 
-<div bind:this={element} class={classes} />
+<div bind:this={element} />
 
 <style>
   :root {
