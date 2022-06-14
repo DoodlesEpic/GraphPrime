@@ -52,7 +52,7 @@
   }
 
   /* BASICS */
-  :global(.CodeMirror) {
+  :global(.cm) {
     /* Set height, width, borders, and global font properties here */
     font-family: monospace;
     height: auto;
@@ -63,21 +63,21 @@
 
   /* CURSOR */
 
-  :global(.CodeMirror-cursor) {
+  :global(.cm-cursor) {
     border-left: 2px solid var(--cm-medium-color);
     border-right: none;
     width: 0;
   }
   /* Shown when moving in bi-directional text */
-  :global(.CodeMirror div.CodeMirror-secondarycursor) {
+  :global(.cm div.cm-secondarycursor) {
     border-left: 1px solid var(--cm-medium-color);
   }
-  :global(.cm-fat-cursor .CodeMirror-cursor) {
+  :global(.cm-fat-cursor .cm-cursor) {
     width: auto;
     border: 0 !important;
     background: var(--cursor-color);
   }
-  :global(.cm-fat-cursor div.CodeMirror-cursors) {
+  :global(.cm-fat-cursor div.cm-cursors) {
     z-index: 1;
   }
   :global(.cm-fat-cursor-mark) {
@@ -129,16 +129,16 @@
 
   /* Default styles for common addons */
 
-  :global(div.CodeMirror span.CodeMirror-matchingbracket) {
+  :global(div.cm span.cm-matchingbracket) {
     color: #0b0;
   }
-  :global(div.CodeMirror span.CodeMirror-nonmatchingbracket) {
+  :global(div.cm span.cm-nonmatchingbracket) {
     color: #a22;
   }
-  :global(.CodeMirror-matchingtag) {
+  :global(.cm-matchingtag) {
     background: rgba(255, 150, 0, 0.3);
   }
-  :global(.CodeMirror-activeline-background) {
+  :global(.cm-activeline-background) {
     background: #e8f2ff;
   }
 
@@ -147,15 +147,15 @@
   /* The rest of this file contains styles related to the mechanics of
      the editor. You probably shouldn't touch them. */
 
-  :global(.CodeMirror) {
+  :global(.cm) {
     position: relative;
     overflow: hidden;
   }
 
-  :global(.CodeMirror-scroll) {
+  :global(.cm-scroll) {
     overflow: scroll !important; /* Things will break if this is overridden */
     /* 30px is the magic margin used to hide the element's real scrollbars */
-    /* See overflow: hidden in .CodeMirror */
+    /* See overflow: hidden in .cm */
     margin-bottom: -30px;
     margin-right: -30px;
     padding-bottom: 30px;
@@ -166,7 +166,7 @@
     min-height: 40px;
     max-height: var(--maximumHeight);
   }
-  :global(.CodeMirror-sizer) {
+  :global(.cm-sizer) {
     position: relative;
     border-right: 30px solid transparent;
   }
@@ -174,93 +174,92 @@
   /* The fake, visible scrollbars. Used to force redraw during scrolling
      before actual scrolling happens, thus preventing shaking and
      flickering artifacts. */
-  :global(.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler) {
+  :global(.cm-vscrollbar, .cm-hscrollbar, .cm-scrollbar-filler, .cm-gutter-filler) {
     position: absolute;
     z-index: 6;
     display: none;
   }
 
-  :global(.CodeMirror ::-webkit-scrollbar) {
+  :global(.cm ::-webkit-scrollbar) {
     width: 8px;
     height: 8px;
   }
 
-  :global(.CodeMirror ::-webkit-scrollbar-track) {
+  :global(.cm ::-webkit-scrollbar-track) {
     background: #f4f4f4;
     border-radius: 10px;
   }
 
-  :global(.CodeMirror ::-webkit-scrollbar-thumb) {
+  :global(.cm ::-webkit-scrollbar-thumb) {
     border-radius: 10px;
     background: var(--cm-medium-color);
   }
 
-  :global(.CodeMirror-vscrollbar) {
+  :global(.cm-vscrollbar) {
     right: 0;
     top: 0;
     overflow-x: hidden;
     overflow-y: scroll;
   }
-  :global(.CodeMirror-hscrollbar) {
+  :global(.cm-hscrollbar) {
     bottom: 0;
     left: 0;
     overflow-y: hidden;
     overflow-x: scroll;
     height: 8px;
   }
-  :global(.CodeMirror-scrollbar-filler) {
+  :global(.cm-scrollbar-filler) {
     right: 0;
     bottom: 0;
   }
-  :global(.CodeMirror-gutter-filler) {
+  :global(.cm-gutter-filler) {
     left: 0;
     bottom: 0;
   }
 
-  :global(.CodeMirror-gutters) {
+  :global(.cm-gutters) {
     position: absolute;
     left: 0;
     top: 0;
     min-height: 100%;
     z-index: 3;
   }
-  :global(.CodeMirror-gutter) {
+  :global(.cm-gutter) {
     white-space: normal;
     height: 100%;
     display: inline-block;
     vertical-align: top;
     margin-bottom: -30px;
   }
-  :global(.CodeMirror-gutter-wrapper) {
+  :global(.cm-gutter-wrapper) {
     position: absolute;
     z-index: 4;
     background: none !important;
     border: none !important;
   }
-  :global(.CodeMirror-gutter-background) {
+  :global(.cm-gutter-background) {
     position: absolute;
     top: 0;
     bottom: 0;
     z-index: 4;
   }
-  :global(.CodeMirror-gutter-elt) {
+  :global(.cm-gutter-elt) {
     position: absolute;
     cursor: default;
     z-index: 4;
   }
-  :global(.CodeMirror-gutter-wrapper ::selection) {
+  :global(.cm-gutter-wrapper ::selection) {
     background-color: transparent;
   }
-  :global(.CodeMirror-gutter-wrapper ::-moz-selection) {
+  :global(.cm-gutter-wrapper ::-moz-selection) {
     background-color: transparent;
   }
 
-  :global(.CodeMirror-lines) {
+  :global(.cm-lines) {
     cursor: text;
     min-height: 1px; /* prevents collapsing before first draw */
   }
-  :global(.CodeMirror pre.CodeMirror-line, .CodeMirror
-      pre.CodeMirror-line-like) {
+  :global(.cm pre.cm-line, .cm pre.cm-line-like) {
     /* Reset some styles that the rest of the page might have set */
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
@@ -281,14 +280,13 @@
     -webkit-font-variant-ligatures: contextual;
     font-variant-ligatures: contextual;
   }
-  :global(.CodeMirror-wrap pre.CodeMirror-line, .CodeMirror-wrap
-      pre.CodeMirror-line-like) {
+  :global(.cm-wrap pre.cm-line, .cm-wrap pre.cm-line-like) {
     word-wrap: break-word;
     white-space: pre-wrap;
     word-break: normal;
   }
 
-  :global(.CodeMirror-linebackground) {
+  :global(.cm-linebackground) {
     position: absolute;
     left: 0;
     right: 0;
@@ -297,27 +295,27 @@
     z-index: 0;
   }
 
-  :global(.CodeMirror-linewidget) {
+  :global(.cm-linewidget) {
     position: relative;
     z-index: 2;
     padding: 0.1px; /* Force widget margins to stay inside of the container */
   }
 
-  :global(.CodeMirror-rtl pre) {
+  :global(.cm-rtl pre) {
     direction: rtl;
   }
 
-  :global(.CodeMirror-code) {
+  :global(.cm-code) {
     outline: none;
   }
 
   /* Force content-box sizing for the elements where we expect it */
-  :global(.CodeMirror-scroll, .CodeMirror-sizer, .CodeMirror-gutter, .CodeMirror-gutters, .CodeMirror-linenumber) {
+  :global(.cm-scroll, .cm-sizer, .cm-gutter, .cm-gutters, .cm-linenumber) {
     -moz-box-sizing: content-box;
     box-sizing: content-box;
   }
 
-  :global(.CodeMirror-measure) {
+  :global(.cm-measure) {
     position: absolute;
     width: 100%;
     height: 0;
@@ -325,43 +323,45 @@
     visibility: hidden;
   }
 
-  :global(.CodeMirror-cursor) {
+  :global(.cm-cursor) {
     position: absolute;
     pointer-events: none;
   }
-  :global(.CodeMirror-measure pre) {
+  :global(.cm-measure pre) {
     position: static;
   }
 
-  :global(div.CodeMirror-cursors) {
+  :global(div.cm-cursors) {
     /* always show cursor */
     visibility: visible;
     position: relative;
     z-index: 3;
   }
-  :global(div.CodeMirror-dragcursors) {
+  :global(div.cm-dragcursors) {
     visibility: visible;
   }
 
-  :global(.CodeMirror-focused div.CodeMirror-cursors) {
+  :global(.cm-focused div.cm-cursors) {
     visibility: visible;
   }
 
-  :global(.CodeMirror-selected) {
+  :global(.cm-selected) {
     background: #d9d9d9;
   }
-  :global(.CodeMirror-focused .CodeMirror-selected) {
+  :global(.cm-focused .cm-selected) {
     background: #d7d4f0;
   }
-  :global(.CodeMirror-crosshair) {
+  :global(.cm-crosshair) {
     cursor: crosshair;
   }
-  :global(.CodeMirror-line::selection, .CodeMirror-line
-      > span::selection, .CodeMirror-line > span > span::selection) {
+  :global(.cm-line::selection, .cm-line > span::selection, .cm-line
+      > span
+      > span::selection) {
     background: #d7d4f0;
   }
-  :global(.CodeMirror-line::-moz-selection, .CodeMirror-line
-      > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection) {
+  :global(.cm-line::-moz-selection, .cm-line > span::-moz-selection, .cm-line
+      > span
+      > span::-moz-selection) {
     background: #d7d4f0;
   }
 
@@ -377,7 +377,7 @@
 
   @media print {
     /* Hide the cursor when printing */
-    :global(.CodeMirror div.CodeMirror-cursors) {
+    :global(.cm div.cm-cursors) {
       visibility: hidden;
     }
   }
@@ -388,7 +388,7 @@
   }
 
   /* Help users use markselection to safely style text background */
-  :global(span.CodeMirror-selectedtext) {
+  :global(span.cm-selectedtext) {
     background: none;
   }
 </style>
