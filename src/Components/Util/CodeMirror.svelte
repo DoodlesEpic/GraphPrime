@@ -5,7 +5,7 @@
  -->
 <script lang="ts">
   import { onMount } from "svelte";
-  import { EditorView } from "@codemirror/view";
+  import { EditorView, minimalSetup } from "codemirror";
   import { EditorState } from "@codemirror/state";
 
   export let primes: number[];
@@ -25,6 +25,7 @@
     if (view) element.innerHTML = "";
     view = new EditorView({
       parent: element,
+      extensions: [minimalSetup],
       state: EditorState.create({
         doc: primes.join(", "),
       }),
