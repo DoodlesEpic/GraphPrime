@@ -7,8 +7,8 @@
   import { onMount } from "svelte";
   import CodeMirror from "codemirror";
 
-  export let editor = null;
   export let options = {};
+  export let editor: CodeMirror.Editor;
 
   let element: HTMLElement;
 
@@ -20,7 +20,7 @@
     createEditor(options);
   }
 
-  function createEditor(options) {
+  function createEditor(options: CodeMirror.EditorConfiguration) {
     if (editor) element.innerHTML = "";
     editor = CodeMirror(element, options);
   }

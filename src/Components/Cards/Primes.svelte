@@ -6,7 +6,8 @@
 
   export let editorFullscreen: boolean;
   export let primes: number[];
-  export let editor: CodeMirror;
+
+  let editor: CodeMirror.Editor;
 
   // Codemirror options
   $: options = {

@@ -28,10 +28,6 @@
   let chartFullscreen = false;
   let editorFullscreen = false;
 
-  // References to the CodeMirror and DyGraph instances
-  let editor;
-  let graph;
-
   async function calculate() {
     // Save because finalValue binds to input and may change during calculation
     const chosenFinalValue = finalValue;
@@ -82,7 +78,7 @@
   {#if primes}
     <Stats {primes} {calculationTime} {compositeNumbers} />
 
-    <Primes {editorFullscreen} {primes} {editor} />
+    <Primes {editorFullscreen} {primes} />
 
     {#if chartType === "frappe"}
       <FrappeGraph bind:chartType bind:chartFullscreen {primes} />
