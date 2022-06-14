@@ -119,6 +119,20 @@
   :root {
     background: var(--main-bg);
     --graphHeight: 600px;
+    --border-color: #ccc;
+    --card-bg: white;
+    --main-bg: white;
+    --body-color: #222;
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --border-color: #ccc;
+      --card-bg: #222;
+      --main-bg: #111;
+      --body-color: #ffffff;
+    }
   }
 
   main {
@@ -170,23 +184,5 @@
     font-weight: 500;
     background-color: #00a8ff;
     color: white;
-  }
-
-  /* Light mode */
-  :root {
-    --border-color: #ccc;
-    --card-bg: white;
-    --main-bg: white;
-    --body-color: #222;
-  }
-
-  /* Dark mode */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --border-color: #ccc;
-      --card-bg: #222;
-      --main-bg: #111;
-      --body-color: #ffffff;
-    }
   }
 </style>
