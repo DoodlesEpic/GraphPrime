@@ -23,3 +23,24 @@ textarea {
   padding: 1em;
   margin: 1em;
 }
+
+.copyfullButtons {
+  position: absolute;
+  right: 10px;
+  color: var(--body-color);
+  background: var(--card-bg);
+}
+
+.copyfullButtons button {
+  border: none;
+  background: none;
+  font-size: 1.2em;
+}
+
+.copyfullButtons button:hover {
+  color: #00a8ff;
+}
+
+.copyfullButtons button:active {
+  color: #1fb4ff;
+}
