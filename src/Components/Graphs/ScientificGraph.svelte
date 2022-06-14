@@ -4,9 +4,14 @@
   import Fa from "svelte-fa";
   import { faExpand } from "@fortawesome/free-solid-svg-icons";
 
+  export let primes: number[];
   export let chartType: string;
   export let chartFullscreen: boolean;
-  export let csvChartData: string;
+
+  // Chart data in csv format, recalculated on every change of primes
+  $: csvChartData = ["X,Y\n"]
+    .concat(primes.map((prime, i) => `${i},${prime}\n`))
+    .join("");
 </script>
 
 <div

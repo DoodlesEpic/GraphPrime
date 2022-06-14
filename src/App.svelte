@@ -25,11 +25,6 @@
   let compositeNumbers = 74; // Hardcoded value for the default prime numbers
   let chartType = "frappe";
 
-  // Chart data in csv format, recalculated on every change of primes
-  $: csvChartData = ["X,Y\n"]
-    .concat(primes.map((prime, i) => `${i},${prime}\n`))
-    .join("");
-
   // Chart data, recalculated on every change of primes
   $: chartData = {
     labels: [...Array(primes.length).keys()].map((i) => i + 1),
@@ -110,7 +105,7 @@
     {#if chartType === "frappe"}
       <FrappeGraph bind:chartType {chartFullscreen} {chartData} />
     {:else}
-      <ScientificGraph bind:chartType {chartFullscreen} {csvChartData} />
+      <ScientificGraph bind:chartType {primes} {chartFullscreen} />
     {/if}
   {/if}
 </main>
