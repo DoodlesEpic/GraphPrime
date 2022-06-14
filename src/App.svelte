@@ -1,18 +1,13 @@
 <script lang="ts">
   // Svelte and TAuri
   import { invoke } from "@tauri-apps/api/tauri";
-  import { writeText } from "@tauri-apps/api/clipboard";
 
   // Components
   import ProgressBar from "./Components/ProgressBar.svelte";
   import Stats from "./Components/Stats.svelte";
-  import CodeMirror from "./Components/CodeMirror.svelte";
-
-  // Libs
-  import Fa from "svelte-fa";
-  import { faExpand, faClipboard } from "@fortawesome/free-solid-svg-icons";
   import ScientificGraph from "./Components/Graphs/ScientificGraph.svelte";
   import FrappeGraph from "./Components/Graphs/FrappeGraph.svelte";
+  import Primes from "./Components/Primes.svelte";
 
   export let name: string;
 
@@ -109,20 +104,7 @@
   {#if primes}
     <Stats {primes} {calculationTime} {compositeNumbers} />
 
-    <div id="primes" class={"card"} class:fullscreen={editorFullscreen}>
-      <div class="copyfullButtons">
-        <button on:click={() => writeText(primes.join(", "))}
-          ><Fa icon={faClipboard} fw /></button
-        >
-        <button on:click={() => (editorFullscreen = !editorFullscreen)}
-          ><Fa icon={faExpand} fw /></button
-        >
-      </div>
-      <h2>Primes</h2>
-      <p>
-        <CodeMirror bind:editor {options} class="editor" />
-      </p>
-    </div>
+    <Primes {editorFullscreen} {primes} {options} {editor} />
 
     {#if chartType === "frappe"}
       <FrappeGraph {chartType} {chartFullscreen} {chartData} />
