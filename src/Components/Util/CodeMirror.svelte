@@ -18,7 +18,17 @@
   });
 
   $: if (primes) {
-    if (view) view.setState(EditorState.create({ doc: primes.join(", ") }));
+    if (view) {
+      view.dispatch(
+        view.state.update({
+          changes: {
+            from: 0,
+            to: view.state.doc.length,
+            insert: primes.join(", "),
+          },
+        })
+      );
+    }
   }
 
   function createEditor() {
