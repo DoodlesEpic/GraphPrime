@@ -85,9 +85,9 @@
     <Primes {editorFullscreen} {primes} {editor} />
 
     {#if chartType === "frappe"}
-      <FrappeGraph bind:chartType {primes} {chartFullscreen} />
+      <FrappeGraph bind:chartType bind:chartFullscreen {primes} />
     {:else}
-      <ScientificGraph bind:chartType {primes} {chartFullscreen} />
+      <ScientificGraph bind:chartType bind:chartFullscreen {primes} />
     {/if}
   {/if}
 </main>
