@@ -1,5 +1,5 @@
 <script lang="ts">
-  // Svelte and TAuri
+  // Svelte and Tauri
   import { invoke } from "@tauri-apps/api/tauri";
 
   // Components
