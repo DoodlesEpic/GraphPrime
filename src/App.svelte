@@ -1,5 +1,5 @@
 <script lang="ts">
-  // Svelte and TAuri
+  // Svelte and Tauri
   import { invoke } from "@tauri-apps/api/tauri";
 
   // Components
@@ -27,6 +27,17 @@
   // Track which cards are fullscreen
   let chartFullscreen = false;
   let editorFullscreen = false;
+
+  function handleInput(event) {
+    // The new value, but remove all characters and keep only the digits
+    const newValue = parseInt(event.target.value.replace(/\D/g, ""));
+
+    // Update the value to calculate to the new number
+    finalValue = newValue;
+
+    // Show the new value with the thousand separator applied
+    event.target.value = newValue.toLocaleString().replace(/NaN/g, "");
+  }
 
   async function calculate() {
     // Save because finalValue binds to input and may change during calculation
@@ -60,8 +71,8 @@
 
     <div class="input-group">
       <input
-        type="number"
-        bind:value={finalValue}
+        type="text"
+        on:input={handleInput}
         class="input"
         min="0"
         max="100000"

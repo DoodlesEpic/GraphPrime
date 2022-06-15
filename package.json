@@ -16,7 +16,7 @@
     "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-typescript": "^8.3.3",
-    "@tauri-apps/cli": "^1.0.0-rc.14",
+    "@tauri-apps/cli": "^1.0.0-rc.16",
     "@tsconfig/svelte": "^3.0.0",
     "@types/codemirror": "^5.60.5",
     "@types/dygraphs": "^2.1.4",
