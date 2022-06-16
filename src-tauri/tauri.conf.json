@@ -11,6 +11,12 @@
     "version": "1.0.0"
   },
   "tauri": {
+    "pattern": {
+      "use": "isolation",
+      "options": {
+        "dir": "../dist-isolation"
+      }
+    },
     "allowlist": {
       "clipboard": {
         "all": false,
@@ -52,7 +58,7 @@
       }
     },
     "security": {
-      "csp": null
+      "csp": "default-src 'self'"
     },
     "updater": {
       "active": false
