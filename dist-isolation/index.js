@@ -1,7 +1,4 @@
 window.__TAURI_ISOLATION_HOOK__ = (payload) => {
-  // Let's print the content of the hook for testing
-  console.log("hook", payload);
-
   // Guarantee that the hook is an object
   if (typeof payload !== "object") throw new Error("hook is not an object");
 
