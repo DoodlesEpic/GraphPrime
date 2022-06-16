@@ -2,7 +2,7 @@ name: Test
 on:
   push:
     branches:
-      - '*'
+      - "*"
   pull_request:
   workflow_dispatch:
 
@@ -13,6 +13,7 @@ jobs:
       matrix:
         platform: [macos-latest, ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.platform }}
+    environment: production
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
