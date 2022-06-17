@@ -61,7 +61,12 @@
       "csp": "default-src 'self'"
     },
     "updater": {
-      "active": false
+      "active": true,
+      "endpoints": [
+        "https://gist.githubusercontent.com/DoodlesEpic/e19632f3fe451cd9a14f9322880d8ebf/raw/6ac23f0bbc0b6f798897a9fec8ae86237577c8c8/GraphPrimeUpdater.json"
+      ],
+      "dialog": true,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEQ1NEM1NTZFN0E3OEQ1Q0UKUldUTzFYaDZibFZNMVEreHNHc3FQWnpveENYbEQ3bHJnTGJzcHczRzNHZi9kMlBMZUYyYVZESFoK%"
     },
     "windows": [
       {
