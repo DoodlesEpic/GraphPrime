@@ -58,7 +58,7 @@
       }
     },
     "security": {
-      "csp": "default-src 'self'"
+      "csp": "script-src 'unsafe-inline'; style-src 'unsafe-inline' 'self'; default-src 'unsafe-inline' 'self'"
     },
     "updater": {
       "active": true,
