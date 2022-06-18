@@ -28,7 +28,7 @@
   </div>
 
   <h2>Graph</h2>
-  {#if chartData.datasets.values.length < 10000}
+  {#if primes.length < 10000}
     <Chart data={chartData} type="line" />
   {:else}
     <p>
