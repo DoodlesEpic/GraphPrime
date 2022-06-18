@@ -1,6 +1,6 @@
 [package]
 name = "app"
-version = "1.0.0"
+version = "1.0.1"
 description = "Cross-platform prime number calculator developed on Tauri and Svelte with beautiful frappe graphs and excellent performance"
 authors = ["Doodles"]
 license = "GPL-3.0-only"
@@ -18,7 +18,7 @@ tauri-build = { version = "1.0.0", features = ["isolation"] }
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.0.0", features = ["clipboard-write-text", "isolation"] }
+tauri = { version = "1.0.0", features = ["clipboard-write-text", "isolation", "updater"] }
 slow_primes = "0.1.14"
 
 [features]
