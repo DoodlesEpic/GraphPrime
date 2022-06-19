@@ -58,7 +58,7 @@
       }
     },
     "security": {
-      "csp": "script-src 'unsafe-inline'; style-src 'unsafe-inline' 'self'; default-src 'unsafe-inline' 'self'"
+      "csp": "style-src 'unsafe-hashes' 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' 'sha256-CssDN67+wdcVeOo1+UBDlTtUvWjUmBJyiyqqRJHhrTQ=' 'sha256-H5EHjOnN4Jax7FF4XSiczuqcAAo0RypDXepV8N7Nnp4=' 'sha256-qokx773Tl626SVTuhxQSccr23ixTSkbnBXWRqLjyuIg=' 'sha256-Fnkv4DFcF4uHi9vjLxEOL8RzhPC+DlsOP7FUGWJnhuE=' 'sha256-XDEQ+krDtlJEDyjWkLu794ZijWpm3K9rHT4UXnkpefY=' 'sha256-qnVkQSG7pWu17hBhIw0kCpfEB3XGvt0mNRa6+uM6OUU=' 'sha256-MJyOH6fkfzWPCLv2CfAAYjOtxkqoLBYZsmiMyy1D4sc='; default-src 'self'"
     },
     "updater": {
       "active": true,
