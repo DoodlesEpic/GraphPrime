@@ -54,7 +54,7 @@ https://tauri.studio/v1/guides/getting-started/prerequisites/
 
 ### Deployment
 
-Deployment of new versions is done by creating a new semver versioned tag and pushing it to GitHub, this will automatically trigger the [Tauri Action CI](https://github.com/tauri-apps/tauri-action) to start a new build and create a new release. It's important that the build environment contains the updater private key or else the build will fail.
+Before creating a new release update the semver versions on the package.json, cargo.toml, and _run a build_ as that will update both package manager lockfiles. Deployment of new versions is done by creating a new semver versioned tag and pushing it to GitHub, this will automatically trigger the [Tauri Action CI](https://github.com/tauri-apps/tauri-action) to start a new build and create a new release. It's important that the build environment contains the updater private key or else the build will fail.
 
 ## License
 
