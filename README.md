@@ -52,6 +52,10 @@ npm run tauri dev
 You need to have Rust and NodeJS ready to run on your system before doing this
 https://tauri.studio/v1/guides/getting-started/prerequisites/
 
+### Deployment
+
+Deployment of new versions is done by creating a new semver versioned tag and pushing it to GitHub, this will automatically trigger the [Tauri Action CI](https://github.com/tauri-apps/tauri-action) to start a new build and create a new release. It's important that the build environment contains the updater private key or else the build will fail.
+
 ## License
 
 This project is licensed under the GNU GPL v3 free software license. Read the LICENSE file for more information.
