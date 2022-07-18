@@ -11,7 +11,7 @@
   .graphTypes {
     position: absolute;
     left: 10px;
-    color: var(--body-color);
-    background: var(--card-bg);
+    /* No dark mode is applied because of webkitgtk */
+    /* See https://github.com/DoodlesEpic/GraphPrime/issues/37 */
   }
 </style>
