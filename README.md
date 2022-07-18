@@ -23,6 +23,11 @@ Download the latest build through GitHub releases here: https://github.com/Doodl
 ![Screenshot from 2022-06-19 00-02-03](https://user-images.githubusercontent.com/37254797/174464122-88aa1a35-174e-4e54-a772-ff7a0da881f6.png)
 ![Screenshot from 2022-06-19 00-02-13](https://user-images.githubusercontent.com/37254797/174464124-558b5898-be9b-476b-9921-7a98a9622df3.png)
 
+#### Dark mode
+
+![Screenshot from 2022-07-17 21-46-52](https://user-images.githubusercontent.com/37254797/179431795-d7f6c59d-cbd1-4bf3-9762-cc69c684126b.png)
+![Screenshot from 2022-07-17 21-47-53](https://user-images.githubusercontent.com/37254797/179431799-aa08eb33-7c88-4803-af0a-83c13e403929.png)
+
 ## Developers
 
 ### Get started
