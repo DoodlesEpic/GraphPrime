@@ -1,6 +1,6 @@
 [package]
 name = "app"
-version = "1.0.3"
+version = "1.0.4"
 description = "Cross-platform prime number calculator developed on Tauri and Svelte with beautiful frappe graphs and excellent performance"
 authors = ["Doodles"]
 license = "GPL-3.0-only"

@@ -1,6 +1,6 @@
 {
   "name": "graph-prime",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "scripts": {
     "start": "sirv public --no-clear",
