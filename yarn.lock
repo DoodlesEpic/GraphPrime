@@ -139,7 +139,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/free-solid-svg-icons@npm:^6.1.1":
+"@fortawesome/free-solid-svg-icons@npm:^6.3.0":
   version: 6.3.0
   resolution: "@fortawesome/free-solid-svg-icons@npm:6.3.0"
   dependencies:
@@ -311,7 +311,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:^22.0.1":
+"@rollup/plugin-commonjs@npm:^22.0.2":
   version: 22.0.2
   resolution: "@rollup/plugin-commonjs@npm:22.0.2"
   dependencies:
@@ -344,7 +344,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-typescript@npm:^8.3.3":
+"@rollup/plugin-typescript@npm:^8.5.0":
   version: 8.5.0
   resolution: "@rollup/plugin-typescript@npm:8.5.0"
   dependencies:
@@ -384,7 +384,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tauri-apps/api@npm:^1.0.2":
+"@tauri-apps/api@npm:^1.2.0":
   version: 1.2.0
   resolution: "@tauri-apps/api@npm:1.2.0"
   checksum: 15b0b805d9a30dce4e722b48330566cb95d79f92d626741f49735dfb7e7a044836a7c45a0537e03fd0acb48965c723ff31a6931289f81c9bcafa4e13c3a2aa2b
@@ -454,7 +454,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tauri-apps/cli@npm:^1.0.4":
+"@tauri-apps/cli@npm:^1.2.3":
   version: 1.2.3
   resolution: "@tauri-apps/cli@npm:1.2.3"
   dependencies:
@@ -506,7 +506,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/codemirror@npm:^5.60.5":
+"@types/codemirror@npm:^5.60.7":
   version: 5.60.7
   resolution: "@types/codemirror@npm:5.60.7"
   dependencies:
@@ -600,7 +600,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^5.30.6":
+"@typescript-eslint/eslint-plugin@npm:^5.51.0":
   version: 5.51.0
   resolution: "@typescript-eslint/eslint-plugin@npm:5.51.0"
   dependencies:
@@ -624,7 +624,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^5.30.6":
+"@typescript-eslint/parser@npm:^5.51.0":
   version: 5.51.0
   resolution: "@typescript-eslint/parser@npm:5.51.0"
   dependencies:
@@ -1178,7 +1178,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dygraphs@npm:^2.1.0":
+"dygraphs@npm:^2.2.0":
   version: 2.2.0
   resolution: "dygraphs@npm:2.2.0"
   checksum: b9c488beaf47ae2505c0428be95393b69059858e2cbade832be128de59b1a94bcc799fd26d94a8c3b9b4d4d04ca90b53df3c0fc79c5bfc1ca85e127e8cb2161f
@@ -1236,7 +1236,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-prettier@npm:^8.5.0":
+"eslint-config-prettier@npm:^8.6.0":
   version: 8.6.0
   resolution: "eslint-config-prettier@npm:8.6.0"
   peerDependencies:
@@ -1302,7 +1302,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.20.0":
+"eslint@npm:^8.34.0":
   version: 8.34.0
   resolution: "eslint@npm:8.34.0"
   dependencies:
@@ -1654,37 +1654,37 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "graph-prime@workspace:."
   dependencies:
-    "@fortawesome/free-solid-svg-icons": ^6.1.1
-    "@rollup/plugin-commonjs": ^22.0.1
+    "@fortawesome/free-solid-svg-icons": ^6.3.0
+    "@rollup/plugin-commonjs": ^22.0.2
     "@rollup/plugin-node-resolve": ^13.3.0
-    "@rollup/plugin-typescript": ^8.3.3
-    "@tauri-apps/api": ^1.0.2
-    "@tauri-apps/cli": ^1.0.4
+    "@rollup/plugin-typescript": ^8.5.0
+    "@tauri-apps/api": ^1.2.0
+    "@tauri-apps/cli": ^1.2.3
     "@tsconfig/svelte": ^3.0.0
-    "@types/codemirror": ^5.60.5
+    "@types/codemirror": ^5.60.7
     "@types/dygraphs": ^2.1.4
-    "@typescript-eslint/eslint-plugin": ^5.30.6
-    "@typescript-eslint/parser": ^5.30.6
+    "@typescript-eslint/eslint-plugin": ^5.51.0
+    "@typescript-eslint/parser": ^5.51.0
     codemirror: ^6.0.1
-    dygraphs: ^2.1.0
-    eslint: ^8.20.0
-    eslint-config-prettier: ^8.5.0
+    dygraphs: ^2.2.0
+    eslint: ^8.34.0
+    eslint-config-prettier: ^8.6.0
     eslint-plugin-svelte3: ^4.0.0
-    prettier: ^2.7.1
-    prettier-plugin-svelte: ^2.7.0
-    rollup: ^2.77.0
+    prettier: ^2.8.4
+    prettier-plugin-svelte: ^2.9.0
+    rollup: ^2.79.1
     rollup-plugin-css-only: ^3.1.0
     rollup-plugin-livereload: ^2.0.5
-    rollup-plugin-svelte: ^7.1.0
+    rollup-plugin-svelte: ^7.1.2
     rollup-plugin-terser: ^7.0.2
     sirv-cli: ^2.0.2
-    svelte: ^3.49.0
-    svelte-check: ^2.8.0
+    svelte: ^3.55.1
+    svelte-check: ^2.10.3
     svelte-fa: ^3.0.3
-    svelte-frappe-charts: ^1.9.2
+    svelte-frappe-charts: ^1.10.0
     svelte-preprocess: ^4.10.7
-    tslib: ^2.4.0
-    typescript: ^4.7.4
+    tslib: ^2.5.0
+    typescript: ^4.9.5
   languageName: unknown
   linkType: soft
 
@@ -2461,7 +2461,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier-plugin-svelte@npm:^2.7.0":
+"prettier-plugin-svelte@npm:^2.9.0":
   version: 2.9.0
   resolution: "prettier-plugin-svelte@npm:2.9.0"
   peerDependencies:
@@ -2471,7 +2471,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.7.1":
+"prettier@npm:^2.8.4":
   version: 2.8.4
   resolution: "prettier@npm:2.8.4"
   bin:
@@ -2636,7 +2636,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-svelte@npm:^7.1.0":
+"rollup-plugin-svelte@npm:^7.1.2":
   version: 7.1.2
   resolution: "rollup-plugin-svelte@npm:7.1.2"
   dependencies:
@@ -2662,7 +2662,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.77.0":
+"rollup@npm:^2.79.1":
   version: 2.79.1
   resolution: "rollup@npm:2.79.1"
   dependencies:
@@ -2965,7 +2965,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte-check@npm:^2.8.0":
+"svelte-check@npm:^2.10.3":
   version: 2.10.3
   resolution: "svelte-check@npm:2.10.3"
   dependencies:
@@ -2992,7 +2992,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte-frappe-charts@npm:^1.9.2":
+"svelte-frappe-charts@npm:^1.10.0":
   version: 1.10.0
   resolution: "svelte-frappe-charts@npm:1.10.0"
   dependencies:
@@ -3053,7 +3053,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^3.49.0, svelte@npm:^3.53.1":
+"svelte@npm:^3.53.1, svelte@npm:^3.55.1":
   version: 3.55.1
   resolution: "svelte@npm:3.55.1"
   checksum: ce66391bae68b2055a0a63ee0477e73f036247d4dd5abd5240372d5f4971a452ad29c4ef2c630ab089697429edd61756ef7b764e7597ad7e897ce9f8a9457fec
@@ -3125,7 +3125,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.4.0":
+"tslib@npm:^2.5.0":
   version: 2.5.0
   resolution: "tslib@npm:2.5.0"
   checksum: ae3ed5f9ce29932d049908ebfdf21b3a003a85653a9a140d614da6b767a93ef94f460e52c3d787f0e4f383546981713f165037dc2274df212ea9f8a4541004e1
@@ -3159,7 +3159,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:*, typescript@npm:^4.7.4":
+"typescript@npm:*, typescript@npm:^4.9.5":
   version: 4.9.5
   resolution: "typescript@npm:4.9.5"
   bin:
@@ -3169,7 +3169,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@*#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
+"typescript@patch:typescript@*#~builtin<compat/typescript>, typescript@patch:typescript@^4.9.5#~builtin<compat/typescript>":
   version: 4.9.5
   resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=23ec76"
   bin:
