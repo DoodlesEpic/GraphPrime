@@ -1,6 +1,6 @@
 # Graph Prime Calculator
 ![GPL v3 License](https://img.shields.io/github/license/DoodlesEpic/GraphPrime)
-![Build Status Badge](https://img.shields.io/github/workflow/status/DoodlesEpic/GraphPrime/Release)
+![Build Status Badge](https://img.shields.io/github/actions/workflow/status/DoodlesEpic/GraphPrime/.github/workflows/main.yml?branch=main)
 ![Supported on all desktop platforms badge](https://img.shields.io/badge/platforms-windows%2C%20macos%2C%20linux-informational)
 ![Code Size Badge](https://img.shields.io/github/languages/code-size/DoodlesEpic/GraphPrime)
 ![Lines of Code Badge](https://img.shields.io/tokei/lines/github/DoodlesEpic/GraphPrime)
