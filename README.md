@@ -40,21 +40,28 @@ https://tauri.studio/v1/guides/development/development-cycle
 To start developing, run:
 
 ```bash
-npm install
+yarn
 ```
 
 and then you can start the Tauri dev server:
 
 ```bash
-npm run tauri dev
+yarn run tauri dev
 ```
 
 You need to have Rust and NodeJS ready to run on your system before doing this
 https://tauri.studio/v1/guides/getting-started/prerequisites/
 
+The Yarn version being used is berry. If you don't have Yarn v3 in your system you can enable it with:
+
+```bash
+corepack enable
+yarn set version stable
+```
+
 ### Deployment
 
-Before creating a new release update the semver versions on the package.json, cargo.toml, tauri.conf.json, _run a build_ and _run npm install_ as that will update both package manager lockfiles. Deployment of new versions is done by creating a new semver versioned tag and pushing it to GitHub, this will automatically trigger the [Tauri Action CI](https://github.com/tauri-apps/tauri-action) to start a new build and create a new release. It's important that the build environment contains the updater private key or else the build will fail.
+Before creating a new release update the semver versions on the package.json, cargo.toml, tauri.conf.json, _run a build_ and _run yarn install_ as that will update both package manager lockfiles. Deployment of new versions is done by creating a new semver versioned tag and pushing it to GitHub, this will automatically trigger the [Tauri Action CI](https://github.com/tauri-apps/tauri-action) to start a new build and create a new release. It's important that the build environment contains the updater private key or else the build will fail.
 
 After the release has been published with the appropiate change notes, build artifacts and update signatures the final step is to update the [GitHub Gist with the current version information](https://gist.githubusercontent.com/DoodlesEpic/e19632f3fe451cd9a14f9322880d8ebf/raw/6ac23f0bbc0b6f798897a9fec8ae86237577c8c8/GraphPrimeUpdater.json) at https://gist.github.com/DoodlesEpic/e19632f3fe451cd9a14f9322880d8ebf as that is where the updater looks at to see what is the latest version of the software.
 
