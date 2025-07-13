@@ -52,11 +52,10 @@ yarn run tauri dev
 You need to have Rust and NodeJS ready to run on your system before doing this
 https://tauri.studio/v1/guides/getting-started/prerequisites/
 
-The Yarn version being used is berry. If you don't have Yarn v3 in your system you can enable it with:
+The Yarn version being used is berry. If you don't have Yarn in your system, you can enable it with:
 
 ```bash
 corepack enable
-yarn set version stable
 ```
 
 ### Deployment

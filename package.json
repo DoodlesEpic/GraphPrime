@@ -47,5 +47,6 @@
     "sirv-cli": "^2.0.2",
     "svelte-fa": "^3.0.3",
     "svelte-frappe-charts": "^1.10.0"
-  }
+  },
+  "packageManager": "yarn@4.9.2"
 }
