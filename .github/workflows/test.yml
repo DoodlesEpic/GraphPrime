@@ -23,6 +23,9 @@ jobs:
         with:
           node-version: 22
 
+      - name: Enable corepack
+        run: corepack enable
+
       - name: Rust setup
         uses: actions-rs/toolchain@v1
         with:
