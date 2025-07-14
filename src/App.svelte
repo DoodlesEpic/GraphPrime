@@ -63,7 +63,7 @@
 
 <main>
   <div class="card">
-    <h1 class="title">Welcome to {name}!</h1>
+    <h1 class="title">{name}</h1>
     <p>
       Use this application to generate prime sequences and graph them all within
       the comfort of your desktop.
@@ -136,7 +136,7 @@
   .title {
     color: #ff3e00;
     font-size: 3em;
-    font-weight: 300;
+    font-weight: 400;
   }
 
   .input-group {
