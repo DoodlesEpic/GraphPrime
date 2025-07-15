@@ -27,7 +27,7 @@
   }
 </script>
 
-<div bind:this={element} class={classes} />
+<div bind:this={element} class={classes}></div>
 
 <style>
   .chart {

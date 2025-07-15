@@ -2,7 +2,7 @@
   import { slide } from "svelte/transition";
 </script>
 
-<div class="bar" in:slide out:slide />
+<div class="bar" in:slide out:slide></div>
 
 <style>
   @keyframes moving-gradient {
