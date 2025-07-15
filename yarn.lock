@@ -430,10 +430,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polka/url@npm:^1.0.0-next.20":
-  version: 1.0.0-next.21
-  resolution: "@polka/url@npm:1.0.0-next.21"
-  checksum: 10/c7654046d38984257dd639eab3dc770d1b0340916097b2fac03ce5d23506ada684e05574a69b255c32ea6a144a957c8cd84264159b545fca031c772289d88788
+"@polka/url@npm:^1.0.0-next.24":
+  version: 1.0.0-next.29
+  resolution: "@polka/url@npm:1.0.0-next.29"
+  checksum: 10/69ca11ab15a4ffec7f0b07fcc4e1f01489b3d9683a7e1867758818386575c60c213401259ba3705b8a812228d17e2bfd18e6f021194d943fff4bca389c9d4f28
   languageName: node
   linkType: hard
 
@@ -1886,10 +1886,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-port@npm:^3.2.0":
-  version: 3.2.0
-  resolution: "get-port@npm:3.2.0"
-  checksum: 10/577b6ae47dcac1cb64f9bad28c9aa9e4cd8e8f2166c4224485dcdd1dede64154517a57a0eb55bfb557ad3d48f9a1b400415ed047f04002e936f96ddb247f645d
+"get-port@npm:^5.1.1":
+  version: 5.1.1
+  resolution: "get-port@npm:5.1.1"
+  checksum: 10/0162663ffe5c09e748cd79d97b74cd70e5a5c84b760a475ce5767b357fb2a57cb821cee412d646aa8a156ed39b78aab88974eddaa9e5ee926173c036c0713787
   languageName: node
   linkType: hard
 
@@ -1986,13 +1986,13 @@ __metadata:
     rollup-plugin-livereload: "npm:^2.0.5"
     rollup-plugin-svelte: "npm:^7.2.2"
     rollup-plugin-terser: "npm:^7.0.2"
-    sirv-cli: "npm:^2.0.2"
+    sirv-cli: "npm:^3.0.1"
     svelte: "npm:^5.36.1"
-    svelte-check: "npm:^4.0.0"
+    svelte-check: "npm:^4.2.2"
     svelte-eslint-parser: "npm:^1.2.0"
-    svelte-fa: "npm:^3.0.4"
+    svelte-fa: "npm:^4.0.4"
     svelte-frappe-charts: "npm:^1.10.0"
-    svelte-preprocess: "npm:^6.0.0"
+    svelte-preprocess: "npm:^6.0.3"
     tslib: "npm:^2.8.1"
     typescript: "npm:^5.8.3"
     typescript-eslint: "npm:^8.37.0"
@@ -2563,10 +2563,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mrmime@npm:^1.0.0":
-  version: 1.0.1
-  resolution: "mrmime@npm:1.0.1"
-  checksum: 10/a157e833ffe76648ab2107319deeff024b80b136ec66c60fae9d339009a1bb72c57ec1feecfd6a905dfd3df29e2299e850bff84b69cad790cc9bd9ab075834d1
+"mrmime@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "mrmime@npm:2.0.1"
+  checksum: 10/1f966e2c05b7264209c4149ae50e8e830908eb64dd903535196f6ad72681fa109b794007288a3c2814f7a1ecf9ca192769909c0c374d974d604a8de5fc095d4a
   languageName: node
   linkType: hard
 
@@ -3212,32 +3212,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sirv-cli@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "sirv-cli@npm:2.0.2"
+"sirv-cli@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "sirv-cli@npm:3.0.1"
   dependencies:
     console-clear: "npm:^1.1.0"
-    get-port: "npm:^3.2.0"
+    get-port: "npm:^5.1.1"
     kleur: "npm:^4.1.4"
     local-access: "npm:^1.0.1"
     sade: "npm:^1.6.0"
     semiver: "npm:^1.0.0"
-    sirv: "npm:^2.0.0"
+    sirv: "npm:^3.0.0"
     tinydate: "npm:^1.0.0"
   bin:
     sirv: bin.js
-  checksum: 10/373eb314a8cc92ce848b44110d6bb73a8acaf596ee2d49b6a710d5ae7240fe5a46a4539943bd85b4fd9c7d52b5c7c28808d90aa213a7b91365de6853a32ab4db
+  checksum: 10/dcba2030fc38d67331393c594cb9394f782c732469a287f23adddeedaceba0fd6b40cea852b53218a1b8ec578cadb6f85c48d61a891e35896f8e72d75d346572
   languageName: node
   linkType: hard
 
-"sirv@npm:^2.0.0":
-  version: 2.0.2
-  resolution: "sirv@npm:2.0.2"
+"sirv@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "sirv@npm:3.0.1"
   dependencies:
-    "@polka/url": "npm:^1.0.0-next.20"
-    mrmime: "npm:^1.0.0"
+    "@polka/url": "npm:^1.0.0-next.24"
+    mrmime: "npm:^2.0.0"
     totalist: "npm:^3.0.0"
-  checksum: 10/953ceb5e1ff91507e8cf09915781099b4bc45e85693ba2f48b4023a5898937cea606e6806eaa2970474b326b59feccfa12ebe95e9f979eab6da83b289ea852eb
+  checksum: 10/b110ebe28eb1740772fbbfacb6c71c58d1ec8ec17a5ae2852a5418c3ef41d52d473663613de808f8a6337ec29dd446414d0d059e75bfd13fb9630d18651c99f2
   languageName: node
   linkType: hard
 
@@ -3370,7 +3370,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte-check@npm:^4.0.0":
+"svelte-check@npm:^4.2.2":
   version: 4.2.2
   resolution: "svelte-check@npm:4.2.2"
   dependencies:
@@ -3407,10 +3407,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte-fa@npm:^3.0.4":
-  version: 3.0.4
-  resolution: "svelte-fa@npm:3.0.4"
-  checksum: 10/e9972d5bd57eb4c01bcf9c25c4e08de2ff0218a3730428a88e7e3b38101037f8df8681a6fbde4f65509ccb3dd91f35a0c54b047a18d986c60b22228e8d6baef9
+"svelte-fa@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "svelte-fa@npm:4.0.4"
+  peerDependencies:
+    svelte: ^4.0.0 || ^5.0.0
+  checksum: 10/239d38e5ace85fd652752bc28f5471af9f5d32496e2c6940266a9880b8e1e1e1c73a229e40305ce3a0b1d555fe5b5b6a54c2213688162980ed97da2475b88fe7
   languageName: node
   linkType: hard
 
@@ -3426,7 +3428,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte-preprocess@npm:^6.0.0":
+"svelte-preprocess@npm:^6.0.3":
   version: 6.0.3
   resolution: "svelte-preprocess@npm:6.0.3"
   peerDependencies:
