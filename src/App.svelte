@@ -53,10 +53,11 @@
     const calculationStart = Date.now();
 
     // Calculate primes upto finalValue
-    primes = await invoke("calculate", { x: finalValue ?? 1 }).catch((err) => {
+    try {
+      primes = await invoke("calculate", { x: chosenFinalValue });
+    } catch (err) {
       console.error(err);
-      return primes;
-    });
+    }
 
     // Update stats
     calculationTime = (Date.now() - calculationStart) / 1000;
