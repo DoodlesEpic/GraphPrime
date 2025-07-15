@@ -12,6 +12,7 @@
 
   // Primes will be calculated upto this number
   let finalValue: number;
+  let lastFinalValue = 100;
 
   // Hardcoded data upto 100 for initializing the chart
   let primes: number[] = [
@@ -61,6 +62,7 @@
 
     // Update stats
     calculationTime = (Date.now() - calculationStart) / 1000;
+    lastFinalValue = chosenFinalValue;
     compositeNumbers = chosenFinalValue - primes.length - 1; // -1 because 2 doesn't count as a composite number
     calculating = false;
   }
@@ -98,7 +100,7 @@
   {/if}
 
   {#if primes}
-    <Stats {primes} {calculationTime} {compositeNumbers} />
+    <Stats {primes} {calculationTime} {compositeNumbers} {lastFinalValue} />
 
     <Primes {editorFullscreen} {primes} />
 
