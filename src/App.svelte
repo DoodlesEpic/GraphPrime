@@ -37,6 +37,7 @@
 
     // Show the new value with the thousand separator applied
     event.target.value = newValue.toLocaleString().replace(/NaN/g, "");
+    console.log(finalValue);
   }
 
   async function calculate() {
@@ -52,7 +53,10 @@
     const calculationStart = Date.now();
 
     // Calculate primes upto finalValue
-    primes = await invoke("calculate", { x: finalValue ?? 1 });
+    primes = await invoke("calculate", { x: finalValue ?? 1 }).catch((err) => {
+      console.error(err);
+      return primes;
+    });
 
     // Update stats
     calculationTime = (Date.now() - calculationStart) / 1000;
@@ -78,7 +82,13 @@
         max="100000"
         placeholder="100"
       />
-      <button on:click={calculate} class="button">Calculate</button>
+      <button
+        on:click={calculate}
+        disabled={finalValue < 1 ||
+          finalValue === undefined ||
+          Number.isNaN(finalValue)}
+        class="button">Calculate</button
+      >
     </div>
   </div>
 
@@ -168,5 +178,10 @@
     font-weight: 500;
     background-color: #00a8ff;
     color: white;
+  }
+
+  .button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 </style>
