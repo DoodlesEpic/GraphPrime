@@ -3,70 +3,65 @@
   "build": {
     "beforeBuildCommand": "npm run build",
     "beforeDevCommand": "npm run dev",
-    "devPath": "http://localhost:8080",
-    "distDir": "../public"
+    "frontendDist": "../public",
+    "devUrl": "http://localhost:8080"
   },
-  "package": {
-    "productName": "Graph Prime",
-    "version": "1.0.5"
-  },
-  "tauri": {
-    "pattern": {
-      "use": "isolation",
-      "options": {
-        "dir": "../dist-isolation"
-      }
+  "bundle": {
+    "active": true,
+    "category": "Education",
+    "copyright": "DoodlesEpic",
+    "targets": "all",
+    "externalBin": [],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "certificateThumbprint": null,
+      "digestAlgorithm": "sha256",
+      "timestampUrl": ""
     },
-    "allowlist": {
-      "clipboard": {
-        "all": false,
-        "readText": false,
-        "writeText": true
-      }
+    "longDescription": "Cross-platform prime number calculator developed on Tauri and Svelte with beautiful frappe graphs and excellent performance",
+    "macOS": {
+      "entitlements": null,
+      "exceptionDomain": "",
+      "frameworks": [],
+      "providerShortName": null,
+      "signingIdentity": null
     },
-    "bundle": {
-      "active": true,
-      "category": "Education",
-      "copyright": "DoodlesEpic",
+    "resources": [],
+    "shortDescription": "Prime number calculator",
+    "linux": {
       "deb": {
         "depends": []
-      },
-      "externalBin": [],
-      "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
-      ],
-      "identifier": "dev.doodles.graphprime",
-      "longDescription": "Cross-platform prime number calculator developed on Tauri and Svelte with beautiful frappe graphs and excellent performance",
-      "macOS": {
-        "entitlements": null,
-        "exceptionDomain": "",
-        "frameworks": [],
-        "providerShortName": null,
-        "signingIdentity": null
-      },
-      "resources": [],
-      "shortDescription": "Prime number calculator",
-      "targets": "all",
-      "windows": {
-        "certificateThumbprint": null,
-        "digestAlgorithm": "sha256",
-        "timestampUrl": ""
       }
     },
-    "security": {
-      "csp": "style-src 'unsafe-hashes' 'sha256-r4tPNLIM1P5VaP9NaLXOSOoDZTWdPE/R1/wzo/Xaikg=' 'sha256-efr6/UwN3uqLIhg4b0aHJsHg+eGgltZPxjlRL9UW75M=' 'sha256-fxMPQG9fFDcbTjMDGo8LSUg9rn7WDerzzLlE0Zs/sD4=' 'sha256-USltDXuLwU4I1FB0NXBciIS05UO/SZInr9bkliVSvg0=' 'sha256-4ryRlcCq3zCGOsyaZX2joXlJHlcbSQi3IN/gl+d3dfE=' 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' 'sha256-CssDN67+wdcVeOo1+UBDlTtUvWjUmBJyiyqqRJHhrTQ=' 'sha256-H5EHjOnN4Jax7FF4XSiczuqcAAo0RypDXepV8N7Nnp4=' 'sha256-qokx773Tl626SVTuhxQSccr23ixTSkbnBXWRqLjyuIg=' 'sha256-Fnkv4DFcF4uHi9vjLxEOL8RzhPC+DlsOP7FUGWJnhuE=' 'sha256-XDEQ+krDtlJEDyjWkLu794ZijWpm3K9rHT4UXnkpefY=' 'sha256-qnVkQSG7pWu17hBhIw0kCpfEB3XGvt0mNRa6+uM6OUU=' 'sha256-MJyOH6fkfzWPCLv2CfAAYjOtxkqoLBYZsmiMyy1D4sc=' 'sha256-LrSfC3xVNqGfeyE5IfU2Ft0qjrCqXsIPfSalxhmjfJg='; default-src 'self'"
-    },
+    "createUpdaterArtifacts": "v1Compatible"
+  },
+  "productName": "Graph Prime",
+  "mainBinaryName": "Graph Prime",
+  "version": "1.0.5",
+  "identifier": "dev.doodles.graphprime",
+  "plugins": {
     "updater": {
-      "active": false,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEQ1NEM1NTZFN0E3OEQ1Q0UKUldUTzFYaDZibFZNMVEreHNHc3FQWnpveENYbEQ3bHJnTGJzcHczRzNHZi9kMlBMZUYyYVZESFoK%",
       "endpoints": [
         "https://gist.githubusercontent.com/DoodlesEpic/e19632f3fe451cd9a14f9322880d8ebf/raw/"
-      ],
-      "dialog": true,
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEQ1NEM1NTZFN0E3OEQ1Q0UKUldUTzFYaDZibFZNMVEreHNHc3FQWnpveENYbEQ3bHJnTGJzcHczRzNHZi9kMlBMZUYyYVZESFoK%"
+      ]
+    }
+  },
+  "app": {
+    "security": {
+      "csp": "style-src 'unsafe-hashes' 'sha256-r4tPNLIM1P5VaP9NaLXOSOoDZTWdPE/R1/wzo/Xaikg=' 'sha256-efr6/UwN3uqLIhg4b0aHJsHg+eGgltZPxjlRL9UW75M=' 'sha256-fxMPQG9fFDcbTjMDGo8LSUg9rn7WDerzzLlE0Zs/sD4=' 'sha256-USltDXuLwU4I1FB0NXBciIS05UO/SZInr9bkliVSvg0=' 'sha256-4ryRlcCq3zCGOsyaZX2joXlJHlcbSQi3IN/gl+d3dfE=' 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' 'sha256-CssDN67+wdcVeOo1+UBDlTtUvWjUmBJyiyqqRJHhrTQ=' 'sha256-H5EHjOnN4Jax7FF4XSiczuqcAAo0RypDXepV8N7Nnp4=' 'sha256-qokx773Tl626SVTuhxQSccr23ixTSkbnBXWRqLjyuIg=' 'sha256-Fnkv4DFcF4uHi9vjLxEOL8RzhPC+DlsOP7FUGWJnhuE=' 'sha256-XDEQ+krDtlJEDyjWkLu794ZijWpm3K9rHT4UXnkpefY=' 'sha256-qnVkQSG7pWu17hBhIw0kCpfEB3XGvt0mNRa6+uM6OUU=' 'sha256-MJyOH6fkfzWPCLv2CfAAYjOtxkqoLBYZsmiMyy1D4sc=' 'sha256-LrSfC3xVNqGfeyE5IfU2Ft0qjrCqXsIPfSalxhmjfJg='; default-src 'self'; connect-src ipc: http://ipc.localhost",
+      "pattern": {
+        "use": "isolation",
+        "options": {
+          "dir": "../dist-isolation"
+        }
+      }
     },
     "windows": [
       {
@@ -74,7 +69,8 @@
         "height": 600,
         "resizable": true,
         "title": "Graph Prime Calculator",
-        "width": 800
+        "width": 800,
+        "useHttpsScheme": true
       }
     ]
   }

@@ -18,8 +18,8 @@
     "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-typescript": "^12.1.4",
-    "@tauri-apps/api": "^1.6.0",
-    "@tauri-apps/cli": "^1.6.3",
+    "@tauri-apps/api": "^2.6.0",
+    "@tauri-apps/cli": "^2.6.2",
     "@tsconfig/svelte": "^5.0.4",
     "@types/codemirror": "^5.60.16",
     "@types/dygraphs": "^2.1.10",
@@ -51,5 +51,9 @@
   "engines": {
     "node": ">=22"
   },
-  "packageManager": "yarn@4.9.2"
+  "packageManager": "yarn@4.9.2",
+  "dependencies": {
+    "@tauri-apps/plugin-clipboard-manager": "~2",
+    "@tauri-apps/plugin-updater": "~2"
+  }
 }
