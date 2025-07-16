@@ -1,17 +1,17 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
   import Dygraph from "dygraphs";
 
   let classes = "";
 
-  export let graph = null;
+  export let graph: Dygraph | null = null;
   export let options = {
     data: "",
     fullscreen: false,
   };
   export { classes as class };
 
-  let element;
+  let element: HTMLElement;
 
   onMount(() => {
     createGraph();
@@ -27,7 +27,7 @@
   }
 </script>
 
-<div bind:this={element} class={classes} />
+<div bind:this={element} class={classes}></div>
 
 <style>
   .chart {
