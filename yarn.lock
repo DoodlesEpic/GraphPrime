@@ -1987,7 +1987,7 @@ __metadata:
     rollup-plugin-svelte: "npm:^7.2.2"
     rollup-plugin-terser: "npm:^7.0.2"
     sirv-cli: "npm:^3.0.1"
-    svelte: "npm:^5.36.1"
+    svelte: "npm:^5.36.2"
     svelte-check: "npm:^4.2.2"
     svelte-eslint-parser: "npm:^1.2.0"
     svelte-fa: "npm:^4.0.4"
@@ -3475,9 +3475,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.36.1":
-  version: 5.36.1
-  resolution: "svelte@npm:5.36.1"
+"svelte@npm:^5.36.2":
+  version: 5.36.3
+  resolution: "svelte@npm:5.36.3"
   dependencies:
     "@ampproject/remapping": "npm:^2.3.0"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -3493,7 +3493,7 @@ __metadata:
     locate-character: "npm:^3.0.0"
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
-  checksum: 10/8cb0fb497598c055a685c70c26bbca9c051a17b18409395dd0d9f8c91f36c89f2b9ec997ad2749b6b2973a6ab2a75658b53ab49e7841fa3cf54083de9a3b07c3
+  checksum: 10/124c158766e1f8921c44db69844ef3663bdd9965d5776bfc1703a887db9f8e2cecc3dde5f3ce2b73d6f400595788995eec4942e0b4626008db69b6bfbb8dcdb9
   languageName: node
   linkType: hard
 
