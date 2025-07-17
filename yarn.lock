@@ -813,7 +813,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tauri-apps/plugin-clipboard-manager@npm:~2":
+"@tauri-apps/plugin-clipboard-manager@npm:~2.3.0":
   version: 2.3.0
   resolution: "@tauri-apps/plugin-clipboard-manager@npm:2.3.0"
   dependencies:
@@ -822,7 +822,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tauri-apps/plugin-updater@npm:~2":
+"@tauri-apps/plugin-updater@npm:~2.9.0":
   version: 2.9.0
   resolution: "@tauri-apps/plugin-updater@npm:2.9.0"
   dependencies:
@@ -1584,9 +1584,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-svelte@npm:^3.10.1":
-  version: 3.10.1
-  resolution: "eslint-plugin-svelte@npm:3.10.1"
+"eslint-plugin-svelte@npm:^3.11.0":
+  version: 3.11.0
+  resolution: "eslint-plugin-svelte@npm:3.11.0"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.6.1"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -1597,14 +1597,14 @@ __metadata:
     postcss-load-config: "npm:^3.1.4"
     postcss-safe-parser: "npm:^7.0.0"
     semver: "npm:^7.6.3"
-    svelte-eslint-parser: "npm:^1.2.0"
+    svelte-eslint-parser: "npm:^1.3.0"
   peerDependencies:
     eslint: ^8.57.1 || ^9.0.0
     svelte: ^3.37.0 || ^4.0.0 || ^5.0.0
   peerDependenciesMeta:
     svelte:
       optional: true
-  checksum: 10/b20831bf6ad9eb3746df593b55554062d767a3408b96ce0d4feff1bc97a92ddc91483539bb55cf0aacd7c761ec123bfee3710d312f634346a5fee2ee7a164369
+  checksum: 10/0e41412c0e49b1e5aed4f4527a2219722083cf83e239d60f577a3fa131811d294b8997789c4f598e10711dd7d83729469d3f778c77c491ff005b4e06fcb46036
   languageName: node
   linkType: hard
 
@@ -1996,8 +1996,8 @@ __metadata:
     "@rollup/plugin-typescript": "npm:^12.1.4"
     "@tauri-apps/api": "npm:^2.6.0"
     "@tauri-apps/cli": "npm:^2.6.2"
-    "@tauri-apps/plugin-clipboard-manager": "npm:~2"
-    "@tauri-apps/plugin-updater": "npm:~2"
+    "@tauri-apps/plugin-clipboard-manager": "npm:~2.3.0"
+    "@tauri-apps/plugin-updater": "npm:~2.9.0"
     "@tsconfig/svelte": "npm:^5.0.4"
     "@types/codemirror": "npm:^5.60.16"
     "@types/dygraphs": "npm:^2.1.10"
@@ -2007,7 +2007,7 @@ __metadata:
     dygraphs: "npm:^2.2.1"
     eslint: "npm:^9.31.0"
     eslint-config-prettier: "npm:^10.1.5"
-    eslint-plugin-svelte: "npm:^3.10.1"
+    eslint-plugin-svelte: "npm:^3.11.0"
     prettier: "npm:^3.6.2"
     prettier-plugin-svelte: "npm:^3.4.0"
     rollup: "npm:^4.45.1"
@@ -2016,9 +2016,9 @@ __metadata:
     rollup-plugin-svelte: "npm:^7.2.2"
     rollup-plugin-terser: "npm:^7.0.2"
     sirv-cli: "npm:^3.0.1"
-    svelte: "npm:^5.36.1"
+    svelte: "npm:^5.36.6"
     svelte-check: "npm:^4.2.2"
-    svelte-eslint-parser: "npm:^1.2.0"
+    svelte-eslint-parser: "npm:^1.3.0"
     svelte-fa: "npm:^4.0.4"
     svelte-frappe-charts: "npm:^1.10.0"
     svelte-preprocess: "npm:^6.0.3"
@@ -3417,9 +3417,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte-eslint-parser@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "svelte-eslint-parser@npm:1.2.0"
+"svelte-eslint-parser@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "svelte-eslint-parser@npm:1.3.0"
   dependencies:
     eslint-scope: "npm:^8.2.0"
     eslint-visitor-keys: "npm:^4.0.0"
@@ -3432,7 +3432,7 @@ __metadata:
   peerDependenciesMeta:
     svelte:
       optional: true
-  checksum: 10/75e41fad95990ade80f54b9ac4646b0a3e95299ec13b59dad45756a839a7974ba3e8669994af15e4046161b421378d53c30ed4c0d1551c1f877db4ca42fea7a5
+  checksum: 10/fe036c0ab868a8085de9c67f9f34212bc8047c74a309032d97f2317a1b4cff9a7833f29d1578b34e6740a0dacbeff3455649d1bbeadc2b9dda5ae874ddff3d5e
   languageName: node
   linkType: hard
 
@@ -3504,9 +3504,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.36.1":
-  version: 5.36.1
-  resolution: "svelte@npm:5.36.1"
+"svelte@npm:^5.36.6":
+  version: 5.36.6
+  resolution: "svelte@npm:5.36.6"
   dependencies:
     "@ampproject/remapping": "npm:^2.3.0"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -3522,7 +3522,7 @@ __metadata:
     locate-character: "npm:^3.0.0"
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
-  checksum: 10/8cb0fb497598c055a685c70c26bbca9c051a17b18409395dd0d9f8c91f36c89f2b9ec997ad2749b6b2973a6ab2a75658b53ab49e7841fa3cf54083de9a3b07c3
+  checksum: 10/9f54d9c31a67f6efbcb6e52e45121daa5d9e8b2f0cbfd0c7c3100a1fb237f09faa6d0bc9110e22af78860ff8cdc5d5dad7264c79620216556302dba2653fa23a
   languageName: node
   linkType: hard
 
