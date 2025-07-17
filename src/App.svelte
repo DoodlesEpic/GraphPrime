@@ -28,7 +28,7 @@
   let chartFullscreen = false;
   let editorFullscreen = false;
 
-  function handleInput(event: any) {
+  function handleInput(event: Event & { target: HTMLInputElement }) {
     // The new value, but remove all characters and keep only the digits
     const newValue = parseInt(event.target.value.replace(/\D/g, ""));
 
