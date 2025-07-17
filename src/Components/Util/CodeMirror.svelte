@@ -18,7 +18,7 @@
 
   $: maximumHeightEditor = EditorView.theme({
     "&": { maxHeight: editorFullscreen ? "calc(100vh - 150px)" : "300px" },
-    ".cm-scroller": { overflow: "auto" },
+    ".cm-scroller": { overflow: "auto" }
   });
 
   // This is a hack to get the editor to resize itself when fullscreen
@@ -32,7 +32,7 @@
     if (view) element.innerHTML = "";
     view = new EditorView({
       parent: element,
-      extensions: [minimalSetup, maximumHeightEditor, EditorView.lineWrapping],
+      extensions: [minimalSetup, maximumHeightEditor, EditorView.lineWrapping]
     });
   }
 
@@ -43,8 +43,8 @@
           changes: {
             from: 0,
             to: view.state.doc.length,
-            insert: primes.join(", "),
-          },
+            insert: primes.join(", ")
+          }
         })
       );
     }

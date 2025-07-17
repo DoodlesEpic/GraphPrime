@@ -19,13 +19,7 @@
     padding: 1em;
     border-radius: 5px;
 
-    background: -webkit-linear-gradient(
-        left,
-        #00a5e6 30%,
-        #a2e8f3 60%,
-        #00a5e6 100%
-      )
-      repeat;
+    background: -webkit-linear-gradient(left, #00a5e6 30%, #a2e8f3 60%, #00a5e6 100%) repeat;
 
     animation-duration: 2s;
     background-size: 50% 100%;

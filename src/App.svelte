@@ -1,6 +1,6 @@
 <script lang="ts">
   // Svelte and Tauri
-  import { invoke } from "@tauri-apps/api/tauri";
+  import { invoke } from "@tauri-apps/api/core";
 
   // Components
   import ProgressBar from "./Components/Cards/ProgressBar.svelte";
@@ -16,8 +16,7 @@
 
   // Hardcoded data upto 100 for initializing the chart
   let primes: number[] = [
-    2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
-    73, 79, 83, 89, 97,
+    2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97
   ];
 
   let calculating = false;
@@ -29,7 +28,7 @@
   let chartFullscreen = false;
   let editorFullscreen = false;
 
-  function handleInput(event: any) {
+  function handleInput(event: Event & { target: HTMLInputElement }) {
     // The new value, but remove all characters and keep only the digits
     const newValue = parseInt(event.target.value.replace(/\D/g, ""));
 
@@ -72,8 +71,8 @@
   <div class="card">
     <h1 class="title">{name}</h1>
     <p>
-      Use this application to generate prime sequences and graph them all within
-      the comfort of your desktop.
+      Use this application to generate prime sequences and graph them all within the comfort of your
+      desktop.
     </p>
 
     <div class="input-group">
@@ -87,9 +86,7 @@
       />
       <button
         on:click={calculate}
-        disabled={finalValue < 1 ||
-          finalValue === undefined ||
-          Number.isNaN(finalValue)}
+        disabled={finalValue < 1 || finalValue === undefined || Number.isNaN(finalValue)}
         class="button">Calculate</button
       >
     </div>

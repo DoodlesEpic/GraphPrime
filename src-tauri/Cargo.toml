@@ -13,13 +13,14 @@ rust-version = "1.61"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
-tauri-build = { version = "1.5.6", features = ["isolation"] }
+tauri-build = { version = "2", features = ["isolation"] }
 
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.8.3", features = ["clipboard-write-text", "isolation"] }
+tauri = { version = "2", features = [ "isolation"] }
 slow_primes = "0.1.14"
+tauri-plugin-clipboard-manager = "2"
 
 [features]
 # by default Tauri runs in production mode
@@ -34,3 +35,6 @@ panic = "abort" # Strip expensive panic clean-up logic
 codegen-units = 1 # Compile crates one after another so the compiler can optimize better
 lto = true # Enables link to optimizations
 opt-level = "s" # Optimize for binary size
+
+[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
+tauri-plugin-updater = "2"
