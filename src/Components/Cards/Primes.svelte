@@ -10,9 +10,7 @@
 
 <div id="primes" class={"card"} class:fullscreen={editorFullscreen}>
   <div class="copyfullButtons">
-    <button on:click={() => writeText(primes.join(", "))}
-      ><Fa icon={faClipboard} fw /></button
-    >
+    <button on:click={() => writeText(primes.join(", "))}><Fa icon={faClipboard} fw /></button>
     <button on:click={() => (editorFullscreen = !editorFullscreen)}
       ><Fa icon={faExpand} fw /></button
     >

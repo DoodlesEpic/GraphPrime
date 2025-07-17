@@ -9,26 +9,18 @@
   export let chartFullscreen: boolean;
 
   // Chart data in csv format, recalculated on every change of primes
-  $: csvChartData = ["X,Y\n"]
-    .concat(primes.map((prime, i) => `${i},${prime}\n`))
-    .join("");
+  $: csvChartData = ["X,Y\n"].concat(primes.map((prime, i) => `${i},${prime}\n`)).join("");
 
   $: options = {
     data: csvChartData,
-    fullscreen: chartFullscreen,
+    fullscreen: chartFullscreen
   };
 </script>
 
-<div
-  class="card"
-  class:fullscreen={chartFullscreen}
-  style="height: var(--graphHeight)"
->
+<div class="card" class:fullscreen={chartFullscreen} style="height: var(--graphHeight)">
   <GraphTypes bind:chartType />
   <div class="copyfullButtons">
-    <button on:click={() => (chartFullscreen = !chartFullscreen)}
-      ><Fa icon={faExpand} fw /></button
-    >
+    <button on:click={() => (chartFullscreen = !chartFullscreen)}><Fa icon={faExpand} fw /></button>
   </div>
 
   <h2>Graph</h2>

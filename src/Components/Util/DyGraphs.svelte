@@ -7,7 +7,7 @@
   export let graph: Dygraph | null = null;
   export let options = {
     data: "",
-    fullscreen: false,
+    fullscreen: false
   };
   export { classes as class };
 
