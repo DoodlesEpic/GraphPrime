@@ -22,7 +22,7 @@
   }
 
   function createGraph() {
-    if (graph) element.innerHTML = "";
+    if (graph) graph.destroy();
     graph = new Dygraph(element, options.data, {});
   }
 </script>
