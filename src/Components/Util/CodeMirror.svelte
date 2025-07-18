@@ -29,7 +29,7 @@
   }
 
   function createEditor() {
-    if (view) element.innerHTML = "";
+    if (view) view.destroy();
     view = new EditorView({
       parent: element,
       extensions: [minimalSetup, maximumHeightEditor, EditorView.lineWrapping]
