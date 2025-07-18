@@ -4,8 +4,8 @@ import { mount } from "svelte";
 const app = mount(App, {
   target: document.body,
   props: {
-    name: "Graph Prime Calculator",
-  },
+    name: "Graph Prime Calculator"
+  }
 });
 
 export default app;
