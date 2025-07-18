@@ -11,6 +11,7 @@
   // Chart data in csv format, recalculated on every change of primes
   $: csvChartData = ["X,Y\n"].concat(primes.map((prime, i) => `${i},${prime}\n`)).join("");
 
+  // Create the options object reactively
   $: options = {
     data: csvChartData,
     fullscreen: chartFullscreen
@@ -24,5 +25,5 @@
   </div>
 
   <h2>Graph</h2>
-  <DyGraphs bind:options class="chart" />
+  <DyGraphs {options} class="chart" />
 </div>
