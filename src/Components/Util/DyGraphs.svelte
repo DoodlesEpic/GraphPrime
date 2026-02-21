@@ -1,25 +1,28 @@
+<svelte:options runes={true} />
+
 <script lang="ts">
-  import { onMount } from "svelte";
   import Dygraph from "dygraphs";
 
-  let classes = "";
+  let {
+    options = {
+      data: "",
+      fullscreen: false
+    },
+    class: classes = ""
+  }: {
+    options: { data: string; fullscreen: boolean };
+    class?: string;
+  } = $props();
 
-  export let graph: Dygraph | null = null;
-  export let options = {
-    data: "",
-    fullscreen: false
-  };
-  export { classes as class };
-
+  let graph: Dygraph | null = null;
   let element: HTMLElement;
 
-  onMount(() => {
-    createGraph();
+  $effect(() => {
+    void options;
+    if (element) {
+      createGraph();
+    }
   });
-
-  $: if (element && options) {
-    createGraph();
-  }
 
   function createGraph() {
     if (graph) graph.destroy();

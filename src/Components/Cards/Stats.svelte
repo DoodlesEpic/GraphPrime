@@ -1,8 +1,17 @@
+<svelte:options runes={true} />
+
 <script lang="ts">
-  export let primes: number[];
-  export let calculationTime: number;
-  export let compositeNumbers: number;
-  export let lastFinalValue: number;
+  let {
+    primes,
+    calculationTime,
+    compositeNumbers,
+    lastFinalValue
+  }: {
+    primes: number[];
+    calculationTime: number;
+    compositeNumbers: number;
+    lastFinalValue: number;
+  } = $props();
 </script>
 
 <div class="card">
