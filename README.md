@@ -65,6 +65,10 @@ Before creating a new release update the semver versions on the package.json, ca
 
 After the release has been published with the appropiate change notes, build artifacts and update signatures the final step is to update the [GitHub Gist with the current version information](https://gist.githubusercontent.com/DoodlesEpic/e19632f3fe451cd9a14f9322880d8ebf/raw/6ac23f0bbc0b6f798897a9fec8ae86237577c8c8/GraphPrimeUpdater.json) at https://gist.github.com/DoodlesEpic/e19632f3fe451cd9a14f9322880d8ebf as that is where the updater looks at to see what is the latest version of the software.
 
+### Dependency review policy
+
+Pull requests are protected by the `Dependency Review` GitHub Action workflow, and this check should remain enabled and required for protected branches. If dependency review fails due to a vulnerable transitive dependency, first update the direct parent dependency or lockfile to a patched version where possible. If no upstream fix is available yet, document the transitive exposure and open a follow-up issue for tracking rather than broadening policy exceptions.
+
 ## License
 
 This project is licensed under the GNU GPL v3 free software license. Read the LICENSE file for more information.
