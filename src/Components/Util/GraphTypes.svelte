@@ -1,5 +1,7 @@
+<svelte:options runes={true} />
+
 <script lang="ts">
-  export let chartType: string;
+  let { chartType = $bindable() }: { chartType: string } = $props();
 </script>
 
 <select name="Graph Types" class="graphTypes" bind:value={chartType}>

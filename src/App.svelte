@@ -1,68 +1,61 @@
+<svelte:options runes={true} />
+
 <script lang="ts">
-  // Svelte and Tauri
   import { invoke } from "@tauri-apps/api/core";
 
-  // Components
   import ProgressBar from "./Components/Cards/ProgressBar.svelte";
   import Stats from "./Components/Cards/Stats.svelte";
   import ScientificGraph from "./Components/Cards/ScientificGraph.svelte";
   import FrappeGraph from "./Components/Cards/FrappeGraph.svelte";
   import Primes from "./Components/Cards/Primes.svelte";
-  export let name: string;
 
-  // Primes will be calculated upto this number
-  let finalValue: number;
-  let lastFinalValue = 100;
+  let { name }: { name: string } = $props();
 
-  // Hardcoded data upto 100 for initializing the chart
-  let primes: number[] = [
+  let finalValue = $state<number | undefined>();
+  let lastFinalValue = $state(100);
+
+  let primes = $state<number[]>([
     2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97
-  ];
+  ]);
 
-  let calculating = false;
-  let calculationTime = 0;
-  let compositeNumbers = 74; // Hardcoded value for the default prime numbers
-  let chartType = "frappe";
+  let calculating = $state(false);
+  let calculationTime = $state(0);
+  let compositeNumbers = $state(74);
+  let chartType = $state("frappe");
 
-  // Track which cards are fullscreen
-  let chartFullscreen = false;
-  let editorFullscreen = false;
+  let chartFullscreen = $state(false);
+  let editorFullscreen = $state(false);
 
-  function handleInput(event: Event & { target: HTMLInputElement }) {
-    // The new value, but remove all characters and keep only the digits
-    const newValue = parseInt(event.target.value.replace(/\D/g, ""));
+  const isCalculateDisabled = $derived(
+    finalValue === undefined || Number.isNaN(finalValue) || finalValue < 1
+  );
 
-    // Update the value to calculate to the new number
+  function handleInput(event: Event & { currentTarget: EventTarget & HTMLInputElement }) {
+    const newValue = parseInt(event.currentTarget.value.replace(/\D/g, ""));
     finalValue = newValue;
-
-    // Show the new value with the thousand separator applied
-    event.target.value = newValue.toLocaleString().replace(/NaN/g, "");
-    console.log(finalValue);
+    event.currentTarget.value = newValue.toLocaleString().replace(/NaN/g, "");
   }
 
   async function calculate() {
-    // Save because finalValue binds to input and may change during calculation
+    if (finalValue === undefined || Number.isNaN(finalValue) || finalValue < 1) {
+      return;
+    }
+
     const chosenFinalValue = finalValue;
+    chartType = chosenFinalValue >= 10000 ? "dygraph" : "frappe";
 
-    // Change chart to dygraph if we have too much data to prevent crashes
-    if (chosenFinalValue >= 10000) chartType = "dygraph";
-    else chartType = "frappe";
-
-    // Start the timer
     calculating = true;
     const calculationStart = Date.now();
 
-    // Calculate primes upto finalValue
     try {
       primes = await invoke("calculate", { x: chosenFinalValue });
     } catch (err) {
       console.error(err);
     }
 
-    // Update stats
     calculationTime = (Date.now() - calculationStart) / 1000;
     lastFinalValue = chosenFinalValue;
-    compositeNumbers = chosenFinalValue - primes.length - 1; // -1 because 2 doesn't count as a composite number
+    compositeNumbers = chosenFinalValue - primes.length - 1;
     calculating = false;
   }
 </script>
@@ -78,17 +71,13 @@
     <div class="input-group">
       <input
         type="text"
-        on:input={handleInput}
+        oninput={handleInput}
         class="input"
         min="0"
         max="100000"
         placeholder="100"
       />
-      <button
-        on:click={calculate}
-        disabled={finalValue < 1 || finalValue === undefined || Number.isNaN(finalValue)}
-        class="button">Calculate</button
-      >
+      <button onclick={calculate} disabled={isCalculateDisabled} class="button">Calculate</button>
     </div>
   </div>
 
@@ -99,7 +88,7 @@
   {#if primes}
     <Stats {primes} {calculationTime} {compositeNumbers} {lastFinalValue} />
 
-    <Primes {editorFullscreen} {primes} />
+    <Primes bind:editorFullscreen {primes} />
 
     {#if chartType === "frappe"}
       <FrappeGraph bind:chartType bind:chartFullscreen {primes} />
@@ -136,10 +125,8 @@
     margin: 0 auto;
     color: var(--body-color);
 
-    /* Prevent text selection to make the application feel more native */
-    /* The prime number list can still be copied because it's under CodeMirror's textarea */
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* Edge */
+    -webkit-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     cursor: default;
   }
