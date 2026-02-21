@@ -1,32 +1,44 @@
+<svelte:options runes={true} />
+
 <script lang="ts">
   import { onMount } from "svelte";
   import { EditorView, minimalSetup } from "codemirror";
 
-  export let primes: number[];
-  export let editorFullscreen: boolean;
+  let {
+    primes = $bindable(),
+    editorFullscreen = $bindable()
+  }: {
+    primes: number[];
+    editorFullscreen: boolean;
+  } = $props();
 
-  let view: EditorView;
+  let view: EditorView | undefined;
   let element: HTMLElement;
+
+  const maximumHeightEditor = $derived(
+    EditorView.theme({
+      "&": { maxHeight: editorFullscreen ? "calc(100vh - 150px)" : "300px" },
+      ".cm-scroller": { overflow: "auto" }
+    })
+  );
 
   onMount(() => {
     createEditor();
+    return () => view?.destroy();
   });
 
-  $: if (primes) {
+  $effect(() => {
+    void primes;
     setEditorText();
-  }
-
-  $: maximumHeightEditor = EditorView.theme({
-    "&": { maxHeight: editorFullscreen ? "calc(100vh - 150px)" : "300px" },
-    ".cm-scroller": { overflow: "auto" }
   });
 
-  // This is a hack to get the editor to resize itself when fullscreen
-  // It would be nicer if we could just change the theme, but I couldn't find a way to do that
-  $: if (editorFullscreen || !editorFullscreen) {
-    createEditor();
-    setEditorText();
-  }
+  $effect(() => {
+    void editorFullscreen;
+    if (element) {
+      createEditor();
+      setEditorText();
+    }
+  });
 
   function createEditor() {
     if (view) view.destroy();
