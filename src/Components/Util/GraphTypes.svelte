@@ -35,7 +35,9 @@
     background-position:
       calc(100% - 14px) calc(50% + 1px),
       calc(100% - 9px) calc(50% + 1px);
-    background-size: 5px 5px, 5px 5px;
+    background-size:
+      5px 5px,
+      5px 5px;
     background-repeat: no-repeat;
   }
 
