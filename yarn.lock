@@ -1754,6 +1754,7 @@ __metadata:
     eslint: "npm:^9.39.3"
     eslint-config-prettier: "npm:^10.1.8"
     eslint-plugin-svelte: "npm:^3.15.0"
+    frappe-charts: "npm:^1.6.2"
     prettier: "npm:^3.8.1"
     prettier-plugin-svelte: "npm:^3.5.0"
     rollup: "npm:^4.58.0"
@@ -1765,7 +1766,6 @@ __metadata:
     svelte-check: "npm:^4.4.3"
     svelte-eslint-parser: "npm:^1.4.1"
     svelte-fa: "npm:^4.0.4"
-    svelte-frappe-charts: "npm:^1.10.0"
     svelte-preprocess: "npm:^6.0.3"
     tslib: "npm:^2.8.1"
     typescript: "npm:^5.9.3"
@@ -2932,18 +2932,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte-frappe-charts@npm:^1.10.0":
-  version: 1.10.0
-  resolution: "svelte-frappe-charts@npm:1.10.0"
-  dependencies:
-    frappe-charts: "npm:^1.6.2"
-    svelte: "npm:^3.53.1"
-  peerDependencies:
-    svelte: ^3.0.0
-  checksum: 10/431476d07910fcfaced21fdb000f64f02327eb6e3639b7db695bd80a6203e498e5fdfe16dcb48b5313950e78e0734d9726f1fc452509b49c924ca76194b1f106
-  languageName: node
-  linkType: hard
-
 "svelte-preprocess@npm:^6.0.3":
   version: 6.0.3
   resolution: "svelte-preprocess@npm:6.0.3"
@@ -2981,13 +2969,6 @@ __metadata:
     typescript:
       optional: true
   checksum: 10/872fcf6013508a6abe7526d5fc69cac526f1005b1f2db2d38fc6a011c98767b533e154e178ae9cddbe90fbe058bee235918f473fb769d72df0057f3a738a1553
-  languageName: node
-  linkType: hard
-
-"svelte@npm:^3.53.1":
-  version: 3.59.2
-  resolution: "svelte@npm:3.59.2"
-  checksum: 10/a477fd1835bdc83bc6dec4d479a6696aed74a4e7866315e0d117f848c7674a86aee38ec7e0dece3dce0ab2c0b2b4c60e4a121544ddcb5300e4cb697f196fdab0
   languageName: node
   linkType: hard
 
