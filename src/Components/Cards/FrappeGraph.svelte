@@ -4,7 +4,7 @@
   import Fa from "svelte-fa";
   import { faExpand } from "@fortawesome/free-solid-svg-icons";
   import GraphTypes from "../Util/GraphTypes.svelte";
-  import Chart from "svelte-frappe-charts";
+  import FrappeChart from "../Util/FrappeChart.svelte";
 
   let {
     primes,
@@ -34,7 +34,7 @@
 
   <h2>Graph</h2>
   {#if primes.length < 10000}
-    <Chart data={chartData} type="line" />
+    <FrappeChart data={chartData} type="line" />
   {:else}
     <p>Basic chart is disabled for more than 10000 prime numbers for performance reasons</p>
   {/if}
