@@ -23,6 +23,7 @@
 
   interface ChartInstance {
     update(data: ChartData): void;
+    destroy?: () => void;
   }
 
   type ChartConstructor = new (
@@ -48,7 +49,7 @@
     });
 
     return () => {
-      chartRoot?.replaceChildren();
+      chart?.destroy?.();
       chart = undefined;
     };
   });
