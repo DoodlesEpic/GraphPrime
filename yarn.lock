@@ -3418,13 +3418,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^3.53.1":
-  version: 3.55.1
-  resolution: "svelte@npm:3.55.1"
-  checksum: 10/f8983db069d2a6411c67b93d74d7935e33ddefcf5101e6f25d39bb8a84e2be663762713b7c00e4f9e488136b35d716d74aa8c8ab0c1d01c1ba15806bbc905b08
-  languageName: node
-  linkType: hard
-
 "svelte@npm:^5.57.0":
   version: 5.57.0
   resolution: "svelte@npm:5.57.0"
