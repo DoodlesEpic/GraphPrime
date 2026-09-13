@@ -94,7 +94,15 @@
     "default_permission": {
       "identifier": "default",
       "description": "Default permissions for the plugin.",
-      "permissions": ["allow-version", "allow-name", "allow-tauri-version", "allow-identifier"]
+      "permissions": [
+        "allow-version",
+        "allow-name",
+        "allow-tauri-version",
+        "allow-identifier",
+        "allow-bundle-type",
+        "allow-register-listener",
+        "allow-remove-listener"
+      ]
     },
     "permissions": {
       "allow-app-hide": {
@@ -106,6 +114,11 @@
         "identifier": "allow-app-show",
         "description": "Enables the app_show command without any pre-configured scope.",
         "commands": { "allow": ["app_show"], "deny": [] }
+      },
+      "allow-bundle-type": {
+        "identifier": "allow-bundle-type",
+        "description": "Enables the bundle_type command without any pre-configured scope.",
+        "commands": { "allow": ["bundle_type"], "deny": [] }
       },
       "allow-default-window-icon": {
         "identifier": "allow-default-window-icon",
@@ -127,10 +140,20 @@
         "description": "Enables the name command without any pre-configured scope.",
         "commands": { "allow": ["name"], "deny": [] }
       },
+      "allow-register-listener": {
+        "identifier": "allow-register-listener",
+        "description": "Enables the register_listener command without any pre-configured scope.",
+        "commands": { "allow": ["register_listener"], "deny": [] }
+      },
       "allow-remove-data-store": {
         "identifier": "allow-remove-data-store",
         "description": "Enables the remove_data_store command without any pre-configured scope.",
         "commands": { "allow": ["remove_data_store"], "deny": [] }
+      },
+      "allow-remove-listener": {
+        "identifier": "allow-remove-listener",
+        "description": "Enables the remove_listener command without any pre-configured scope.",
+        "commands": { "allow": ["remove_listener"], "deny": [] }
       },
       "allow-set-app-theme": {
         "identifier": "allow-set-app-theme",
@@ -162,6 +185,11 @@
         "description": "Denies the app_show command without any pre-configured scope.",
         "commands": { "allow": [], "deny": ["app_show"] }
       },
+      "deny-bundle-type": {
+        "identifier": "deny-bundle-type",
+        "description": "Denies the bundle_type command without any pre-configured scope.",
+        "commands": { "allow": [], "deny": ["bundle_type"] }
+      },
       "deny-default-window-icon": {
         "identifier": "deny-default-window-icon",
         "description": "Denies the default_window_icon command without any pre-configured scope.",
@@ -182,10 +210,20 @@
         "description": "Denies the name command without any pre-configured scope.",
         "commands": { "allow": [], "deny": ["name"] }
       },
+      "deny-register-listener": {
+        "identifier": "deny-register-listener",
+        "description": "Denies the register_listener command without any pre-configured scope.",
+        "commands": { "allow": [], "deny": ["register_listener"] }
+      },
       "deny-remove-data-store": {
         "identifier": "deny-remove-data-store",
         "description": "Denies the remove_data_store command without any pre-configured scope.",
         "commands": { "allow": [], "deny": ["remove_data_store"] }
+      },
+      "deny-remove-listener": {
+        "identifier": "deny-remove-listener",
+        "description": "Denies the remove_listener command without any pre-configured scope.",
+        "commands": { "allow": [], "deny": ["remove_listener"] }
       },
       "deny-set-app-theme": {
         "identifier": "deny-set-app-theme",
@@ -1302,6 +1340,11 @@
         "description": "Enables the set_focus command without any pre-configured scope.",
         "commands": { "allow": ["set_focus"], "deny": [] }
       },
+      "allow-set-focusable": {
+        "identifier": "allow-set-focusable",
+        "description": "Enables the set_focusable command without any pre-configured scope.",
+        "commands": { "allow": ["set_focusable"], "deny": [] }
+      },
       "allow-set-fullscreen": {
         "identifier": "allow-set-fullscreen",
         "description": "Enables the set_fullscreen command without any pre-configured scope.",
@@ -1361,6 +1404,11 @@
         "identifier": "allow-set-shadow",
         "description": "Enables the set_shadow command without any pre-configured scope.",
         "commands": { "allow": ["set_shadow"], "deny": [] }
+      },
+      "allow-set-simple-fullscreen": {
+        "identifier": "allow-set-simple-fullscreen",
+        "description": "Enables the set_simple_fullscreen command without any pre-configured scope.",
+        "commands": { "allow": ["set_simple_fullscreen"], "deny": [] }
       },
       "allow-set-size": {
         "identifier": "allow-set-size",
@@ -1672,6 +1720,11 @@
         "description": "Denies the set_focus command without any pre-configured scope.",
         "commands": { "allow": [], "deny": ["set_focus"] }
       },
+      "deny-set-focusable": {
+        "identifier": "deny-set-focusable",
+        "description": "Denies the set_focusable command without any pre-configured scope.",
+        "commands": { "allow": [], "deny": ["set_focusable"] }
+      },
       "deny-set-fullscreen": {
         "identifier": "deny-set-fullscreen",
         "description": "Denies the set_fullscreen command without any pre-configured scope.",
@@ -1731,6 +1784,11 @@
         "identifier": "deny-set-shadow",
         "description": "Denies the set_shadow command without any pre-configured scope.",
         "commands": { "allow": [], "deny": ["set_shadow"] }
+      },
+      "deny-set-simple-fullscreen": {
+        "identifier": "deny-set-simple-fullscreen",
+        "description": "Denies the set_simple_fullscreen command without any pre-configured scope.",
+        "commands": { "allow": [], "deny": ["set_simple_fullscreen"] }
       },
       "deny-set-size": {
         "identifier": "deny-set-size",
