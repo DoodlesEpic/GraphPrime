@@ -52,3 +52,7 @@ jspm_packages/
 /public/build/
 
 .DS_Store
+
+# Native application test evidence
+/test-results/
+__pycache__/

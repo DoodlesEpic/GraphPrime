@@ -11,7 +11,8 @@
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write .",
-    "test": "echo 'No tests'"
+    "test": "cargo test --release --locked --manifest-path src-tauri/Cargo.toml",
+    "build:linux": "tauri build --bundles appimage,deb,rpm && bash scripts/fix-appimage.sh src-tauri/target/release/bundle/appimage/*.AppImage"
   },
   "devDependencies": {
     "@eslint/compat": "^1.4.1",
