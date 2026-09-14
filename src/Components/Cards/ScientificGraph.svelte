@@ -36,5 +36,9 @@
   </div>
 
   <h2>Graph</h2>
-  <DyGraphs {options} class="chart" />
+  {#if primes.length === 0}
+    <p>No prime numbers in this range.</p>
+  {:else}
+    <DyGraphs {options} class="chart" />
+  {/if}
 </div>

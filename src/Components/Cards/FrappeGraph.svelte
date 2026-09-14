@@ -36,7 +36,9 @@
   </div>
 
   <h2>Graph</h2>
-  {#if primes.length < 10000}
+  {#if primes.length === 0}
+    <p>No prime numbers in this range.</p>
+  {:else if primes.length < 10000}
     <FrappeChart data={chartData} type="line" />
   {:else}
     <p>Basic chart is disabled for more than 10000 prime numbers for performance reasons</p>

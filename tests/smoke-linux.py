@@ -133,8 +133,11 @@ with (output / "webdriver.log").open("w") as log:
 
         for limit in [1, 2, 30, 1000, 10000, 100000, 100]:
             calculate(limit)
-            graph = ".chart canvas" if limit >= 10000 else ".frappe-chart svg"
-            wait_for(lambda: js("return !!document.querySelector(arguments[0])", graph), "graph renders")
+            if limit == 1:
+                assert "No prime numbers in this range." in js("return document.body.innerText")
+            else:
+                graph = ".chart canvas" if limit >= 10000 else ".frappe-chart svg"
+                wait_for(lambda: js("return !!document.querySelector(arguments[0])", graph), "graph renders")
             if limit == 100000:
                 js("document.querySelector('.chart').scrollIntoView()")
                 screenshot("scientific")

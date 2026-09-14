@@ -4,18 +4,7 @@
     "description": "",
     "local": true,
     "windows": ["main"],
-    "permissions": [],
+    "permissions": ["core:default", "clipboard-manager:allow-write-text"],
     "platforms": ["macOS", "windows", "linux"]
-  },
-  "migrated": {
-    "identifier": "migrated",
-    "description": "permissions that were migrated from v1",
-    "local": true,
-    "windows": ["main"],
-    "permissions": [
-      "core:default",
-      "clipboard-manager:allow-write-text",
-      "clipboard-manager:default"
-    ]
   }
 }
