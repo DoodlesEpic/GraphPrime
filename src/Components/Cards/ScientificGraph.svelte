@@ -29,7 +29,10 @@
 <div class="card" class:fullscreen={chartFullscreen} style="height: var(--graphHeight)">
   <GraphTypes bind:chartType />
   <div class="copyfullButtons">
-    <button onclick={() => (chartFullscreen = !chartFullscreen)}><Fa icon={faExpand} fw /></button>
+    <button
+      aria-label="Toggle graph fullscreen"
+      onclick={() => (chartFullscreen = !chartFullscreen)}><Fa icon={faExpand} fw /></button
+    >
   </div>
 
   <h2>Graph</h2>

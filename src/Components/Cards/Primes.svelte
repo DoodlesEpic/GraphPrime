@@ -17,8 +17,12 @@
 
 <div id="primes" class="card" class:fullscreen={editorFullscreen}>
   <div class="copyfullButtons">
-    <button onclick={() => writeText(primes.join(", "))}><Fa icon={faClipboard} fw /></button>
-    <button onclick={() => (editorFullscreen = !editorFullscreen)}><Fa icon={faExpand} fw /></button
+    <button aria-label="Copy primes" onclick={() => writeText(primes.join(", "))}
+      ><Fa icon={faClipboard} fw /></button
+    >
+    <button
+      aria-label="Toggle primes fullscreen"
+      onclick={() => (editorFullscreen = !editorFullscreen)}><Fa icon={faExpand} fw /></button
     >
   </div>
   <h2>Primes</h2>

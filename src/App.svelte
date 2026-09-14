@@ -19,6 +19,7 @@
   ]);
 
   let calculating = $state(false);
+  let calculationError = $state("");
   let calculationTime = $state(0);
   let compositeNumbers = $state(74);
   let chartType = $state("frappe");
@@ -27,7 +28,7 @@
   let editorFullscreen = $state(false);
 
   const isCalculateDisabled = $derived(
-    finalValue === undefined || Number.isNaN(finalValue) || finalValue < 1
+    calculating || finalValue === undefined || !Number.isSafeInteger(finalValue) || finalValue < 1
   );
 
   function handleInput(event: Event & { currentTarget: EventTarget & HTMLInputElement }) {
@@ -37,26 +38,28 @@
   }
 
   async function calculate() {
-    if (finalValue === undefined || Number.isNaN(finalValue) || finalValue < 1) {
+    if (isCalculateDisabled || finalValue === undefined) {
       return;
     }
 
     const chosenFinalValue = finalValue;
-    chartType = chosenFinalValue >= 10000 ? "dygraph" : "frappe";
 
     calculating = true;
+    calculationError = "";
     const calculationStart = Date.now();
 
     try {
       primes = await invoke("calculate", { x: chosenFinalValue });
+      chartType = chosenFinalValue >= 10000 ? "dygraph" : "frappe";
+      calculationTime = (Date.now() - calculationStart) / 1000;
+      lastFinalValue = chosenFinalValue;
+      compositeNumbers = chosenFinalValue - primes.length - 1;
     } catch (err) {
       console.error(err);
+      calculationError = "Could not calculate prime numbers. Please try again.";
+    } finally {
+      calculating = false;
     }
-
-    calculationTime = (Date.now() - calculationStart) / 1000;
-    lastFinalValue = chosenFinalValue;
-    compositeNumbers = chosenFinalValue - primes.length - 1;
-    calculating = false;
   }
 </script>
 
@@ -76,10 +79,15 @@
         min="0"
         max="100000"
         placeholder="100"
+        aria-label="Calculate primes up to"
       />
       <button onclick={calculate} disabled={isCalculateDisabled} class="button">Calculate</button>
     </div>
   </div>
+
+  {#if calculationError}
+    <p role="alert">{calculationError}</p>
+  {/if}
 
   {#if calculating}
     <ProgressBar />
