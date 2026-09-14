@@ -14,7 +14,12 @@ fn main() {
 #[tauri::command]
 async fn calculate(x: u64) -> Vec<u64> {
     let sieve = slow_primes::Primes::sieve(x as usize);
-    sieve.primes().map(|p| p as u64).collect()
+    // The sieve rounds very small bounds up to its minimum storage size.
+    sieve
+        .primes()
+        .map(|p| p as u64)
+        .take_while(|&p| p <= x)
+        .collect()
 }
 
 #[cfg(test)]
@@ -24,9 +29,15 @@ mod tests {
     #[test]
     fn calculates_small_sequences_and_boundaries() {
         for (limit, expected) in [
+            (0, vec![]),
             (1, vec![]),
             (2, vec![2]),
             (3, vec![2, 3]),
+            (4, vec![2, 3]),
+            (5, vec![2, 3, 5]),
+            (6, vec![2, 3, 5]),
+            (7, vec![2, 3, 5, 7]),
+            (8, vec![2, 3, 5, 7]),
             (30, vec![2, 3, 5, 7, 11, 13, 17, 19, 23, 29]),
         ] {
             assert_eq!(tauri::async_runtime::block_on(calculate(limit)), expected);

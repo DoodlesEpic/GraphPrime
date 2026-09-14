@@ -36,7 +36,10 @@ jobs:
       - name: Prepare release assets
         run: |
           mkdir release-assets
-          find packages -type f -exec cp -t release-assets/ {} +
+          while IFS= read -r -d '' file; do
+            name=$(basename "$file")
+            cp "$file" "release-assets/${name// /.}"
+          done < <(find packages -type f -print0)
           cd release-assets
           sha256sum * > SHA256SUMS
       - name: Upload complete release as a draft for final verification
