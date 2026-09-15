@@ -7,6 +7,34 @@ permissions:
   contents: read
 
 jobs:
+  performance:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install native build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: ./src-tauri -> target
+          key: performance
+      - name: Test regression detection
+        run: python3 -m unittest discover -s tests -p 'test_*.py'
+      - name: Compare performance with the pinned reference
+        run: python3 scripts/benchmark.py
+      - name: Upload performance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-results
+          path: test-results/performance/
+          if-no-files-found: warn
+
   build:
     strategy:
       fail-fast: false

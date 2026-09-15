@@ -83,6 +83,9 @@ The application uses Tauri 2 capabilities to permit clipboard writes from its lo
 
 Pull requests are protected by the `Dependency Review` GitHub Action workflow, and this check should remain enabled and required for protected branches. If dependency review fails due to a vulnerable transitive dependency, first update the direct parent dependency or lockfile to a patched version where possible. If no upstream fix is available yet, document the transitive exposure and open a follow-up issue for tracking rather than broadening policy exceptions.
 
+Performance regression checks and the development branch workflow are documented in
+[docs/performance.md](docs/performance.md).
+
 ## License
 
 This project is licensed under the GNU GPL v3 free software license. Read the LICENSE file for more information.
