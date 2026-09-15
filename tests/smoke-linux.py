@@ -79,6 +79,20 @@ def expected_primes(limit):
             if all(n % d for d in range(2, int(n ** 0.5) + 1))]
 
 
+def check_clipboard(primes):
+    import gi
+    gi.require_version("Gdk", "3.0")
+    from gi.repository import Gdk
+    # The AppImage runs on X11; read its clipboard through the same backend.
+    Gdk.set_allowed_backends("x11")
+    gi.require_version("Gtk", "3.0")
+    from gi.repository import Gtk
+    clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+    click('[aria-label="Copy primes"]')
+    copied = ", ".join(map(str, primes))
+    wait_for(lambda: clipboard.wait_for_text() == copied, "native clipboard contains all primes")
+
+
 def calculate(limit):
     entry = element('input[aria-label="Calculate primes up to"]')
     command("POST", f"/element/{entry}/clear", {})
@@ -89,7 +103,12 @@ def calculate(limit):
     wait_for(lambda: stats in js("return document.body.innerText"), stats)
     wait_for(lambda: js("return !document.querySelector('button.button').disabled"),
              "calculation completes")
-    assert js("return document.querySelector('.cm-content').textContent") == ", ".join(map(str, primes))
+    if limit < 100000:
+        assert js("return document.querySelector('.cm-content').textContent") == ", ".join(map(str, primes))
+    else:
+        # CodeMirror virtualizes long lines; the visible DOM is not the full
+        # document. Check every prime through the application's copy button.
+        check_clipboard(primes)
     assert f"There are {limit - len(primes) - 1} composite numbers up to {limit}" in js(
         "return document.body.innerText")
     print(f"PASS: primes and statistics up to {limit}", flush=True)
@@ -118,7 +137,7 @@ with (output / "webdriver.log").open("w") as log:
         wait_for(lambda: js("return !!document.querySelector('.cm-content')"), "app loads")
         js("""
           window.smokeErrors = [];
-          window.addEventListener('error', e => window.smokeErrors.push(e.message));
+          window.addEventListener('error', e => window.smokeErrors.push(e.message + '\\n' + (e.error?.stack || '')));
           window.addEventListener('unhandledrejection', e => window.smokeErrors.push(String(e.reason)));
           window.addEventListener('securitypolicyviolation', e => window.smokeErrors.push(e.violatedDirective));
         """)
@@ -142,14 +161,7 @@ with (output / "webdriver.log").open("w") as log:
                 js("document.querySelector('.chart').scrollIntoView()")
                 screenshot("scientific")
 
-        click('[aria-label="Copy primes"]')
-        import gi
-        gi.require_version("Gtk", "3.0")
-        gi.require_version("Gdk", "3.0")
-        from gi.repository import Gdk, Gtk
-        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-        copied = ", ".join(map(str, expected_primes(100)))
-        wait_for(lambda: clipboard.wait_for_text() == copied, "native clipboard contains primes")
+        check_clipboard(expected_primes(100))
         print("PASS: native clipboard", flush=True)
 
         for label in ["Toggle primes fullscreen", "Toggle graph fullscreen"]:

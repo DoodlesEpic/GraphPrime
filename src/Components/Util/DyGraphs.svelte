@@ -14,20 +14,15 @@
     class?: string;
   } = $props();
 
-  let graph: Dygraph | null = null;
   let element: HTMLElement;
 
   $effect(() => {
     void options;
     if (element) {
-      createGraph();
+      const graph = new Dygraph(element, options.data, {});
+      return () => graph.destroy();
     }
   });
-
-  function createGraph() {
-    if (graph) graph.destroy();
-    graph = new Dygraph(element, options.data, {});
-  }
 </script>
 
 <div bind:this={element} class={classes}></div>

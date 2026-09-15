@@ -19,6 +19,7 @@
   interface ChartOptions {
     data: ChartData;
     type?: ChartType;
+    animate?: boolean;
   }
 
   interface ChartInstance {
@@ -45,7 +46,9 @@
 
     chart = new Chart(chartRoot, {
       data,
-      type
+      type,
+      // SMIL temporarily detaches the SVG and races with resize/redraw events.
+      animate: false
     });
 
     return () => {
