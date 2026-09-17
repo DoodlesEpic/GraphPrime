@@ -18,53 +18,26 @@ job and must pass before a release can upload packages.
 External actions are pinned to commit SHAs with version comments. Update the SHA
 and comment together after checking the upstream release notes.
 
-## CodeQL review (September 2026)
+## CodeQL
 
-Keep GitHub's default setup as the only CodeQL configuration, with its weekly
-schedule. It currently analyzes JavaScript/TypeScript, Python and GitHub Actions.
-The recent analyses completed without errors or findings. The September 15 run
-completed in approximately 81 seconds; this does not justify removing the check.
-CodeQL complements ESLint, Clippy and dependency review rather than replacing them.
+`.github/workflows/codeql.yml` is the sole CodeQL configuration; GitHub's automatic
+(default) setup is disabled. It analyzes Rust, JavaScript/TypeScript, Python and
+GitHub Actions on pushes to `dev`/`main`, pull requests targeting either branch,
+and weekly once the workflow reaches the default branch. Manual dispatch is also
+available once the workflow is on the default branch.
 
-The current [supported languages documentation](https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/)
-includes Rust editions 2021 and 2024. However, on September 17, 2026, this repository's
-`PATCH /repos/DoodlesEpic/GraphPrime/code-scanning/default-setup` endpoint rejected
-`rust` with HTTP 422, including with API version `2026-03-10`. The existing setup
-was preserved. This is an API limitation observed here, not a lack of CodeQL
-support: GitHub [announced general availability](https://github.blog/changelog/2025-10-14-codeql-scanning-rust-and-c-c-without-builds-is-now-generally-available/)
-for Rust in both setup modes in October 2025. The REST documentation also omits
-Rust from the language enum. The documented UI path is Settings → Advanced
-Security → CodeQL analysis → View CodeQL configuration → Edit → Languages.
-Select Rust there when available, then verify the resulting analysis. Do not
-create a second CodeQL workflow alongside default setup. Rust currently has
-mandatory Clippy, correctness tests and performance checks, not CodeQL coverage.
+Use the standard `default` query suite for precise security findings. CodeQL
+complements ESLint, Clippy and dependency review. Its PR merge analysis is
+intentional and independent of the Test workflow's push-based build checks.
 
-The same documentation does not list `.svelte` files. Do not interpret successful
-JavaScript/TypeScript analysis as complete coverage of Svelte components or Tauri
-IPC. No custom extractors or generated frontend bundles are added for this purpose.
+Rust uses `build-mode: none` and requires Cargo and rustup. CodeQL still executes
+build scripts and compiles macros through rust-analyzer; the Rust job installs
+Tauri's native build-script dependencies without building desktop packages.
 
-Default setup is managed in GitHub's code-scanning settings, not in a repository
-workflow. Its platform-managed triggers are independent of the Test deduplication
-policy. Review its languages, coverage and duration there when changing the setup.
-
-## CodeQL configuration practices
-
-- Prefer default setup for this small repository; GitHub recommends advanced setup
-  when the default configuration does not meet a concrete requirement.
-- Keep the `default` query suite for high precision. `security-extended` adds
-  lower-confidence queries and may produce more false positives; it is not a
-  prerequisite for enabling Rust.
-- Rust uses `build-mode: none`, requires Cargo and rustup, and uses rust-analyzer
-  to execute build scripts and compile macros. It does not require a full desktop
-  package build. Inspect extraction diagnostics for Tauri's build script/macros.
-- Check the tool status page for files analyzed and errors, not just a green job
-  or zero alerts. Record coverage limitations before claiming language coverage.
-- Preserve CodeQL's PR integration analysis independently of Test's push checks.
-  Default setup targets the default/protected branches and runs weekly; `dev` is
-  currently unprotected, so its PRs are not automatically covered by this policy.
-  Changing branch protection is a separate repository-policy decision.
-- Keep analysis up to date through the managed setup. Never run default and
-  advanced setup concurrently or suppress findings merely to obtain green CI.
+Check the code-scanning tool status page for extraction errors and actual files
+analyzed, not just a green job or zero alerts. The supported-language documentation
+does not list `.svelte`; JavaScript/TypeScript analysis is not complete coverage of
+Svelte components or Tauri IPC. No custom extractors or generated bundles are added.
 
 Sources: [setup types](https://docs.github.com/en/code-security/concepts/code-scanning/setup-types),
 [query suites](https://docs.github.com/en/code-security/concepts/code-scanning/codeql/codeql-query-suites),
