@@ -1,6 +1,7 @@
 <svelte:options runes={true} />
 
 <script lang="ts">
+  import { onMount } from "svelte";
   import Dygraph from "dygraphs";
 
   let {
@@ -16,12 +17,21 @@
 
   let element: HTMLElement;
 
+  let graph = $state.raw<Dygraph>();
+
+  onMount(() => {
+    const chart = new Dygraph(element, options.data, {});
+    graph = chart;
+    return () => chart.destroy();
+  });
+
   $effect(() => {
-    void options;
-    if (element) {
-      const graph = new Dygraph(element, options.data, {});
-      return () => graph.destroy();
-    }
+    graph?.updateOptions({ file: options.data });
+  });
+
+  $effect(() => {
+    void options.fullscreen;
+    graph?.resize();
   });
 </script>
 

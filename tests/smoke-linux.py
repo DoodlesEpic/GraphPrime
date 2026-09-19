@@ -143,7 +143,7 @@ with (output / "webdriver.log").open("w") as log:
         """)
         assert js("return getComputedStyle(document.querySelector('.title')).color") == "rgb(255, 62, 0)"
         assert js("return getComputedStyle(document.querySelector('.input-group')).display") == "flex"
-        assert js("return document.querySelectorAll('link[rel=stylesheet]').length") >= 2
+        assert js("return getComputedStyle(document.querySelector('.card')).borderRadius") == "5px"
         assert js("return getComputedStyle(document.querySelector('.cm-editor')).position") == "relative"
         assert js("return document.querySelector('button.button').disabled")
         wait_for(lambda: js("return !!document.querySelector('.frappe-chart svg')"), "basic graph renders")
@@ -157,13 +157,21 @@ with (output / "webdriver.log").open("w") as log:
             else:
                 graph = ".chart canvas" if limit >= 10000 else ".frappe-chart svg"
                 wait_for(lambda: js("return !!document.querySelector(arguments[0])", graph), "graph renders")
+            if limit == 10000:
+                js("window.smokeCanvas = document.querySelector('.chart canvas')")
             if limit == 100000:
+                assert js("return window.smokeCanvas === document.querySelector('.chart canvas')")
+                click('[aria-label="Toggle graph fullscreen"]')
+                wait_for(lambda: js("return !!document.querySelector('.fullscreen .chart')"), "scientific fullscreen")
+                click('[aria-label="Toggle graph fullscreen"]')
+                wait_for(lambda: js("return !document.querySelector('.fullscreen')"), "exit scientific fullscreen")
                 js("document.querySelector('.chart').scrollIntoView()")
                 screenshot("scientific")
 
         check_clipboard(expected_primes(100))
         print("PASS: native clipboard", flush=True)
 
+        js("window.smokeEditor = document.querySelector('.cm-editor')")
         for label in ["Toggle primes fullscreen", "Toggle graph fullscreen"]:
             click(f'[aria-label="{label}"]')
             wait_for(lambda: js("return document.querySelectorAll('.fullscreen').length === 1"), label)
@@ -171,6 +179,7 @@ with (output / "webdriver.log").open("w") as log:
             click(f'[aria-label="{label}"]')
             wait_for(lambda: js("return !document.querySelector('.fullscreen')"), "exit fullscreen")
 
+        assert js("return window.smokeEditor === document.querySelector('.cm-editor')")
         for chart_type in ["dygraph", "frappe", "dygraph", "frappe"]:
             js("""
               const select = document.querySelector('select');

@@ -32,7 +32,8 @@ intentional and independent of the Test workflow's push-based build checks.
 
 Rust uses `build-mode: none` and requires Cargo and rustup. CodeQL still executes
 build scripts and compiles macros through rust-analyzer; the Rust job installs
-Tauri's native build-script dependencies without building desktop packages.
+Tauri's native build-script dependencies and builds the frontend assets needed by
+its macros, without building desktop packages.
 
 Check the code-scanning tool status page for extraction errors and actual files
 analyzed, not just a green job or zero alerts. The supported-language documentation

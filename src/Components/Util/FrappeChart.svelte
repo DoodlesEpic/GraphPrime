@@ -37,7 +37,7 @@
   let { data, type = "line" }: { data: ChartData; type?: ChartType } = $props();
 
   let chartRoot: HTMLDivElement | undefined;
-  let chart: ChartInstance | undefined;
+  let chart = $state.raw<ChartInstance>();
 
   onMount(() => {
     if (!chartRoot) {

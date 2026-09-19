@@ -26,9 +26,9 @@
     >
   </div>
   <h2>Primes</h2>
-  <p>
-    <CodeMirror bind:primes bind:editorFullscreen />
-  </p>
+  <div class="prime-list">
+    <CodeMirror {primes} {editorFullscreen} />
+  </div>
 </div>
 
 <style>
@@ -36,7 +36,7 @@
     overflow: hidden;
   }
 
-  #primes p {
+  .prime-list {
     font-size: 1.1em;
     font-weight: 100;
     font-family: monospace;
