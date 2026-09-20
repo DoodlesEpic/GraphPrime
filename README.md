@@ -75,12 +75,12 @@ To build Linux distribution packages locally, install `squashfs-tools` and run `
 To test the actual Linux package, install `WebKitWebDriver` (`webkit2gtk-driver` on Ubuntu) and Python's GTK 3 bindings, then run:
 
 ```bash
-python3 tests/smoke-linux.py "src-tauri/target/release/bundle/appimage/Graph Prime_2.0.0_amd64.AppImage"
+python3 tests/smoke-linux.py "src-tauri/target/release/bundle/appimage/Graph Prime_2.1.0_amd64.AppImage"
 ```
 
 The test opens the application, checks external and dynamic CSS, computes known prime sequences, exercises both graphs and fullscreen controls, and verifies the native clipboard. Screenshots and logs are saved in `test-results/`. For headless testing, prefix the command with `dbus-run-session -- xvfb-run -a`.
 
-Before a new release, update the versions in `package.json`, `src-tauri/Cargo.toml`, `src-tauri/Cargo.lock`, and `src-tauri/tauri.conf.json`. The Test workflow builds and checks Linux, Windows, macOS ARM64, and macOS Intel packages. Pushing a version tag runs the same checks and uploads all packages and `SHA256SUMS` to a draft GitHub release only after every build succeeds. Verify the packaged application on a desktop, update the release notes, and publish the draft. No updater keys, update signatures, or external version gist are used.
+Before a new release, update the versions in `package.json`, `src-tauri/Cargo.toml`, `src-tauri/Cargo.lock`, and `src-tauri/tauri.conf.json`. The Test workflow builds and checks Linux, Windows, macOS ARM64, and macOS Intel packages. Pushing a version tag runs the same checks and uploads all packages and `SHA256SUMS` to a draft GitHub release only after every build succeeds. Write the release notes in `docs/releases/v<version>.md` before tagging; the workflow uses that file for the draft. Verify the packaged application on a desktop and publish the draft. No updater keys, update signatures, or external version gist are used.
 
 The application uses Tauri 2 capabilities to permit clipboard writes from its local main window. The legacy isolation iframe has been removed. CSP remains enabled for other resources; local CSS and inline styles are allowed because the chart libraries and CodeMirror generate styles dynamically.
 

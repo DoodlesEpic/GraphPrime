@@ -42,7 +42,7 @@
   },
   "productName": "Graph Prime",
   "mainBinaryName": "Graph Prime",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "identifier": "dev.doodles.graphprime",
   "app": {
     "security": {
