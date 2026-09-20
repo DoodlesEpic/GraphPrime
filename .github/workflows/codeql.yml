@@ -37,6 +37,13 @@ jobs:
           sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
       - uses: dtolnay/rust-toolchain@6bed0761d98439e5a578e2877258200ad565ba87 # stable
         if: matrix.language == 'rust'
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        if: matrix.language == 'rust'
+        with:
+          node-version: 24
+      - name: Prepare assets for Tauri macros
+        if: matrix.language == 'rust'
+        run: corepack enable && yarn install --immutable && yarn build
       - name: Initialize CodeQL
         uses: github/codeql-action/init@b96794f015dfd88f77b49b1c93e0fa7110f94c63 # v4.38.0
         with:

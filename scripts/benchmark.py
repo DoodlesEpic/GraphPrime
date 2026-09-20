@@ -60,7 +60,8 @@ def prepare(destination, revision=None):
                         ignore=shutil.ignore_patterns("target"))
     # Assets are not exercised by this CPU benchmark. Tauri's compile-time
     # context still needs an asset directory; no JS toolchain is necessary here.
-    assets = destination / "public/build"
+    config = json.loads((destination / "src-tauri/tauri.conf.json").read_text())
+    assets = destination / "src-tauri" / config["build"]["frontendDist"]
     assets.mkdir(parents=True, exist_ok=True)
     (assets / "index.html").write_text("<!doctype html><title>Benchmark</title>")
     main = destination / "src-tauri/src/main.rs"

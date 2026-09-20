@@ -52,14 +52,19 @@ and then you can start the Tauri dev server:
 yarn run tauri dev
 ```
 
-You need to have Rust and NodeJS ready to run on your system before doing this
+Use Node.js 24 LTS, Yarn 4.18.0 (pinned in `package.json`), and Rust with the native Tauri prerequisites.
 https://v2.tauri.app/start/prerequisites/
 
-The Yarn version being used is berry. If you don't have Yarn v4 in your system, you can enable it with:
+Enable the pinned Yarn version through Corepack:
 
 ```bash
 corepack enable
 ```
+
+The frontend uses Vite with the official Svelte plugin. `yarn dev` serves it on
+port 5173; `yarn build` creates `dist/`, which Tauri embeds. `yarn preview` previews
+the frontend build in a browser; native calculation and clipboard require Tauri.
+Svelte handles the TypeScript types directly; no preprocessor is needed.
 
 ### Deployment
 
