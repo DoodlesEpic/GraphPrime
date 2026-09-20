@@ -52,7 +52,7 @@ and then you can start the Tauri dev server:
 yarn run tauri dev
 ```
 
-Use Node.js 24 LTS, Yarn 4.18.0 (pinned in `package.json`), and Rust with the native Tauri prerequisites.
+Use Node.js 24 LTS, Yarn 4.18.0 (pinned in `package.json`), and Rust 1.98.1 (pinned in `rust-toolchain.toml`) with the native Tauri prerequisites.
 https://v2.tauri.app/start/prerequisites/
 
 Enable the pinned Yarn version through Corepack:
