@@ -15,8 +15,10 @@ so the embedded assets exist. Linux additionally requires Rust formatting, Clipp
 and the packaged AppImage GUI smoke test. Performance comparisons run in a separate
 job and must pass before a release can upload packages.
 
-External actions are pinned to commit SHAs with version comments. Update the SHA
-and comment together after checking the upstream release notes.
+External actions use stable major-version tags where available. Dependency Review
+uses `v5.0.0` because upstream does not publish a `v5` tag. Check official releases
+and tag references before changing versions. Rust remains fixed at 1.98.1 through
+the toolchain inputs, independently of the installer action version.
 
 ## CodeQL
 
