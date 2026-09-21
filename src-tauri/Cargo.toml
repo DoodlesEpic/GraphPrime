@@ -15,7 +15,7 @@ tauri-build = "2.6.3"
 
 [dependencies]
 tauri = "~2.11.5"
-slow_primes = "0.1.14"
+primal = "0.3.3"
 tauri-plugin-clipboard-manager = "=2.3.3"
 
 [dev-dependencies]

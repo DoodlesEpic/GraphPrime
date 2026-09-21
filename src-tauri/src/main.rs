@@ -13,10 +13,14 @@ fn main() {
 
 #[tauri::command]
 async fn calculate(x: u64) -> Vec<u64> {
-    let sieve = slow_primes::Primes::sieve(x as usize);
-    // The sieve rounds very small bounds up to its minimum storage size.
+    if x < 2 {
+        return Vec::new();
+    }
+
+    let sieve = primal::Sieve::new(x as usize);
+    // The sieve may include primes beyond the requested limit.
     sieve
-        .primes()
+        .primes_from(2)
         .map(|p| p as u64)
         .take_while(|&p| p <= x)
         .collect()
