@@ -13,10 +13,14 @@ fn main() {
 
 #[tauri::command]
 async fn calculate(x: u64) -> Vec<u64> {
-    let sieve = slow_primes::Primes::sieve(x as usize);
-    // The sieve rounds very small bounds up to its minimum storage size.
+    if x < 2 {
+        return Vec::new();
+    }
+
+    let sieve = primal::Sieve::new(x as usize);
+    // The sieve may include primes beyond the requested limit.
     sieve
-        .primes()
+        .primes_from(2)
         .map(|p| p as u64)
         .take_while(|&p| p <= x)
         .collect()
@@ -41,6 +45,20 @@ mod tests {
             (30, vec![2, 3, 5, 7, 11, 13, 17, 19, 23, 29]),
         ] {
             assert_eq!(tauri::async_runtime::block_on(calculate(limit)), expected);
+        }
+    }
+
+    #[test]
+    fn matches_trial_division_for_small_limits() {
+        for limit in 0..=1_000 {
+            let expected: Vec<u64> = (2..=limit)
+                .filter(|&n| (2..).take_while(|&d| d * d <= n).all(|d| n % d != 0))
+                .collect();
+            assert_eq!(
+                tauri::async_runtime::block_on(calculate(limit)),
+                expected,
+                "limit {limit}"
+            );
         }
     }
 
