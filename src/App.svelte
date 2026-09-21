@@ -23,6 +23,7 @@
   let calculationTime = $state(0);
   let compositeNumbers = $state(74);
   let chartType = $state("frappe");
+  let algorithm = $state("calculate");
 
   let chartFullscreen = $state(false);
   let editorFullscreen = $state(false);
@@ -49,7 +50,7 @@
     const calculationStart = Date.now();
 
     try {
-      primes = await invoke("calculate", { x: chosenFinalValue });
+      primes = await invoke(algorithm, { x: chosenFinalValue });
       chartType = chosenFinalValue >= 10000 ? "dygraph" : "frappe";
       calculationTime = (Date.now() - calculationStart) / 1000;
       lastFinalValue = chosenFinalValue;
@@ -71,6 +72,14 @@
       desktop.
     </p>
 
+    <div class="algorithm-picker">
+      <label for="algorithm">Algorithm</label>
+      <select id="algorithm" bind:value={algorithm} disabled={calculating}>
+        <option value="calculate">Eratosthenes</option>
+        <option value="calculate_linear">Linear</option>
+      </select>
+    </div>
+
     <div class="input-group">
       <input
         type="text"
@@ -83,6 +92,24 @@
       />
       <button onclick={calculate} disabled={isCalculateDisabled} class="button">Calculate</button>
     </div>
+  </div>
+
+  <div class="card" aria-labelledby="algorithm-heading">
+    <h2 id="algorithm-heading">
+      {algorithm === "calculate" ? "Sieve of Eratosthenes" : "Linear sieve"}
+    </h2>
+    {#if algorithm === "calculate"}
+      <p>
+        Marks multiples of each prime to find all primes up to your limit. Its work grows as O(n log
+        log n). The optimized implementation is the default for fast calculations.
+      </p>
+    {:else}
+      <p>
+        Marks each composite once using its smallest prime factor. Its work grows as O(n), but it
+        may use more memory and run slower than the optimized Eratosthenes sieve.
+      </p>
+    {/if}
+    <p>Both algorithms return the same exact primes. Larger limits require more time and memory.</p>
   </div>
 
   {#if calculationError}
@@ -149,6 +176,23 @@
     justify-content: center;
     align-items: stretch;
     gap: 10px;
+  }
+
+  .algorithm-picker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .algorithm-picker select {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font: inherit;
+    color: var(--body-color);
+    background: var(--card-bg);
   }
 
   .input {

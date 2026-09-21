@@ -6,7 +6,7 @@
 fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_clipboard_manager::init())
-        .invoke_handler(tauri::generate_handler![calculate])
+        .invoke_handler(tauri::generate_handler![calculate, calculate_linear])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
@@ -24,6 +24,34 @@ async fn calculate(x: u64) -> Vec<u64> {
         .map(|p| p as u64)
         .take_while(|&p| p <= x)
         .collect()
+}
+
+// Based on Jayadev Misra's smallest-divisor invariant: https://www.cs.utexas.edu/~misra/scannedPdf.dir/ProgramExplanation.pdf
+#[tauri::command]
+async fn calculate_linear(x: u64) -> Vec<u64> {
+    if x < 2 {
+        return Vec::new();
+    }
+
+    let limit = x as usize;
+    let mut composite = vec![false; limit + 1];
+    let mut primes = Vec::new();
+    for n in 2..=limit {
+        if !composite[n] {
+            primes.push(n as u64);
+        }
+        for &prime in &primes {
+            let p = prime as usize;
+            if p > limit / n {
+                break;
+            }
+            composite[n * p] = true;
+            if n % p == 0 {
+                break;
+            }
+        }
+    }
+    primes
 }
 
 #[cfg(test)]
