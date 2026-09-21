@@ -49,6 +49,20 @@ mod tests {
     }
 
     #[test]
+    fn matches_trial_division_for_small_limits() {
+        for limit in 0..=1_000 {
+            let expected: Vec<u64> = (2..=limit)
+                .filter(|&n| (2..).take_while(|&d| d * d <= n).all(|d| n % d != 0))
+                .collect();
+            assert_eq!(
+                tauri::async_runtime::block_on(calculate(limit)),
+                expected,
+                "limit {limit}"
+            );
+        }
+    }
+
+    #[test]
     fn calculates_scientific_chart_sequences() {
         let primes = tauri::async_runtime::block_on(calculate(100_000));
         assert_eq!(primes.len(), 9_592);
