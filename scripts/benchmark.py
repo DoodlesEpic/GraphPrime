@@ -14,6 +14,7 @@ import tarfile
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
+COMMANDS = ("calculate", "calculate_linear")
 
 
 def command(args, **kwargs):
@@ -21,6 +22,8 @@ def command(args, **kwargs):
 
 
 def validate_config(config):
+    if config.get("command", "calculate") not in COMMANDS:
+        raise ValueError("Unsupported calculation command")
     if not isinstance(config["rounds"], int) or config["rounds"] < 5:
         raise ValueError("At least five rounds are required")
     if not 100 <= config["sample_ms"] <= 10000:
@@ -48,7 +51,7 @@ def assess(baseline, candidate, max_slowdown):
             "regression": regression, "ratios": ratios}
 
 
-def prepare(destination, revision=None):
+def prepare(destination, revision=None, command_name="calculate"):
     if revision:
         archive = subprocess.check_output(["git", "archive", revision], cwd=ROOT)
         with tarfile.open(fileobj=io.BytesIO(archive)) as source:
@@ -66,6 +69,7 @@ def prepare(destination, revision=None):
     (assets / "index.html").write_text("<!doctype html><title>Benchmark</title>")
     main = destination / "src-tauri/src/main.rs"
     with main.open("a") as output:
+        output.write(f'\n#[cfg(test)]\nuse {command_name} as benchmark_calculate;\n')
         output.write('\n#[cfg(test)]\n#[path = "benchmark_harness.rs"]\nmod performance;\n')
     shutil.copyfile(ROOT / "benchmarks/harness.rs", main.with_name("benchmark_harness.rs"))
 
@@ -101,17 +105,23 @@ def measure(binary, case, sample_ms):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--baseline", help="Override the pinned baseline for a deliberate comparison")
+    parser.add_argument("--config", type=Path, default=ROOT / "benchmarks/config.json")
+    parser.add_argument("--baseline-command", choices=COMMANDS,
+                        help="Compare different algorithms without changing their regression gates")
     parser.add_argument("--output", type=Path, default=ROOT / "test-results/performance")
     args = parser.parse_args()
-    config = json.loads((ROOT / "benchmarks/config.json").read_text())
+    config = json.loads(args.config.read_text())
     validate_config(config)
+    candidate_command = config.get("command", "calculate")
+    baseline_command = args.baseline_command or candidate_command
     baseline = command(["git", "rev-parse", "--verify", (args.baseline or config["baseline"]) + "^{commit}"], cwd=ROOT)
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
     report = {"baseline": baseline, "candidate": command(["git", "rev-parse", "HEAD"], cwd=ROOT),
               "dirty": bool(command(["git", "status", "--porcelain"], cwd=ROOT)),
               "platform": platform.platform(), "rustc": command(["rustc", "-Vv"]),
-              "config": config, "results": []}
+              "config": config, "baseline_command": baseline_command,
+              "candidate_command": candidate_command, "results": []}
     # Compile with all available CPUs; pin only the subsequent measurements.
     target = Path(os.environ.get("CARGO_TARGET_DIR", ROOT / "src-tauri/target")).resolve()
     with tempfile.TemporaryDirectory(prefix="graphprime-benchmark-") as temporary:
@@ -121,7 +131,7 @@ def main():
             print(f"Building {label} in release mode...", flush=True)
             source = work / label
             source.mkdir()
-            prepare(source, revision)
+            prepare(source, revision, baseline_command if label == "baseline" else candidate_command)
             binaries[label] = work / f"{label}-benchmark"
             build(source, target, binaries[label], output / f"{label}-build.jsonl")
         if hasattr(os, "sched_getaffinity"):
@@ -139,7 +149,8 @@ def main():
             print(f'{case["operation"]}/{case["limit"]}: {result["slowdown"]:+.1%}'
                   f' {"FAIL" if result["regression"] else "PASS"}', flush=True)
     (output / "report.json").write_text(json.dumps(report, indent=2) + "\n")
-    lines = ["## Performance comparison", "", f"Baseline: `{baseline}`", "",
+    lines = [f"## Performance comparison: {candidate_command}", "",
+             f"Baseline: `{baseline}` (`{baseline_command}`)", "",
              "| Workload | Baseline (ms) | Candidate (ms) | Change | Result |",
              "| --- | ---: | ---: | ---: | --- |"]
     for result in report["results"]:
