@@ -56,7 +56,7 @@ async fn calculate_linear(x: u64) -> Vec<u64> {
 
 #[cfg(test)]
 mod tests {
-    use super::calculate;
+    use super::{calculate, calculate_linear};
 
     #[test]
     fn calculates_small_sequences_and_boundaries() {
@@ -85,6 +85,22 @@ mod tests {
             assert_eq!(
                 tauri::async_runtime::block_on(calculate(limit)),
                 expected,
+                "limit {limit}"
+            );
+            assert_eq!(
+                tauri::async_runtime::block_on(calculate_linear(limit)),
+                expected,
+                "linear limit {limit}"
+            );
+        }
+    }
+
+    #[test]
+    fn linear_sieve_matches_eratosthenes_for_large_limits() {
+        for limit in [100_000, 1_000_000] {
+            assert_eq!(
+                tauri::async_runtime::block_on(calculate_linear(limit)),
+                tauri::async_runtime::block_on(calculate(limit)),
                 "limit {limit}"
             );
         }
