@@ -16,9 +16,14 @@ class RegressionGateTests(unittest.TestCase):
         config = json.loads((benchmark.ROOT / "benchmarks/config.json").read_text())
         benchmark.validate_config(config)
         for key, value in [("rounds", 0), ("sample_ms", 0), ("max_slowdown", float("nan")),
-                           ("max_slowdown", 1), ("cases", [])]:
+                           ("max_slowdown", 1), ("cases", []), ("command", "unknown")]:
             with self.subTest(key=key, value=value), self.assertRaises(ValueError):
                 benchmark.validate_config(dict(config, **{key: value}))
+
+    def test_both_algorithm_configurations_are_valid(self):
+        for name in ("config.json", "linear.json"):
+            config = json.loads((benchmark.ROOT / "benchmarks" / name).read_text())
+            benchmark.validate_config(config)
 
     def test_equal_performance_and_improvements_pass(self):
         for candidate in ([100] * 9, [70] * 9):
