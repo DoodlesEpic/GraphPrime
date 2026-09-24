@@ -65,51 +65,54 @@
 </script>
 
 <main>
-  <div class="card">
-    <h1 class="title">{name}</h1>
-    <p>
-      Use this application to generate prime sequences and graph them all within the comfort of your
-      desktop.
-    </p>
+  <div class="calculator-cards">
+    <div class="card">
+      <h1 class="title">{name}</h1>
+      <p>
+        Use this application to generate prime sequences and graph them all within the comfort of
+        your desktop.
+      </p>
 
-    <div class="algorithm-picker">
-      <label for="algorithm">Algorithm</label>
-      <select id="algorithm" bind:value={algorithm} disabled={calculating}>
-        <option value="calculate">Eratosthenes</option>
-        <option value="calculate_linear">Linear</option>
-      </select>
+      <div class="input-group">
+        <div class="limit-field">
+          <label for="limit">Calculate primes up to</label>
+          <input
+            id="limit"
+            type="text"
+            oninput={handleInput}
+            class="input"
+            min="0"
+            max="100000"
+            placeholder="100"
+            aria-label="Calculate primes up to"
+          />
+        </div>
+        <div class="algorithm-picker">
+          <label for="algorithm">Algorithm</label>
+          <select id="algorithm" bind:value={algorithm} disabled={calculating}>
+            <option value="calculate">Eratosthenes</option>
+            <option value="calculate_linear">Linear</option>
+          </select>
+        </div>
+        <button onclick={calculate} disabled={isCalculateDisabled} class="button">Calculate</button>
+      </div>
     </div>
 
-    <div class="input-group">
-      <input
-        type="text"
-        oninput={handleInput}
-        class="input"
-        min="0"
-        max="100000"
-        placeholder="100"
-        aria-label="Calculate primes up to"
-      />
-      <button onclick={calculate} disabled={isCalculateDisabled} class="button">Calculate</button>
+    <div class="card" aria-labelledby="algorithm-heading">
+      <h2 id="algorithm-heading">
+        {algorithm === "calculate" ? "Sieve of Eratosthenes" : "Linear sieve"}
+      </h2>
+      <p>
+        {#if algorithm === "calculate"}
+          Marks multiples of each prime to find all primes up to your limit. Its work grows as O(n
+          log log n). The optimized implementation is the default for fast calculations.
+        {:else}
+          Marks each composite once using its smallest prime factor. Its work grows as O(n), but it
+          may use more memory and run slower than the optimized Eratosthenes sieve.
+        {/if}
+        Both algorithms return the same exact primes. Larger limits require more time and memory.
+      </p>
     </div>
-  </div>
-
-  <div class="card" aria-labelledby="algorithm-heading">
-    <h2 id="algorithm-heading">
-      {algorithm === "calculate" ? "Sieve of Eratosthenes" : "Linear sieve"}
-    </h2>
-    {#if algorithm === "calculate"}
-      <p>
-        Marks multiples of each prime to find all primes up to your limit. Its work grows as O(n log
-        log n). The optimized implementation is the default for fast calculations.
-      </p>
-    {:else}
-      <p>
-        Marks each composite once using its smallest prime factor. Its work grows as O(n), but it
-        may use more memory and run slower than the optimized Eratosthenes sieve.
-      </p>
-    {/if}
-    <p>Both algorithms return the same exact primes. Larger limits require more time and memory.</p>
   </div>
 
   {#if calculationError}
@@ -171,19 +174,52 @@
     font-weight: 400;
   }
 
+  .calculator-cards {
+    display: grid;
+    gap: 1em;
+    margin: 1em;
+  }
+
+  .calculator-cards > .card {
+    margin: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 1100px) {
+    .calculator-cards {
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+
   .input-group {
     display: flex;
     justify-content: center;
-    align-items: stretch;
+    align-items: end;
     gap: 10px;
   }
 
+  .limit-field,
   .algorithm-picker {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 16px;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
+  }
+
+  .limit-field {
+    flex: 1;
+    min-width: 0;
+  }
+
+  label {
+    font-size: 0.875em;
+  }
+
+  .input,
+  .algorithm-picker select,
+  .button {
+    box-sizing: border-box;
+    height: 40px;
   }
 
   .algorithm-picker select {
@@ -207,8 +243,8 @@
   }
 
   .input {
-    max-width: 60%;
-    flex-grow: 5;
+    width: 100%;
+    padding: 0.4rem 0.6rem;
     border: 1px solid var(--border-color);
     border-radius: 5px;
     font-size: 1.2em;
@@ -220,8 +256,7 @@
 
   .button {
     min-width: 100px;
-    max-width: 20%;
-    flex-grow: 1;
+    padding: 0 12px;
     border: none;
     border-radius: 5px;
     font-size: 1.2em;
