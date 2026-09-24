@@ -153,7 +153,7 @@ with (output / "webdriver.log").open("w") as log:
         assert js("return document.querySelector('#algorithm').value") == "calculate"
         for algorithm, heading in [("calculate", "Sieve of Eratosthenes"),
                                    ("calculate_linear", "Linear sieve")]:
-            previous_stats = js("return document.querySelector('#algorithm-heading').parentElement.nextElementSibling.textContent")
+            previous_stats = js("return document.querySelector('[aria-labelledby=stats-heading]').textContent")
             js("""
               const select = document.querySelector('#algorithm');
               select.value = arguments[0];
@@ -161,7 +161,7 @@ with (output / "webdriver.log").open("w") as log:
             """, algorithm)
             wait_for(lambda: js("return document.querySelector('#algorithm-heading').textContent.trim()") == heading,
                      "algorithm explanation updates")
-            assert js("return document.querySelector('#algorithm-heading').parentElement.nextElementSibling.textContent") == previous_stats
+            assert js("return document.querySelector('[aria-labelledby=stats-heading]').textContent") == previous_stats
             js("window.scrollTo(0, 0)")
             screenshot(algorithm)
             for limit in [1, 2, 30, 1000, 10000, 100000, 100]:
