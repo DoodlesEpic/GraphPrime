@@ -68,8 +68,8 @@
   <div class="card">
     <h1 class="title">{name}</h1>
     <p>
-      Use this application to generate prime sequences and graph them all within the comfort of
-      your desktop.
+      Use this application to generate prime sequences and graph them all within the comfort of your
+      desktop.
     </p>
 
     <div class="input-group">
@@ -118,8 +118,8 @@
             Marks multiples of each prime to find all primes up to your limit. Its work grows as O(n
             log log n). The optimized implementation is the default for fast calculations.
           {:else}
-            Marks each composite once using its smallest prime factor. Its work grows as O(n), but it
-            may use more memory and run slower than the optimized Eratosthenes sieve.
+            Marks each composite once using its smallest prime factor. Its work grows as O(n), but
+            it may use more memory and run slower than the optimized Eratosthenes sieve.
           {/if}
           Both algorithms return the same exact primes. Larger limits require more time and memory.
         </p>
@@ -187,7 +187,7 @@
 
   @media (min-width: 1100px) {
     .stats-cards {
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 1fr 1fr;
     }
   }
 
