@@ -65,53 +65,35 @@
 </script>
 
 <main>
-  <div class="calculator-cards">
-    <div class="card">
-      <h1 class="title">{name}</h1>
-      <p>
-        Use this application to generate prime sequences and graph them all within the comfort of
-        your desktop.
-      </p>
+  <div class="card">
+    <h1 class="title">{name}</h1>
+    <p>
+      Use this application to generate prime sequences and graph them all within the comfort of
+      your desktop.
+    </p>
 
-      <div class="input-group">
-        <div class="limit-field">
-          <label for="limit">Calculate primes up to</label>
-          <input
-            id="limit"
-            type="text"
-            oninput={handleInput}
-            class="input"
-            min="0"
-            max="100000"
-            placeholder="100"
-            aria-label="Calculate primes up to"
-          />
-        </div>
-        <div class="algorithm-picker">
-          <label for="algorithm">Algorithm</label>
-          <select id="algorithm" bind:value={algorithm} disabled={calculating}>
-            <option value="calculate">Eratosthenes</option>
-            <option value="calculate_linear">Linear</option>
-          </select>
-        </div>
-        <button onclick={calculate} disabled={isCalculateDisabled} class="button">Calculate</button>
+    <div class="input-group">
+      <div class="limit-field">
+        <label for="limit">Calculate primes up to</label>
+        <input
+          id="limit"
+          type="text"
+          oninput={handleInput}
+          class="input"
+          min="0"
+          max="100000"
+          placeholder="100"
+          aria-label="Calculate primes up to"
+        />
       </div>
-    </div>
-
-    <div class="card" aria-labelledby="algorithm-heading">
-      <h2 id="algorithm-heading">
-        {algorithm === "calculate" ? "Sieve of Eratosthenes" : "Linear sieve"}
-      </h2>
-      <p>
-        {#if algorithm === "calculate"}
-          Marks multiples of each prime to find all primes up to your limit. Its work grows as O(n
-          log log n). The optimized implementation is the default for fast calculations.
-        {:else}
-          Marks each composite once using its smallest prime factor. Its work grows as O(n), but it
-          may use more memory and run slower than the optimized Eratosthenes sieve.
-        {/if}
-        Both algorithms return the same exact primes. Larger limits require more time and memory.
-      </p>
+      <div class="algorithm-picker">
+        <label for="algorithm">Algorithm</label>
+        <select id="algorithm" bind:value={algorithm} disabled={calculating}>
+          <option value="calculate">Eratosthenes</option>
+          <option value="calculate_linear">Linear</option>
+        </select>
+      </div>
+      <button onclick={calculate} disabled={isCalculateDisabled} class="button">Calculate</button>
     </div>
   </div>
 
@@ -124,7 +106,25 @@
   {/if}
 
   {#if primes}
-    <Stats {primes} {calculationTime} {compositeNumbers} {lastFinalValue} />
+    <div class="stats-cards">
+      <Stats {primes} {calculationTime} {compositeNumbers} {lastFinalValue} />
+
+      <div class="card" aria-labelledby="algorithm-heading">
+        <h2 id="algorithm-heading">
+          {algorithm === "calculate" ? "Sieve of Eratosthenes" : "Linear sieve"}
+        </h2>
+        <p>
+          {#if algorithm === "calculate"}
+            Marks multiples of each prime to find all primes up to your limit. Its work grows as O(n
+            log log n). The optimized implementation is the default for fast calculations.
+          {:else}
+            Marks each composite once using its smallest prime factor. Its work grows as O(n), but it
+            may use more memory and run slower than the optimized Eratosthenes sieve.
+          {/if}
+          Both algorithms return the same exact primes. Larger limits require more time and memory.
+        </p>
+      </div>
+    </div>
 
     <Primes bind:editorFullscreen {primes} />
 
@@ -174,19 +174,19 @@
     font-weight: 400;
   }
 
-  .calculator-cards {
+  .stats-cards {
     display: grid;
     gap: 1em;
     margin: 1em;
   }
 
-  .calculator-cards > .card {
+  .stats-cards > :global(.card) {
     margin: 0;
     min-width: 0;
   }
 
   @media (min-width: 1100px) {
-    .calculator-cards {
+    .stats-cards {
       grid-template-columns: 2fr 1fr;
     }
   }
