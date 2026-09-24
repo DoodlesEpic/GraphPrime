@@ -14,8 +14,8 @@
   } = $props();
 </script>
 
-<div class="card">
-  <h2>Stats</h2>
+<div class="card" aria-labelledby="stats-heading">
+  <h2 id="stats-heading">Stats</h2>
   <p>
     {primes.length} prime numbers calculated up to {lastFinalValue}
   </p>

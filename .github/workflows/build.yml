@@ -29,6 +29,8 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_*.py'
       - name: Compare performance with the pinned reference
         run: python3 scripts/benchmark.py
+      - name: Compare linear sieve with its pinned reference
+        run: python3 scripts/benchmark.py --config benchmarks/linear.json --output test-results/performance/linear
       - name: Upload performance evidence
         if: always()
         uses: actions/upload-artifact@v7
