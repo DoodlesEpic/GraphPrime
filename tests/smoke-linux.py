@@ -150,45 +150,59 @@ with (output / "webdriver.log").open("w") as log:
         screenshot("initial")
         print("PASS: bundled CSS, dynamic editor styles, initial SVG graph", flush=True)
 
-        for limit in [1, 2, 30, 1000, 10000, 100000, 100]:
-            calculate(limit)
-            if limit == 1:
-                assert "No prime numbers in this range." in js("return document.body.innerText")
-            else:
-                graph = ".chart canvas" if limit >= 10000 else ".frappe-chart svg"
-                wait_for(lambda: js("return !!document.querySelector(arguments[0])", graph), "graph renders")
-            if limit == 10000:
-                js("window.smokeCanvas = document.querySelector('.chart canvas')")
-            if limit == 100000:
-                assert js("return window.smokeCanvas === document.querySelector('.chart canvas')")
-                click('[aria-label="Toggle graph fullscreen"]')
-                wait_for(lambda: js("return !!document.querySelector('.fullscreen .chart')"), "scientific fullscreen")
-                click('[aria-label="Toggle graph fullscreen"]')
-                wait_for(lambda: js("return !document.querySelector('.fullscreen')"), "exit scientific fullscreen")
-                js("document.querySelector('.chart').scrollIntoView()")
-                screenshot("scientific")
-
-        check_clipboard(expected_primes(100))
-        print("PASS: native clipboard", flush=True)
-
-        js("window.smokeEditor = document.querySelector('.cm-editor')")
-        for label in ["Toggle primes fullscreen", "Toggle graph fullscreen"]:
-            click(f'[aria-label="{label}"]')
-            wait_for(lambda: js("return document.querySelectorAll('.fullscreen').length === 1"), label)
-            screenshot(label.lower().replace(" ", "-"))
-            click(f'[aria-label="{label}"]')
-            wait_for(lambda: js("return !document.querySelector('.fullscreen')"), "exit fullscreen")
-
-        assert js("return window.smokeEditor === document.querySelector('.cm-editor')")
-        for chart_type in ["dygraph", "frappe", "dygraph", "frappe"]:
+        assert js("return document.querySelector('#algorithm').value") == "calculate"
+        for algorithm, heading in [("calculate", "Sieve of Eratosthenes"),
+                                   ("calculate_linear", "Linear sieve")]:
+            previous_stats = js("return document.querySelector('[aria-labelledby=stats-heading]').textContent")
             js("""
-              const select = document.querySelector('select');
+              const select = document.querySelector('#algorithm');
               select.value = arguments[0];
               select.dispatchEvent(new Event('change', {bubbles: true}));
-            """, chart_type)
-            selector = ".chart canvas" if chart_type == "dygraph" else ".frappe-chart svg"
-            wait_for(lambda: js("return !!document.querySelector(arguments[0])", selector), "chart switch")
-        print("PASS: fullscreen and repeated chart switching", flush=True)
+            """, algorithm)
+            wait_for(lambda: js("return document.querySelector('#algorithm-heading').textContent.trim()") == heading,
+                     "algorithm explanation updates")
+            assert js("return document.querySelector('[aria-labelledby=stats-heading]').textContent") == previous_stats
+            js("window.scrollTo(0, 0)")
+            screenshot(algorithm)
+            for limit in [1, 2, 30, 1000, 10000, 100000, 100]:
+                calculate(limit)
+                if limit == 1:
+                    assert "No prime numbers in this range." in js("return document.body.innerText")
+                else:
+                    graph = ".chart canvas" if limit >= 10000 else ".frappe-chart svg"
+                    wait_for(lambda: js("return !!document.querySelector(arguments[0])", graph), "graph renders")
+                if limit == 10000:
+                    js("window.smokeCanvas = document.querySelector('.chart canvas')")
+                if limit == 100000:
+                    assert js("return window.smokeCanvas === document.querySelector('.chart canvas')")
+                    click('[aria-label="Toggle graph fullscreen"]')
+                    wait_for(lambda: js("return !!document.querySelector('.fullscreen .chart')"), "scientific fullscreen")
+                    click('[aria-label="Toggle graph fullscreen"]')
+                    wait_for(lambda: js("return !document.querySelector('.fullscreen')"), "exit scientific fullscreen")
+                    js("document.querySelector('.chart').scrollIntoView()")
+                    screenshot(f"{algorithm}-scientific")
+
+            check_clipboard(expected_primes(100))
+            print("PASS: native clipboard", flush=True)
+
+            js("window.smokeEditor = document.querySelector('.cm-editor')")
+            for label in ["Toggle primes fullscreen", "Toggle graph fullscreen"]:
+                click(f'[aria-label="{label}"]')
+                wait_for(lambda: js("return document.querySelectorAll('.fullscreen').length === 1"), label)
+                screenshot(algorithm + "-" + label.lower().replace(" ", "-"))
+                click(f'[aria-label="{label}"]')
+                wait_for(lambda: js("return !document.querySelector('.fullscreen')"), "exit fullscreen")
+
+            assert js("return window.smokeEditor === document.querySelector('.cm-editor')")
+            for chart_type in ["dygraph", "frappe", "dygraph", "frappe"]:
+                js("""
+                  const select = document.querySelector('[aria-label="Graph type"]');
+                  select.value = arguments[0];
+                  select.dispatchEvent(new Event('change', {bubbles: true}));
+                """, chart_type)
+                selector = ".chart canvas" if chart_type == "dygraph" else ".frappe-chart svg"
+                wait_for(lambda: js("return !!document.querySelector(arguments[0])", selector), "chart switch")
+            print("PASS: fullscreen and repeated chart switching", flush=True)
 
         js("window.scrollTo(0, 0)")
         screenshot("final")

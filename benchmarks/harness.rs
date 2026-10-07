@@ -19,7 +19,7 @@ fn sample() {
             .parse()
             .unwrap(),
     );
-    let primes = tauri::async_runtime::block_on(super::calculate(limit));
+    let primes = tauri::async_runtime::block_on(super::benchmark_calculate(limit));
     let (count, last) = match limit {
         1_000 => (168, 997),
         100_000 => (9_592, 99_991),
@@ -32,9 +32,9 @@ fn sample() {
     assert!(primes.windows(2).all(|pair| pair[0] < pair[1]));
     let run = || match operation.as_str() {
         "calculate" => {
-            black_box(tauri::async_runtime::block_on(super::calculate(black_box(
-                limit,
-            ))));
+            black_box(tauri::async_runtime::block_on(super::benchmark_calculate(
+                black_box(limit),
+            )));
         }
         "serialize" => {
             black_box(serde_json::to_vec(black_box(&primes)).unwrap());

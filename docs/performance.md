@@ -6,6 +6,11 @@ command and JSON serialization with commit
 The reference is pinned in `benchmarks/config.json`: moving `dev` or `main` does
 not silently reset the budget and allow a series of small slowdowns to accumulate.
 
+The linear sieve has a separate reference in `benchmarks/linear.json`, pinned to
+its first implementation, `c6a0ac9665146f48381378f365c62214e0c2a903`. Both algorithms
+use the same workloads and regression budget. The linear sieve is an educational
+alternative and does not need to match Eratosthenes in speed.
+
 Both revisions are compiled with `cargo test --release --locked`, their own
 Cargo manifests and lockfiles, and the same installed Rust toolchain. A shared
 measurement harness is injected into temporary copies; it never replaces the
@@ -40,6 +45,7 @@ With Python 3.10+, Git, Rust and the normal Tauri native build dependencies:
 ```sh
 python3 -m unittest discover -s tests -p 'test_*.py'
 python3 scripts/benchmark.py
+python3 scripts/benchmark.py --config benchmarks/linear.json --output test-results/performance/linear
 ```
 
 The candidate includes local Rust edits. The baseline commit must be available
@@ -51,6 +57,11 @@ receive normal builds and correctness tests.
 For a deliberate investigation, use `--baseline <commit>`. Update the pinned
 baseline only in a reviewed task explaining the accepted performance tradeoff,
 and retain the before/after report. Do not refresh it automatically after a merge.
+
+To compare algorithms directly, add `--baseline-command calculate` to the linear
+command above. This compares the candidate's linear sieve with primal from the
+linear reference commit. The report names both commands. A slower alternative
+can fail this diagnostic comparison without failing its own regression check.
 
 ## Branch workflow
 

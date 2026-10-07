@@ -1,0 +1,33 @@
+{
+  "baseline": "c6a0ac9665146f48381378f365c62214e0c2a903",
+  "rounds": 9,
+  "sample_ms": 300,
+  "max_slowdown": 0.2,
+  "cases": [
+    {
+      "operation": "calculate",
+      "limit": 1000
+    },
+    {
+      "operation": "calculate",
+      "limit": 100000
+    },
+    {
+      "operation": "calculate",
+      "limit": 1000000
+    },
+    {
+      "operation": "calculate",
+      "limit": 10000000
+    },
+    {
+      "operation": "serialize",
+      "limit": 100000
+    },
+    {
+      "operation": "serialize",
+      "limit": 1000000
+    }
+  ],
+  "command": "calculate_linear"
+}

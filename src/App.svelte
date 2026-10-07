@@ -23,6 +23,7 @@
   let calculationTime = $state(0);
   let compositeNumbers = $state(74);
   let chartType = $state("frappe");
+  let algorithm = $state("calculate");
 
   let chartFullscreen = $state(false);
   let editorFullscreen = $state(false);
@@ -49,7 +50,7 @@
     const calculationStart = Date.now();
 
     try {
-      primes = await invoke("calculate", { x: chosenFinalValue });
+      primes = await invoke(algorithm, { x: chosenFinalValue });
       chartType = chosenFinalValue >= 10000 ? "dygraph" : "frappe";
       calculationTime = (Date.now() - calculationStart) / 1000;
       lastFinalValue = chosenFinalValue;
@@ -72,15 +73,26 @@
     </p>
 
     <div class="input-group">
-      <input
-        type="text"
-        oninput={handleInput}
-        class="input"
-        min="0"
-        max="100000"
-        placeholder="100"
-        aria-label="Calculate primes up to"
-      />
+      <div class="limit-field">
+        <label for="limit">Calculate primes up to</label>
+        <input
+          id="limit"
+          type="text"
+          oninput={handleInput}
+          class="input"
+          min="0"
+          max="100000"
+          placeholder="100"
+          aria-label="Calculate primes up to"
+        />
+      </div>
+      <div class="algorithm-picker">
+        <label for="algorithm">Algorithm</label>
+        <select id="algorithm" bind:value={algorithm} disabled={calculating}>
+          <option value="calculate">Eratosthenes</option>
+          <option value="calculate_linear">Linear</option>
+        </select>
+      </div>
       <button onclick={calculate} disabled={isCalculateDisabled} class="button">Calculate</button>
     </div>
   </div>
@@ -94,7 +106,25 @@
   {/if}
 
   {#if primes}
-    <Stats {primes} {calculationTime} {compositeNumbers} {lastFinalValue} />
+    <div class="stats-cards">
+      <Stats {primes} {calculationTime} {compositeNumbers} {lastFinalValue} />
+
+      <div class="card" aria-labelledby="algorithm-heading">
+        <h2 id="algorithm-heading">
+          {algorithm === "calculate" ? "Sieve of Eratosthenes" : "Linear sieve"}
+        </h2>
+        <p>
+          {#if algorithm === "calculate"}
+            Marks multiples of each prime to find all primes up to your limit. Its work grows as O(n
+            log log n). The optimized implementation is the default for fast calculations.
+          {:else}
+            Marks each composite once using its smallest prime factor. Its work grows as O(n), but
+            it may use more memory and run slower than the optimized Eratosthenes sieve.
+          {/if}
+          Both algorithms return the same exact primes. Larger limits require more time and memory.
+        </p>
+      </div>
+    </div>
 
     <Primes bind:editorFullscreen {primes} />
 
@@ -144,16 +174,77 @@
     font-weight: 400;
   }
 
+  .stats-cards {
+    display: grid;
+    gap: 1em;
+    margin: 1em;
+  }
+
+  .stats-cards > :global(.card) {
+    margin: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 1100px) {
+    .stats-cards {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
   .input-group {
     display: flex;
     justify-content: center;
-    align-items: stretch;
+    align-items: end;
     gap: 10px;
   }
 
+  .limit-field,
+  .algorithm-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
+  }
+
+  .limit-field {
+    flex: 1;
+    min-width: 0;
+  }
+
+  label {
+    font-size: 0.875em;
+  }
+
+  .input,
+  .algorithm-picker select,
+  .button {
+    box-sizing: border-box;
+    height: 40px;
+  }
+
+  .algorithm-picker select {
+    padding: 0.4rem 2rem 0.4rem 0.6rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font: inherit;
+    color: var(--body-color);
+    background: var(--card-bg);
+    appearance: none;
+    background-image:
+      linear-gradient(45deg, transparent 50%, currentColor 50%),
+      linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position:
+      calc(100% - 14px) calc(50% + 1px),
+      calc(100% - 9px) calc(50% + 1px);
+    background-size:
+      5px 5px,
+      5px 5px;
+    background-repeat: no-repeat;
+  }
+
   .input {
-    max-width: 60%;
-    flex-grow: 5;
+    width: 100%;
+    padding: 0.4rem 0.6rem;
     border: 1px solid var(--border-color);
     border-radius: 5px;
     font-size: 1.2em;
@@ -165,8 +256,7 @@
 
   .button {
     min-width: 100px;
-    max-width: 20%;
-    flex-grow: 1;
+    padding: 0 12px;
     border: none;
     border-radius: 5px;
     font-size: 1.2em;
