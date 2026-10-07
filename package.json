@@ -20,7 +20,7 @@
     "@fortawesome/free-solid-svg-icons": "^7.3.1",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "@tauri-apps/api": "~2.11.1",
-    "@tauri-apps/cli": "~2.11.4",
+    "@tauri-apps/cli": "~2.12.1",
     "@tauri-apps/plugin-clipboard-manager": "2.3.3",
     "@tsconfig/svelte": "^5.0.8",
     "@types/dygraphs": "^2.1.11",
