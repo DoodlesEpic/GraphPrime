@@ -95,6 +95,7 @@ jobs:
         run: |
           appimage=(src-tauri/target/${{ matrix.target }}/release/bundle/appimage/*.AppImage)
           bash scripts/fix-appimage.sh "${appimage[0]}"
+          bash scripts/check-appimage-modes.sh "${appimage[0]}"
           dbus-run-session -- xvfb-run -a python3 tests/smoke-linux.py "${appimage[0]}"
       - name: Archive macOS application
         if: runner.os == 'macOS'
